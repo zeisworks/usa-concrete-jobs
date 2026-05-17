@@ -1,0 +1,215 @@
+---
+import Base from '../../../../layouts/Base.astro';
+import { states, services } from '../../../../data/states.js';
+
+export async function getStaticPaths() {
+  const paths = [];
+  for (const state of states) {
+    for (const county of state.counties) {
+      for (const city of county.cities) {
+        const citySlug = city.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+        paths.push({
+          params: { state: state.slug, county: county.slug, city: citySlug },
+          props: { state, county, city, citySlug }
+        });
+      }
+    }
+  }
+  return paths;
+}
+
+const { state, county, city, citySlug } = Astro.props;
+const phone = "(855) 288-7767";
+const phoneHref = "tel:+18552887767";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "HomeAndConstructionBusiness",
+  "name": `Concrete Cutting Pros — ${city}, ${state.abbr}`,
+  "description": `Licensed concrete cutting, waterproofing, and concrete finishing contractors in ${city}, ${county.name}, ${state.name}. Free estimates.`,
+  "telephone": "+18552887767",
+  "url": `https://concretecuttingpros.com/states/${state.slug}/${county.slug}/${citySlug}/`,
+  "areaServed": {
+    "@type": "City",
+    "name": city,
+    "containedIn": {
+      "@type": "AdministrativeArea",
+      "name": county.name,
+      "containedIn": { "@type": "State", "name": state.name }
+    }
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": `How much does concrete cutting cost in ${city}, ${state.abbr}?`,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": `Concrete cutting in ${city} typically costs ${state.avgCuttingCost}. The exact cost depends on the type of cut, thickness of the concrete, accessibility, and whether rebar is present. Most ${county.name} projects require a free on-site assessment for an accurate quote. Call (855) 288-7767 for a free estimate.`
+      }
+    },
+    {
+      "@type": "Question",
+      "name": `Do I need a permit for concrete cutting in ${city}?`,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": `${state.permitNote} In ${city}, permits are typically required for structural concrete cutting (load-bearing walls, foundations). Decorative or non-structural cutting may not require a permit. Our contractors can help you determine permit requirements and handle the permitting process.`
+      }
+    },
+    {
+      "@type": "Question",
+      "name": `How much does waterproofing cost in ${city}, ${state.name}?`,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": `Waterproofing in ${city} typically costs ${state.avgWaterproofingCost}. The exact cost depends on the type of waterproofing (interior vs exterior), the size of the area, severity of water issues, and accessibility. ${state.climateNote} Call (855) 288-7767 for a free assessment.`
+      }
+    },
+    {
+      "@type": "Question",
+      "name": `How quickly can I get a concrete cutting estimate in ${city}?`,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": `We offer free on-site estimates in ${city} typically within 3–5 business days. During peak construction season, we recommend scheduling as early as possible. Call (855) 288-7767 to check current availability in ${county.name}.`
+      }
+    }
+  ]
+};
+---
+
+<Base
+  title={`Concrete Cutting & Waterproofing in ${city}, ${state.name} | Concrete Cutting Pros`}
+  description={`Licensed concrete cutting, waterproofing, and concrete finishing contractors in ${city}, ${county.name}, ${state.name}. Free estimates. Call ${phone}.`}
+  canonical={`https://concretecuttingpros.com/states/${state.slug}/${county.slug}/${citySlug}/`}
+  schema={[schema, faqSchema]}
+>
+
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="/">Home</a>
+      <span>›</span>
+      <a href={`/states/${state.slug}/`}>{state.name}</a>
+      <span>›</span>
+      <a href={`/states/${state.slug}/${county.slug}/`}>{county.name}</a>
+      <span>›</span>
+      <span>{city}</span>
+    </nav>
+  </div>
+
+  <section class="hero hero-compact">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-badge">🔧 {city}, {state.abbr}</div>
+        <h1>Concrete Cutting & Waterproofing in {city}, {state.name}</h1>
+        <p class="hero-subtitle">
+          Licensed contractors serving {city} and {county.name}. Free estimates, insured work, permit assistance.
+        </p>
+        <div class="hero-cta-group">
+          <a href={phoneHref} class="btn btn-primary btn-lg">📞 Call {phone}</a>
+          <a href="/#get-estimate" class="btn btn-outline btn-lg" style="color:#fff; border-color:rgba(255,255,255,0.5);">Get Free Estimate</a>
+        </div>
+        <div class="hero-trust">
+          <div class="trust-item"><span class="check">✓</span> Licensed & Insured</div>
+          <div class="trust-item"><span class="check">✓</span> Free Estimates</div>
+          <div class="trust-item"><span class="check">✓</span> Permit Assistance</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid-2" style="gap: 48px; align-items: start;">
+        <div>
+          <h2>Concrete Services in {city}, {state.name}</h2>
+          <p>{state.climateNote}</p>
+          <p>Our licensed contractors serve {city} and all communities in {county.name} with precision concrete cutting, basement and foundation waterproofing, and concrete finishing services. Every project includes a free written estimate and permit assistance.</p>
+
+          <h3 style="margin-top: 28px;">Typical Costs in {city}, {state.abbr}</h3>
+          <table class="cost-table" style="margin-top: 16px;">
+            <thead>
+              <tr><th>Service</th><th>Typical Cost</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Concrete Cutting (per project)</td><td class="cost-highlight">{state.avgCuttingCost}</td></tr>
+              <tr><td>Waterproofing (per project)</td><td class="cost-highlight">{state.avgWaterproofingCost}</td></tr>
+              <tr><td>Concrete Finishing (per sq ft)</td><td class="cost-highlight">$3 – $12</td></tr>
+              <tr><td>Core Drilling (per hole)</td><td class="cost-highlight">$75 – $350</td></tr>
+            </tbody>
+          </table>
+          <p style="font-size:0.85rem; color: var(--color-text-muted); margin-top:8px;">
+            Costs vary by project size, scope, and site conditions. Free on-site estimates available.
+          </p>
+        </div>
+
+        <div>
+          <div class="card" style="border: 2px solid var(--color-accent); position: sticky; top: 100px;">
+            <h3 style="color: var(--color-accent);">Free Estimate in {city}</h3>
+            <p style="font-size:0.95rem; margin-bottom: 8px;">Licensed contractors · Insured work · Permit assistance</p>
+            <a href={phoneHref} class="btn btn-primary btn-full btn-lg" style="margin-bottom: 12px;">📞 {phone}</a>
+            <a href="/#get-estimate" class="btn btn-outline btn-full">Request Free Estimate</a>
+            <hr style="margin: 16px 0; border-color: var(--color-border);" />
+            <h4 style="font-size:0.9rem; margin-bottom:12px;">Other Cities in {county.name}</h4>
+            <div style="display:flex; flex-wrap:wrap; gap:6px;">
+              {county.cities.filter(c => c !== city).slice(0, 6).map(c => {
+                const cs = c.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+                return <a href={`/states/${state.slug}/${county.slug}/${cs}/`} style="font-size:0.8rem; color: var(--color-primary); text-decoration:underline;">{c}</a>;
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <h2>Concrete Services in {city}</h2>
+        <p>All services include free estimates, licensed contractors, and permit assistance.</p>
+      </div>
+      <div class="services-grid">
+        {services.map(service => (
+          <div class="service-card">
+            <h3>{service.name}</h3>
+            <p>{service.description}</p>
+            <div class="service-cost">Typical Cost: <strong>{service.avgCost}</strong></div>
+            <ul style="margin-top:12px; padding-left:18px; font-size:0.85rem; color:var(--color-text-muted);">
+              {service.keyFacts.slice(0, 3).map(fact => <li style="margin-bottom:4px;">{fact}</li>)}
+            </ul>
+            <a href={phoneHref} class="btn btn-primary btn-sm">📞 Call for Free Quote</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Frequently Asked Questions — {city} Concrete Services</h2>
+      </div>
+      <div class="faq-list">
+        {faqSchema.mainEntity.map(item => (
+          <div class="faq-item">
+            <h3 class="faq-question">{item.name}</h3>
+            <p class="faq-answer">{item.acceptedAnswer.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <h2>Get Your Free {city} Concrete Estimate</h2>
+      <p>Licensed contractors. Free estimates. Serving {city} and all of {county.name}.</p>
+      <a href={phoneHref} class="cta-phone">{phone}</a>
+      <p class="cta-subtext">Available Mon–Sat, 7am–6pm</p>
+    </div>
+  </section>
+
+</Base>

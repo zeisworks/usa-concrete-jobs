@@ -1,0 +1,147 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { states, services } from '../../../data/states.js';
+
+export async function getStaticPaths() {
+  const paths = [];
+  for (const state of states) {
+    for (const county of state.counties) {
+      paths.push({
+        params: { state: state.slug, county: county.slug },
+        props: { state, county }
+      });
+    }
+  }
+  return paths;
+}
+
+const { state, county } = Astro.props;
+const phone = "(855) 288-7767";
+const phoneHref = "tel:+18552887767";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "HomeAndConstructionBusiness",
+  "name": `Concrete Cutting Pros — ${county.name}, ${state.abbr}`,
+  "description": `Licensed concrete cutting, waterproofing, and concrete finishing contractors in ${county.name}, ${state.name}. Serving ${county.cities.length} cities. Free estimates.`,
+  "telephone": "+18552887767",
+  "areaServed": { "@type": "AdministrativeArea", "name": county.name }
+};
+---
+
+<Base
+  title={`Concrete Cutting & Waterproofing in ${county.name}, ${state.name} | Concrete Cutting Pros`}
+  description={`Find licensed concrete cutting, waterproofing, and concrete finishing contractors in ${county.name}, ${state.name}. Serving ${county.cities.join(', ')}. Free estimates. Call ${phone}.`}
+  canonical={`https://concretecuttingpros.com/states/${state.slug}/${county.slug}/`}
+  schema={schema}
+>
+
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="/">Home</a>
+      <span>›</span>
+      <a href={`/states/${state.slug}/`}>{state.name}</a>
+      <span>›</span>
+      <span>{county.name}</span>
+    </nav>
+  </div>
+
+  <section class="hero hero-compact">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-badge">🔧 {county.name}, {state.abbr}</div>
+        <h1>Concrete Cutting & Waterproofing in {county.name}, {state.name}</h1>
+        <p class="hero-subtitle">
+          Licensed contractors serving {county.cities.slice(0, 4).join(', ')}, and all communities in {county.name}. Free estimates, insured work, permit assistance.
+        </p>
+        <div class="hero-cta-group">
+          <a href={phoneHref} class="btn btn-primary btn-lg">📞 Call {phone}</a>
+          <a href="/#get-estimate" class="btn btn-outline btn-lg" style="color:#fff; border-color:rgba(255,255,255,0.5);">Get Free Estimate</a>
+        </div>
+        <div class="hero-trust">
+          <div class="trust-item"><span class="check">✓</span> Licensed & Insured</div>
+          <div class="trust-item"><span class="check">✓</span> Free Estimates</div>
+          <div class="trust-item"><span class="check">✓</span> {county.cities.length} Cities Served</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid-2" style="gap:48px; align-items:start;">
+        <div>
+          <h2>Concrete Services in {county.name}</h2>
+          <p>{state.climateNote}</p>
+          <table class="cost-table" style="margin-top:20px;">
+            <tbody>
+              <tr><td><strong>County</strong></td><td>{county.name}, {state.name}</td></tr>
+              <tr><td><strong>License Authority</strong></td><td><a href={state.licenseUrl} target="_blank" rel="noopener">{state.licenseAuthority}</a></td></tr>
+              <tr><td><strong>Concrete Cutting Cost</strong></td><td class="cost-highlight">{state.avgCuttingCost}</td></tr>
+              <tr><td><strong>Waterproofing Cost</strong></td><td class="cost-highlight">{state.avgWaterproofingCost}</td></tr>
+              <tr><td><strong>Cities Served</strong></td><td>{county.cities.length}</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <div class="card" style="border: 2px solid var(--color-accent); position: sticky; top: 100px;">
+            <h3 style="color: var(--color-accent);">Free Estimate in {county.name}</h3>
+            <p style="font-size:0.95rem; margin-bottom: 8px;">Licensed contractors · Insured work · Permit assistance</p>
+            <a href={phoneHref} class="btn btn-primary btn-full btn-lg" style="margin-bottom: 12px;">📞 {phone}</a>
+            <a href="/#get-estimate" class="btn btn-outline btn-full">Request Free Estimate</a>
+            <hr style="margin: 16px 0; border-color: var(--color-border);" />
+            <h4 style="font-size:0.9rem; margin-bottom:12px;">Cities in {county.name}</h4>
+            <div style="display:flex; flex-wrap:wrap; gap:6px;">
+              {county.cities.slice(0, 8).map(c => {
+                const cs = c.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+                return <a href={`/states/${state.slug}/${county.slug}/${cs}/`} style="font-size:0.8rem; color: var(--color-primary); text-decoration:underline;">{c}</a>;
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <h2>Cities We Serve in {county.name}</h2>
+      </div>
+      <div class="town-grid">
+        {county.cities.map(city => {
+          const citySlug = city.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+          return <a href={`/states/${state.slug}/${county.slug}/${citySlug}/`} class="town-link">{city}</a>;
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Concrete Services in {county.name}</h2>
+        <p>All services include free estimates, licensed contractors, and permit assistance.</p>
+      </div>
+      <div class="services-grid">
+        {services.map(service => (
+          <div class="service-card">
+            <h3>{service.name}</h3>
+            <p>{service.description}</p>
+            <div class="service-cost">Typical Cost: <strong>{service.avgCost}</strong></div>
+            <a href={phoneHref} class="btn btn-primary btn-sm">📞 Call for Free Quote</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <h2>Get Your Free {county.name} Concrete Estimate</h2>
+      <p>Licensed contractors. Free estimates. Serving all of {county.name}.</p>
+      <a href={phoneHref} class="cta-phone">{phone}</a>
+    </div>
+  </section>
+
+</Base>

@@ -1,0 +1,158 @@
+---
+import Base from '../layouts/Base.astro';
+import { states, services } from '../data/states.js';
+
+const phone = "(855) 288-7767";
+const phoneHref = "tel:+18552887767";
+const totalCounties = states.reduce((sum, s) => sum + s.counties.length, 0);
+const totalCities = states.reduce((sum, s) => sum + s.counties.reduce((cs, c) => cs + c.cities.length, 0), 0);
+
+const homeSchema = {
+  "@context": "https://schema.org",
+  "@type": "HomeAndConstructionBusiness",
+  "name": "Concrete Cutting Pros",
+  "url": "https://concretecuttingpros.com",
+  "telephone": "+18552887767",
+  "description": "Licensed concrete cutting, waterproofing, and concrete finishing contractors serving Texas, Florida, California, Arizona, and Colorado.",
+  "areaServed": states.map(s => ({ "@type": "State", "name": s.name })),
+  "serviceType": ["Concrete Cutting", "Waterproofing", "Concrete Finishing", "Core Drilling"]
+};
+---
+
+<Base
+  title="Concrete Cutting Pros — Licensed Concrete Cutting, Waterproofing & Finishing Contractors"
+  description="Find licensed concrete cutting, waterproofing, and concrete finishing contractors in Texas, Florida, California, Arizona, and Colorado. Free estimates. Call (855) 288-7767."
+  canonical="https://concretecuttingpros.com/"
+  schema={homeSchema}
+>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-badge">🔧 Licensed Concrete Contractors — 5 States</div>
+        <h1>Expert Concrete Cutting, Waterproofing & Finishing</h1>
+        <p class="hero-subtitle">
+          Licensed, insured contractors serving Texas, Florida, California, Arizona, and Colorado. Precision concrete cutting, basement waterproofing, and concrete repair. Free estimates.
+        </p>
+        <div class="hero-cta-group">
+          <a href={phoneHref} class="btn btn-primary btn-lg">📞 Call {phone}</a>
+          <a href="#get-estimate" class="btn btn-outline btn-lg">Get Free Estimate</a>
+        </div>
+        <div class="hero-trust">
+          <div class="trust-item"><span class="check">✓</span> Licensed & Insured</div>
+          <div class="trust-item"><span class="check">✓</span> Free Estimates</div>
+          <div class="trust-item"><span class="check">✓</span> 5 States</div>
+          <div class="trust-item"><span class="check">✓</span> {totalCities}+ Cities</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="trust-bar">
+    <div class="container">
+      <div class="trust-bar-inner">
+        <div class="trust-badge"><span class="icon">🏛️</span> State-Licensed Contractors</div>
+        <div class="trust-badge"><span class="icon">🛡️</span> Fully Insured</div>
+        <div class="trust-badge"><span class="icon">📋</span> Permit Assistance</div>
+        <div class="trust-badge"><span class="icon">📍</span> TX · FL · CA · AZ · CO</div>
+        <div class="trust-badge"><span class="icon">⚡</span> Free Estimates</div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-header">
+        <h2>Our Services</h2>
+        <p>Professional concrete services for residential and commercial projects. All work performed by licensed, insured contractors.</p>
+      </div>
+      <div class="services-grid">
+        {services.map(service => (
+          <a href={`/services/${service.slug}/`} class="service-card">
+            <h3>{service.name}</h3>
+            <p>{service.description}</p>
+            <div class="service-cost">Typical Cost: <strong>{service.avgCost}</strong></div>
+            <div class="service-urgency">⚡ {service.permitNote}</div>
+            <span class="btn btn-primary btn-sm" style="margin-top:16px;">Learn More →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="states">
+    <div class="container">
+      <div class="section-header">
+        <h2>Find Contractors in Your State</h2>
+        <p>We connect you with licensed concrete and waterproofing contractors in 5 states. Select your state to find local professionals.</p>
+      </div>
+      <div class="county-grid">
+        {states.map(state => (
+          <a href={`/states/${state.slug}/`} class="county-card">
+            <h3>{state.name}</h3>
+            <p>{state.counties.length} metro areas · {state.counties.length * 12}+ cities</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="get-estimate">
+    <div class="container">
+      <div class="section-header">
+        <h2>Get Your Free Concrete Project Estimate</h2>
+        <p>Tell us about your project and we'll connect you with a licensed contractor in your area within 24 hours.</p>
+      </div>
+      <form class="lead-form" id="estimateForm" style="max-width:700px; margin:0 auto;">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="name">Full Name *</label>
+            <input type="text" id="name" name="name" required placeholder="Jane Smith" />
+          </div>
+          <div class="form-group">
+            <label for="phone_input">Phone Number *</label>
+            <input type="tel" id="phone_input" name="phone" required placeholder="(555) 000-0000" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" required placeholder="jane@email.com" />
+          </div>
+          <div class="form-group">
+            <label for="state_select">State *</label>
+            <select id="state_select" name="state" required>
+              <option value="">Select your state</option>
+              {states.map(s => <option value={s.slug}>{s.name}</option>)}
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="city">City / Community</label>
+            <input type="text" id="city" name="city" placeholder="e.g. Austin, TX" />
+          </div>
+          <div class="form-group">
+            <label for="service_select">Service Needed *</label>
+            <select id="service_select" name="service" required>
+              <option value="">Select a service</option>
+              {services.map(s => <option value={s.slug}>{s.name}</option>)}
+            </select>
+          </div>
+          <div class="form-group form-group-full">
+            <label for="project">Project Description</label>
+            <textarea id="project" name="project" rows="3" placeholder="Describe your project: type of work, approximate size, timeline, any specific requirements..."></textarea>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg" style="width:100%; margin-top:16px;">Get My Free Estimate →</button>
+        <p style="font-size:0.85rem; color:var(--color-text-muted); text-align:center; margin-top:12px;">We connect you with licensed contractors only. No spam. Response within 24 hours.</p>
+      </form>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to Start Your Concrete Project?</h2>
+      <p>Licensed contractors. Free estimates. Serving {totalCities}+ cities across 5 states.</p>
+      <a href={phoneHref} class="cta-phone">{phone}</a>
+      <p class="cta-subtext">Available Mon–Sat, 7am–6pm</p>
+    </div>
+  </section>
+
+</Base>
