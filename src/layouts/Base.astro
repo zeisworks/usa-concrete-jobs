@@ -10,23 +10,18 @@ export interface Props {
 
 const { title, description, canonical, schema, extraSchemas = [], speakable = [] } = Astro.props;
 const canonicalUrl = canonical || Astro.url.href;
-
-// ── Single source of truth for phone numbers ──
-const PHONE = {
-  display: "(833) 722-3359",
-  href: "tel:+183****3359",
-  json: "+183****3359",
-};
-const SITE_URL = "https://usaconcretejobs.com";
+const phone = "(833) 722-3359";
+const phoneHref = "tel:+183****3359";
+const siteUrl = "https://usaconcretejobs.com";
 
 const orgSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "@id": `${SITE_URL}/#organization`,
+  "@id": `${siteUrl}/#organization`,
   "name": "USA Concrete Jobs",
-  "url": SITE_URL,
-  "logo": `${SITE_URL}/logo.png`,
-  "telephone": PHONE.json,
+  "url": siteUrl,
+  "logo": `${siteUrl}/logo.png`,
+  "telephone": "+183****3359",
   "description": "Licensed concrete cutting, waterproofing, and concrete finishing contractors serving Texas, Florida, California, Arizona, and Colorado.",
   "areaServed": [
     {"@type": "State", "name": "Texas"},
@@ -35,32 +30,23 @@ const orgSchema = {
     {"@type": "State", "name": "Arizona"},
     {"@type": "State", "name": "Colorado"}
   ],
-  "knowsAbout": [
-    "Concrete cutting",
-    "Concrete sawing",
-    "Core drilling",
-    "Waterproofing",
-    "Basement waterproofing",
-    "Foundation repair"
-  ]
+  "knowsAbout": ["Concrete cutting", "Waterproofing", "Concrete finishing", "Core drilling", "Flat sawing"],
+  "sameAs": []
 };
 
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "@id": `${SITE_URL}/#website`,
-  "url": SITE_URL,
+  "@id": `${siteUrl}/#website`,
+  "url": siteUrl,
   "name": "USA Concrete Jobs",
-  "publisher": { "@id": `${SITE_URL}/#organization` }
+  "publisher": { "@id": `${siteUrl}/#organization` }
 };
 
 const speakableSchema = speakable.length > 0 ? {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "speakable": {
-    "@type": "SpeakableSpecification",
-    "cssSelector": speakable
-  },
+  "speakable": { "@type": "SpeakableSpecification", "cssSelector": speakable },
   "url": canonicalUrl
 } : null;
 
@@ -82,103 +68,96 @@ const allSchemas = [orgSchema, websiteSchema, ...(schema ? [schema] : []), ...ex
   <meta property="og:site_name" content="USA Concrete Jobs" />
   <meta name="twitter:card" content="summary" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-  {allSchemas.map(s => (
-    <script type="application/ld+json" set:html={JSON.stringify(s)} />
-  ))}
+  <meta name="author" content="USA Concrete Jobs" />
+  <meta name="publisher" content="USA Concrete Jobs" />
+  {allSchemas.map(s => (<script type="application/ld+json" set:html={JSON.stringify(s)} />))}
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/styles/theme.css" />
   <link rel="stylesheet" href="/styles/global.css" />
 </head>
 <body>
 
-  <!-- Header -->
   <header class="site-header">
     <div class="container header-inner">
       <a href="/" class="logo">
-        <span class="logo-icon">🔧</span>
+        <span class="logo-icon">🏗️</span>
         <span class="logo-text">USA Concrete Jobs</span>
       </a>
       <nav class="main-nav">
-        <a href="/services/concrete-cutting/">Concrete Cutting</a>
-        <a href="/services/waterproofing/">Waterproofing</a>
-        <a href="/services/concrete-finishing/">Finishing & Repair</a>
-        <a href="/states/texas/">By State</a>
-        <a href="/#get-estimate">Get Estimate</a>
+        <a href="/services/">Services</a>
+        <a href="/states/">By State</a>
+        <a href="/cost/">Cost Guide</a>
+        <a href="/faq/">FAQ</a>
+        <a href="/contact/">Contact</a>
       </nav>
-      <a href={PHONE.href} class="btn btn-primary header-cta">📞 {PHONE.display}</a>
+      <a href={phoneHref} class="btn btn-primary header-cta">📞 {phone}</a>
       <button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
     </div>
   </header>
 
-  <!-- Mobile Nav -->
   <nav class="mobile-nav" id="mobileNav">
     <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">×</button>
-    <a href="/services/concrete-cutting/">Concrete Cutting</a>
-    <a href="/services/waterproofing/">Waterproofing</a>
-    <a href="/services/concrete-finishing/">Concrete Finishing & Repair</a>
-    <a href="/states/texas/">Texas</a>
-    <a href="/states/florida/">Florida</a>
-    <a href="/states/california/">California</a>
-    <a href="/states/arizona/">Arizona</a>
-    <a href="/states/colorado/">Colorado</a>
-    <a href="/#get-estimate">Get Free Estimate</a>
-    <a href={PHONE.href} style="color:#4ade80;font-weight:700;margin-top:16px;">📞 {PHONE.display}</a>
+    <a href="/services/">Services</a>
+    <a href="/states/">By State</a>
+    <a href="/cost/">Cost Guide</a>
+    <a href="/faq/">FAQ</a>
+    <a href="/contact/">Contact</a>
+    <a href={phoneHref} style="color:#4ade80;font-weight:700;margin-top:16px;">📞 {phone}</a>
   </nav>
 
   <main><slot /></main>
 
-  <!-- Footer -->
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-col">
         <h3>USA Concrete Jobs</h3>
-        <p>Licensed concrete cutting, waterproofing, and concrete finishing contractors serving Texas, Florida, California, Arizona, and Colorado. Free estimates, insured work.</p>
-        <a href={PHONE.href} class="footer-phone">{PHONE.display}</a>
-        <p class="footer-license">Licensed · Insured · TX · FL · CA · AZ · CO</p>
+        <p>Licensed concrete cutting, waterproofing, and concrete finishing contractors serving Texas, Florida, California, Arizona, and Colorado.</p>
+        <a href={phoneHref} class="footer-phone">{phone}</a>
+        <p class="footer-license">Licensed · Insured · 5 States</p>
       </div>
       <div class="footer-col">
         <h4>Services</h4>
         <ul>
-          <li><a href="/services/concrete-cutting/">Concrete Cutting & Sawing</a></li>
+          <li><a href="/services/concrete-cutting/">Concrete Cutting</a></li>
           <li><a href="/services/waterproofing/">Waterproofing</a></li>
-          <li><a href="/services/concrete-finishing/">Concrete Finishing & Repair</a></li>
+          <li><a href="/services/concrete-finishing/">Concrete Finishing</a></li>
+          <li><a href="/services/core-drilling/">Core Drilling</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>States We Serve</h4>
+        <h4>States</h4>
         <ul>
-          <li><a href="/states/texas/">Texas — 8 Metro Areas</a></li>
-          <li><a href="/states/florida/">Florida — 8 Metro Areas</a></li>
-          <li><a href="/states/california/">California — 8 Metro Areas</a></li>
-          <li><a href="/states/arizona/">Arizona — 6 Metro Areas</a></li>
-          <li><a href="/states/colorado/">Colorado — 8 Metro Areas</a></li>
+          <li><a href="/states/texas/">Texas</a></li>
+          <li><a href="/states/florida/">Florida</a></li>
+          <li><a href="/states/california/">California</a></li>
+          <li><a href="/states/arizona/">Arizona</a></li>
+          <li><a href="/states/colorado/">Colorado</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Resources</h4>
         <ul>
-          <li><a href="/#get-estimate">Get Free Estimate</a></li>
-          <li><a href="/services/concrete-cutting/">Types of Concrete Cutting</a></li>
-          <li><a href="/services/waterproofing/">Waterproofing Methods</a></li>
+          <li><a href="/cost/">Cost Guide</a></li>
+          <li><a href="/faq/">FAQ</a></li>
+          <li><a href="/contact/">Contact Us</a></li>
+          <li><a href="/privacy/">Privacy Policy</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
       <div class="container">
-        <p>© {new Date().getFullYear()} USA Concrete Jobs. All rights reserved. Licensed contractors in TX, FL, CA, AZ, CO.</p>
-        <p class="disclaimer">This site connects property owners with licensed concrete and waterproofing contractors. Project estimates are for informational purposes only. Verify all work with your local building department.</p>
+        <p>© {new Date().getFullYear()} USA Concrete Jobs. All rights reserved.</p>
+        <p class="disclaimer">This site connects property owners with licensed concrete contractors. Pricing estimates are for informational purposes only.</p>
       </div>
     </div>
   </footer>
 
-  <!-- Sticky CTA (mobile) -->
   <div class="sticky-cta" id="stickyCta">
-    <a href={PHONE.href} class="btn btn-primary btn-full">📞 Call Now</a>
-    <a href="/#get-estimate" class="btn btn-outline btn-full" style="border-color:var(--color-accent);color:var(--color-accent);">Free Estimate</a>
-    <button class="sticky-dismiss" id="stickyDismiss" aria-label="Dismiss">×</button>
+    <a href={phoneHref} class="btn btn-primary btn-full">📞 Call Now — Free Estimate</a>
   </div>
 
   <script>
@@ -188,13 +167,7 @@ const allSchemas = [orgSchema, websiteSchema, ...(schema ? [schema] : []), ...ex
     if (menuToggle && mobileNav) {
       menuToggle.addEventListener('click', () => mobileNav.classList.add('open'));
       mobileNavClose.addEventListener('click', () => mobileNav.classList.remove('open'));
-      mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileNav.classList.remove('open')));
-    }
-    const stickyCta = document.getElementById('stickyCta');
-    const stickyDismiss = document.getElementById('stickyDismiss');
-    if (stickyCta && stickyDismiss) {
-      if (sessionStorage.getItem('stickyDismissed')) { stickyCta.style.display = 'none'; }
-      stickyDismiss.addEventListener('click', () => { stickyCta.style.display = 'none'; sessionStorage.setItem('stickyDismissed', '1'); });
+      mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileNav.classList.remove('open'));
     }
     document.querySelectorAll('.faq-question').forEach(btn => {
       btn.addEventListener('click', () => {
