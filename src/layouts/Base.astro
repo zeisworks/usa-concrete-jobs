@@ -11,7 +11,7 @@ export interface Props {
 const { title, description, canonical, schema, extraSchemas = [], speakable = [] } = Astro.props;
 const canonicalUrl = canonical || Astro.url.href;
 const phone = "(833) 722-3359";
-const phoneHref = "tel:+183****3359";
+const phoneHref = "tel:+18552887767";
 const siteUrl = "https://usaconcretejobs.com";
 
 const orgSchema = {
@@ -21,7 +21,7 @@ const orgSchema = {
   "name": "USA Concrete Jobs",
   "url": siteUrl,
   "logo": `${siteUrl}/logo.png`,
-  "telephone": "+183****3359",
+  "telephone": "+18552887767",
   "description": "Licensed concrete cutting, waterproofing, and concrete finishing contractors serving Texas, Florida, California, Arizona, and Colorado.",
   "areaServed": [
     {"@type": "State", "name": "Texas"},
@@ -90,8 +90,8 @@ const allSchemas = [orgSchema, websiteSchema, ...(schema ? [schema] : []), ...ex
       <nav class="main-nav">
         <a href="/services/">Services</a>
         <a href="/states/">By State</a>
+        <a href="/jobs/">Job Board</a>
         <a href="/cost/">Cost Guide</a>
-        <a href="/faq/">FAQ</a>
         <a href="/contact/">Contact</a>
       </nav>
       <a href={phoneHref} class="btn btn-primary header-cta">📞 {phone}</a>
@@ -103,6 +103,7 @@ const allSchemas = [orgSchema, websiteSchema, ...(schema ? [schema] : []), ...ex
     <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">×</button>
     <a href="/services/">Services</a>
     <a href="/states/">By State</a>
+    <a href="/jobs/">Job Board</a>
     <a href="/cost/">Cost Guide</a>
     <a href="/faq/">FAQ</a>
     <a href="/contact/">Contact</a>
@@ -141,6 +142,9 @@ const allSchemas = [orgSchema, websiteSchema, ...(schema ? [schema] : []), ...ex
       <div class="footer-col">
         <h4>Resources</h4>
         <ul>
+          <li><a href="/jobs/">Job Board</a></li>
+          <li><a href="/jobs/post/">Post a Job</a></li>
+          <li><a href="/contractors/">For Contractors</a></li>
           <li><a href="/cost/">Cost Guide</a></li>
           <li><a href="/faq/">FAQ</a></li>
           <li><a href="/contact/">Contact Us</a></li>
@@ -167,7 +171,7 @@ const allSchemas = [orgSchema, websiteSchema, ...(schema ? [schema] : []), ...ex
     if (menuToggle && mobileNav) {
       menuToggle.addEventListener('click', () => mobileNav.classList.add('open'));
       mobileNavClose.addEventListener('click', () => mobileNav.classList.remove('open'));
-      mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileNav.classList.remove('open'));
+      mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileNav.classList.remove('open')));
     }
     document.querySelectorAll('.faq-question').forEach(btn => {
       btn.addEventListener('click', () => {
