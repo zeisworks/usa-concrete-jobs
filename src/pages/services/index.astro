@@ -1,0 +1,35 @@
+---
+import Base from '../layouts/Base.astro';
+import { services } from '../data/states.js';
+const phone = "(833) 722-3359";
+const phoneHref = "tel:+183****3359";
+---
+<Base
+  title="Concrete Services | USA Concrete Jobs"
+  description="Licensed concrete cutting, waterproofing, and concrete finishing services. Serving Texas, Florida, California, Arizona, and Colorado."
+  canonical="https://usaconcretejobs.com/services/"
+>
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h1>Our Concrete Services</h1>
+        <p>Connect with licensed concrete contractors for cutting, waterproofing, finishing, and more.</p>
+      </div>
+      <div class="services-grid">
+        {services.map(service => (
+          <a href={`/services/${service.slug}/`} class="service-card">
+            <h3>{service.name}</h3>
+            <p>{service.description}</p>
+            <div class="service-cost">Starting at: <strong>{service.avgCost.split('–')[0]}</strong></div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+  <section class="cta-section">
+    <div class="container">
+      <h2>Need a Free Quote?</h2>
+      <a href={phoneHref} class="cta-phone">{phone}</a>
+    </div>
+  </section>
+</Base>
