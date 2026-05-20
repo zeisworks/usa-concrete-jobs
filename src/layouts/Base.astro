@@ -3,7 +3,7 @@ export interface Props {
   title: string;
   description: string;
   canonical?: string;
-  schema?: object;
+  schema?: object | object[];
   extraSchemas?: object[];
   speakable?: string[];
 }
@@ -50,7 +50,8 @@ const speakableSchema = speakable.length > 0 ? {
   "url": canonicalUrl
 } : null;
 
-const allSchemas = [orgSchema, websiteSchema, ...(schema ? [schema] : []), ...extraSchemas, ...(speakableSchema ? [speakableSchema] : [])];
+const schemaItems = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+const allSchemas = [orgSchema, websiteSchema, ...schemaItems, ...extraSchemas, ...(speakableSchema ? [speakableSchema] : [])];
 ---
 
 <!DOCTYPE html>
