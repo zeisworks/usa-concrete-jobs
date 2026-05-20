@@ -1,0 +1,192 @@
+---
+import Base from '../../layouts/Base.astro';
+import { states, services } from '../../data/states.js';
+
+const phone = "(833) 722-3359";
+const phoneHref = "tel:+18552887767";
+const totalCounties = states.reduce((sum, s) => sum + s.counties.length, 0);
+const totalCities = states.reduce((sum, s) => sum + s.counties.reduce((cs, c) => cs + c.cities.length, 0), 0);
+---
+
+<Base
+  title="Concrete Contractors by State — TX, FL, CA, AZ, CO | USA Concrete Jobs"
+  description={`Find licensed concrete cutting, waterproofing, driveway replacement, and foundation repair contractors in ${states.map(s => s.name).join(', ')}. ${totalCities}+ cities covered.`}
+  canonical="https://usaconcretejobs.com/states/"
+>
+
+  <div class="page-hero">
+    <div class="container">
+      <h1>Concrete Contractors by State</h1>
+      <p>Licensed, insured concrete contractors across {states.length} states, {totalCounties} counties, and {totalCities}+ cities. Select your state to find local pricing and availability.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid-3" style="gap: 32px;">
+        {states.map(state => {
+          const stateCities = state.counties.reduce((sum, c) => sum + c.cities.length, 0);
+          return (
+            <a href={`/states/${state.slug}/`} class="state-card">
+              <div class="state-card-header">
+                <h2>{state.name}</h2>
+                <span class="state-abbr">{state.abbr}</span>
+              </div>
+              <p>{state.climateNote}</p>
+              <div class="state-meta">
+                <span>{state.counties.length} counties</span>
+                <span>{stateCities}+ cities</span>
+              </div>
+              <div class="state-costs">
+                <div class="cost-row">
+                  <span>Concrete Cutting</span>
+                  <strong>{state.avgCuttingCost}</strong>
+                </div>
+                <div class="cost-row">
+                  <span>Waterproofing</span>
+                  <strong>{state.avgWaterproofingCost}</strong>
+                </div>
+              </div>
+              <div class="state-counties">
+                {state.counties.slice(0, 4).map(c => (
+                  <span class="county-tag">{c.name.replace(' County', '')}</span>
+                ))}
+                {state.counties.length > 4 && (
+                  <span class="county-tag county-tag-more">+{state.counties.length - 4} more</span>
+                )}
+              </div>
+              <div class="state-card-cta">View {state.name} Contractors →</div>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <h2>Browse by Service</h2>
+        <p>Find licensed specialists for any concrete project in your state.</p>
+      </div>
+      <div class="services-grid">
+        {services.map(service => (
+          <a href={`/services/${service.slug}/`} class="service-card">
+            <h3>{service.name}</h3>
+            <p>{service.description}</p>
+            <div class="service-cost">Typical: <strong>{service.avgCost}</strong></div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <h2>Not Sure Where to Start?</h2>
+      <p>Call us and we'll connect you with the right licensed contractor in your area.</p>
+      <a href={phoneHref} class="cta-phone">{phone}</a>
+      <p class="cta-subtext">Or <a href="/jobs/post/" style="color:rgba(255,255,255,0.85); text-decoration:underline;">post a job to get competitive bids</a></p>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  .state-card {
+    display: block;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-top: 3px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    box-shadow: var(--shadow);
+    transition: all var(--transition-base);
+    text-decoration: none;
+    color: inherit;
+  }
+  .state-card:hover {
+    border-color: var(--color-accent);
+    border-top-color: var(--color-accent);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-3px);
+    text-decoration: none;
+  }
+  .state-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .state-card-header h2 {
+    font-size: 1.3rem;
+    margin: 0;
+    color: var(--color-primary);
+  }
+  .state-abbr {
+    background: var(--color-primary);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+  }
+  .state-card p {
+    font-size: 0.88rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: 16px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .state-meta {
+    display: flex;
+    gap: 16px;
+    font-size: 0.82rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .state-costs {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  .cost-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+  }
+  .cost-row span { color: var(--color-text-muted); }
+  .cost-row strong { color: var(--color-accent); font-weight: 700; }
+  .state-counties {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+  .county-tag {
+    background: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    padding: 3px 10px;
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+  .county-tag-more { color: var(--color-primary); font-weight: 600; }
+  .state-card-cta {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    letter-spacing: 0.01em;
+  }
+  .state-card:hover .state-card-cta { text-decoration: underline; }
+</style>
