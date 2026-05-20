@@ -1,19 +1,22 @@
 ---
 import Base from '../../layouts/Base.astro';
-const phone = "(833) 945-3473";
-const phoneHref = "tel:+18339453473";
+import { states, services } from '../../data/states.js';
+const phone = "(833) 722-3359";
+const phoneHref = "tel:+18552887767";
+const totalCounties = states.reduce((sum, s) => sum + s.counties.length, 0);
+const totalCities = states.reduce((sum, s) => sum + s.counties.reduce((cs, c) => cs + c.cities.length, 0), 0);
 ---
 
 <Base
-  title="About Western Wildfire Defense — Licensed Contractors Across 11 Western States"
-  description="Western Wildfire Defense connects homeowners in high-risk fire zones with licensed, state-certified contractors for defensible space clearing, home hardening, and fire-resistant landscaping."
-  canonical="https://westernwildfiredefense.com/about/"
+  title="About USA Concrete Jobs — Licensed Concrete Contractors Across 5 States"
+  description="USA Concrete Jobs connects homeowners and businesses with licensed, insured concrete contractors for cutting, waterproofing, driveway replacement, foundation repair, and more. Serving TX, FL, CA, AZ, CO."
+  canonical="https://usaconcretejobs.com/about/"
 >
 
   <div class="page-hero">
     <div class="container">
-      <h1>About Western Wildfire Defense</h1>
-      <p>Connecting Western homeowners with licensed wildfire mitigation contractors since 2019.</p>
+      <h1>About USA Concrete Jobs</h1>
+      <p>Connecting property owners with licensed concrete contractors across {states.length} states, {totalCounties} counties, and {totalCities}+ cities.</p>
     </div>
   </div>
 
@@ -21,39 +24,64 @@ const phoneHref = "tel:+18339453473";
     <div class="container content-section">
 
       <h2>What We Do</h2>
-      <p>Western Wildfire Defense is a contractor referral network serving homeowners in 11 Western states. We connect property owners in high-risk fire zones with licensed, state-certified contractors who specialize in defensible space clearing, home hardening, and fire-resistant landscaping.</p>
-      <p>Every contractor in our network is licensed in their state, fully insured, and trained to document work to the standards required by state fire agencies — including CAL FIRE, Colorado DFPC, Oregon ODF, and Washington DNR. All work includes written documentation suitable for your insurance carrier.</p>
+      <p>USA Concrete Jobs is a two-sided concrete services marketplace. We connect homeowners and businesses with vetted, licensed concrete contractors across Texas, Florida, California, Arizona, and Colorado.</p>
+      <p>Whether you need concrete cut, a driveway replaced, a foundation repaired, or a pool deck resurfaced, we match you with a licensed local contractor — fast, free, and with no obligation.</p>
 
-      <h2>Why Wildfire Mitigation Matters Now</h2>
-      <p>The wildfire risk landscape across the American West has changed dramatically. Insurance companies are withdrawing from high-risk counties across California, Colorado, Oregon, and Washington. Homeowners who cannot demonstrate defensible space compliance and home hardening upgrades face non-renewal, premium increases of 100–300%, or complete loss of coverage.</p>
-      <p>At the same time, state laws are tightening. California PRC 4291, Oregon SB 762, and similar statutes in Colorado and Washington now mandate defensible space compliance with mandatory inspections and potential fines for non-compliance. Acting proactively is both a legal requirement and a financial necessity.</p>
+      <h2>Two Ways to Connect</h2>
+      <div class="grid-2" style="gap:32px; margin-top:24px;">
+        <div class="card">
+          <h3>📞 Call for Immediate Help</h3>
+          <p>Call <a href={phoneHref}>{phone}</a> to speak directly with a vetted local concrete contractor. High intent, fast connection, no wait.</p>
+          <a href={phoneHref} class="btn btn-primary btn-sm" style="margin-top:12px;">Call Now — Free Estimate</a>
+        </div>
+        <div class="card">
+          <h3>🏗️ Post a Job & Get Bids</h3>
+          <p>Describe your project, set your timeline and budget, and receive competitive bids from multiple verified contractors in your area.</p>
+          <a href="/jobs/post/" class="btn btn-outline btn-sm" style="margin-top:12px;">Post a Job</a>
+        </div>
+      </div>
 
-      <h2>Our Standards</h2>
+      <h2 style="margin-top:48px;">Our Standards</h2>
       <ul>
         <li>All contractors are licensed in their state of operation</li>
-        <li>All work is documented to state fire agency standards (CAL FIRE, DFPC, ODF, DNR)</li>
         <li>All contractors carry general liability and workers' compensation insurance</li>
-        <li>All assessments are free with no obligation</li>
-        <li>All jobs include a written compliance report for your insurance carrier</li>
+        <li>All assessments and estimates are free with no obligation</li>
+        <li>All contractors are verified against state licensing databases</li>
+        <li>Permit assistance provided on every project that requires it</li>
       </ul>
 
-      <h2>Regulatory Framework</h2>
-      <p>Wildfire defensible space requirements vary by state and are enforced by different agencies:</p>
+      <h2>Services We Cover</h2>
+      <div class="services-grid" style="margin-top:24px;">
+        {services.map(service => (
+          <a href={`/services/${service.slug}/`} class="service-card">
+            <h3>{service.name}</h3>
+            <p style="font-size:0.9rem;">{service.description}</p>
+            <div class="service-cost">Typical: <strong>{service.avgCost}</strong></div>
+          </a>
+        ))}
+      </div>
+
+      <h2 style="margin-top:48px;">Coverage Area</h2>
       <table class="cost-table">
-        <thead><tr><th>State</th><th>Agency</th><th>Key Law</th><th>Requirement</th></tr></thead>
+        <thead>
+          <tr><th>State</th><th>License Authority</th><th>Counties</th><th>Cities</th></tr>
+        </thead>
         <tbody>
-          <tr><td>California</td><td><a href="https://www.fire.ca.gov" target="_blank" rel="noopener">CAL FIRE</a></td><td>PRC 4291</td><td>100 ft defensible space in SRA</td></tr>
-          <tr><td>Colorado</td><td><a href="https://dfpc.colorado.gov" target="_blank" rel="noopener">DFPC</a></td><td>HB 22-1011</td><td>WUI zone compliance required</td></tr>
-          <tr><td>Oregon</td><td><a href="https://www.oregon.gov/odf" target="_blank" rel="noopener">ODF</a></td><td>SB 762 (2021)</td><td>Mandatory inspections from 2025</td></tr>
-          <tr><td>Washington</td><td><a href="https://www.dnr.wa.gov" target="_blank" rel="noopener">DNR</a></td><td>RCW 76.04</td><td>SRA compliance required</td></tr>
-          <tr><td>Montana</td><td><a href="https://dnrc.mt.gov/forestry" target="_blank" rel="noopener">DNRC</a></td><td>MCA 76-13</td><td>Defensible space recommended</td></tr>
-          <tr><td>Idaho</td><td><a href="https://www.idl.idaho.gov/forestry" target="_blank" rel="noopener">IDL</a></td><td>Title 38</td><td>WUI compliance encouraged</td></tr>
+          {states.map(state => (
+            <tr>
+              <td><strong>{state.name}</strong></td>
+              <td><a href={state.licenseUrl} target="_blank" rel="noopener">{state.licenseAuthority}</a></td>
+              <td>{state.counties.length}</td>
+              <td>{state.counties.reduce((sum, c) => sum + c.cities.length, 0)}+</td>
+            </tr>
+          ))}
         </tbody>
       </table>
 
       <div style="margin-top: 40px; text-align:center;">
-        <a href={phoneHref} class="btn btn-primary btn-lg">📞 Call {phone} — Free Assessment</a>
+        <a href={phoneHref} class="btn btn-primary btn-lg">📞 Call {phone} — Free Estimate</a>
       </div>
+
     </div>
   </section>
 

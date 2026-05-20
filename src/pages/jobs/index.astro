@@ -1,0 +1,142 @@
+---
+import Base from '../../layouts/Base.astro';
+import { services, states } from '../../data/states.js';
+const phone = "(833) 722-3359";
+const phoneHref = "tel:+18552887767";
+
+const jobSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "USA Concrete Jobs — Job Board",
+  "description": "Post a concrete job and receive competitive bids from licensed, verified contractors in your area.",
+  "url": "https://usaconcretejobs.com/jobs/"
+};
+---
+
+<Base
+  title="Concrete Job Board — Post a Job & Get Contractor Bids | USA Concrete Jobs"
+  description="Post your concrete project and receive competitive bids from licensed, insured contractors. Driveway replacement, waterproofing, foundation repair, stamped concrete, and more."
+  canonical="https://usaconcretejobs.com/jobs/"
+  schema={jobSchema}
+>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-badge">🏗️ Concrete Job Board</div>
+        <h1>Post a Concrete Job. Get Competitive Bids.</h1>
+        <p class="hero-subtitle">
+          Describe your project, set your timeline and budget, and receive bids from licensed, insured concrete contractors in your area. Free to post. No obligation.
+        </p>
+        <div class="hero-cta-group">
+          <a href="/jobs/post/" class="btn btn-primary btn-lg">Post a Job — Free</a>
+          <a href={phoneHref} class="btn btn-outline btn-lg" style="color:#fff; border-color:rgba(255,255,255,0.5);">📞 Call {phone}</a>
+        </div>
+        <div class="hero-trust">
+          <div class="trust-item"><span class="check">✓</span> Free to Post</div>
+          <div class="trust-item"><span class="check">✓</span> Licensed Contractors</div>
+          <div class="trust-item"><span class="check">✓</span> Competitive Bids</div>
+          <div class="trust-item"><span class="check">✓</span> No Obligation</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <h2>How It Works</h2>
+        <p>Get competitive bids from licensed contractors in 3 simple steps.</p>
+      </div>
+      <div class="grid-3" style="gap:32px;">
+        <div class="card" style="text-align:center;">
+          <div style="font-size:2.5rem; margin-bottom:16px;">📋</div>
+          <h3>1. Post Your Job</h3>
+          <p>Describe your project: service type, location, timeline, and budget. It takes 2 minutes and is completely free.</p>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:2.5rem; margin-bottom:16px;">🤝</div>
+          <h3>2. Receive Bids</h3>
+          <p>Licensed, verified contractors in your area review your job and submit competitive bids. You're in control of who you hear from.</p>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:2.5rem; margin-bottom:16px;">✅</div>
+          <h3>3. Hire & Pay</h3>
+          <p>Choose the best bid, hire the contractor, and pay a small platform fee only when the job is awarded. No upfront cost.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Services Available on the Job Board</h2>
+        <p>Post any concrete project and find a specialist contractor.</p>
+      </div>
+      <div class="services-grid">
+        {services.map(service => (
+          <div class="service-card">
+            <h3>{service.name}</h3>
+            <p>{service.description}</p>
+            <div class="service-cost">Typical: <strong>{service.avgCost}</strong></div>
+            <a href="/jobs/post/" class="btn btn-primary btn-sm" style="margin-top:12px;">Post a {service.name} Job</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <h2>Platform Fee Structure</h2>
+        <p>Posting a job is free. A small platform fee is charged to the winning contractor only when a job is awarded.</p>
+      </div>
+      <table class="cost-table" style="max-width:600px; margin:0 auto;">
+        <thead>
+          <tr><th>Job Value</th><th>Platform Fee</th><th>Paid By</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Under $2,000</td><td class="cost-highlight">$25 flat</td><td>Winning contractor</td></tr>
+          <tr><td>$2,000 – $5,000</td><td class="cost-highlight">$50 flat</td><td>Winning contractor</td></tr>
+          <tr><td>$5,000 – $15,000</td><td class="cost-highlight">$75 flat</td><td>Winning contractor</td></tr>
+          <tr><td>Over $15,000</td><td class="cost-highlight">3–5% of job value</td><td>Winning contractor</td></tr>
+        </tbody>
+      </table>
+      <p style="text-align:center; margin-top:16px; font-size:0.9rem; color:var(--color-text-muted);">
+        Customers post and receive bids at no cost. Contractors pay only when they win a job.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Post Jobs in These States</h2>
+        <p>We connect you with verified local contractors across 5 states.</p>
+      </div>
+      <div class="grid-3" style="gap:24px;">
+        {states.map(state => (
+          <div class="card">
+            <h3>{state.name}</h3>
+            <p style="font-size:0.85rem; color:var(--color-text-muted);">
+              {state.counties.length} counties · {state.counties.reduce((s, c) => s + c.cities.length, 0)}+ cities
+            </p>
+            <p style="font-size:0.85rem; margin-top:8px;">{state.climateNote.substring(0, 100)}...</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to Get Bids on Your Concrete Project?</h2>
+      <p>Free to post. Licensed contractors. Competitive bids. No obligation.</p>
+      <a href="/jobs/post/" class="btn btn-primary btn-lg" style="font-size:1.2rem; padding:20px 48px;">Post a Job — Free</a>
+      <p class="cta-subtext">Or call <a href={phoneHref} style="color:rgba(255,255,255,0.85);">{phone}</a> to speak with a contractor directly</p>
+    </div>
+  </section>
+
+</Base>

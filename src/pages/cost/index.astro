@@ -1,74 +1,96 @@
 ---
 import Base from '../../layouts/Base.astro';
-const phone = "(833) 945-3473";
-const phoneHref = "tel:+18339453473";
+import { states, services } from '../../data/states.js';
+const phone = "(833) 722-3359";
+const phoneHref = "tel:+18552887767";
 ---
 
 <Base
-  title="Wildfire Defensible Space & Home Hardening Cost Guide 2026 — Western States"
-  description="Complete cost guide for wildfire defensible space clearing, home hardening, and fire-resistant landscaping across California, Colorado, Oregon, Washington, and other Western states."
-  canonical="https://westernwildfiredefense.com/cost/"
+  title="Concrete Services Cost Guide 2026 — TX, FL, CA, AZ, CO | USA Concrete Jobs"
+  description="Typical costs for concrete cutting, waterproofing, driveway replacement, foundation repair, stamped concrete, and pool decks across Texas, Florida, California, Arizona, and Colorado."
+  canonical="https://usaconcretejobs.com/cost/"
 >
 
   <div class="page-hero">
     <div class="container">
-      <h1>Wildfire Mitigation Cost Guide — Western States 2026</h1>
-      <p>Typical costs for defensible space clearing, home hardening, and fire-resistant landscaping by state and service type.</p>
+      <h1>Concrete Services Cost Guide — 2026</h1>
+      <p>Typical pricing for concrete cutting, waterproofing, driveway replacement, foundation repair, and decorative concrete across our 5 service states.</p>
     </div>
   </div>
 
   <section class="section">
     <div class="container content-section">
 
-      <h2>Defensible Space Clearing Costs by State</h2>
-      <p>Defensible space clearing costs depend on property size, vegetation type and density, terrain slope, and how much clearing has been done previously. The following ranges represent typical costs for a standard 1-acre property in each state.</p>
+      <h2>Cost by Service Type</h2>
+      <p>The following ranges represent typical project costs for each service. Actual costs depend on project scope, site conditions, concrete thickness, rebar presence, and local labor rates.</p>
 
       <table class="cost-table">
         <thead>
-          <tr><th>State</th><th>Avg. Clearing Cost (1 acre)</th><th>High-Risk Surcharge</th><th>Annual Maintenance</th></tr>
+          <tr><th>Service</th><th>Typical Cost Range</th><th>Key Cost Factors</th></tr>
         </thead>
         <tbody>
-          <tr><td>California</td><td class="cost-highlight">$2,800 – $8,500</td><td>+20–40% in VHFHSZ zones</td><td>$800 – $2,500/yr</td></tr>
-          <tr><td>Colorado</td><td class="cost-highlight">$2,200 – $7,000</td><td>+15–30% in WUI zones</td><td>$600 – $2,000/yr</td></tr>
-          <tr><td>Oregon</td><td class="cost-highlight">$2,000 – $6,500</td><td>+15–25% in high-risk zones</td><td>$500 – $1,800/yr</td></tr>
-          <tr><td>Washington</td><td class="cost-highlight">$1,800 – $6,000</td><td>+10–20% in SRA zones</td><td>$500 – $1,600/yr</td></tr>
-          <tr><td>Montana</td><td class="cost-highlight">$1,500 – $5,500</td><td>+10–20% in high-risk areas</td><td>$400 – $1,400/yr</td></tr>
-          <tr><td>Idaho</td><td class="cost-highlight">$1,400 – $5,000</td><td>+10–15% in WUI zones</td><td>$400 – $1,200/yr</td></tr>
-          <tr><td>Arizona</td><td class="cost-highlight">$1,600 – $5,500</td><td>+15–25% in high-risk zones</td><td>$450 – $1,500/yr</td></tr>
-          <tr><td>New Mexico</td><td class="cost-highlight">$1,400 – $5,000</td><td>+10–20% in high-risk areas</td><td>$400 – $1,300/yr</td></tr>
+          {services.map(service => (
+            <tr>
+              <td><a href={`/services/${service.slug}/`}><strong>{service.name}</strong></a></td>
+              <td class="cost-highlight">{service.avgCost}</td>
+              <td style="font-size:0.85rem; color:var(--color-text-muted);">{service.keyFacts[0]}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
 
-      <h2 style="margin-top:40px;">Home Hardening Costs</h2>
-      <p>Home hardening involves upgrading the structure itself to resist ember intrusion and radiant heat. Costs vary significantly based on the age of the home, existing materials, and the scope of upgrades required.</p>
+      <h2 style="margin-top:48px;">Cost by State</h2>
+      <p>Labor costs, permit fees, and material costs vary significantly by state. Here are the typical ranges for core services in each state we serve.</p>
 
       <table class="cost-table">
         <thead>
-          <tr><th>Upgrade Type</th><th>Typical Cost</th><th>Priority Level</th></tr>
+          <tr><th>State</th><th>Concrete Cutting</th><th>Waterproofing</th></tr>
         </thead>
         <tbody>
-          <tr><td>Ember-resistant vent covers</td><td class="cost-highlight">$300 – $1,200</td><td>🔴 Critical</td></tr>
-          <tr><td>Class A fire-rated roofing</td><td class="cost-highlight">$8,000 – $25,000</td><td>🔴 Critical</td></tr>
-          <tr><td>Dual-pane tempered glass windows</td><td class="cost-highlight">$3,000 – $12,000</td><td>🟠 High</td></tr>
-          <tr><td>Non-combustible deck replacement</td><td class="cost-highlight">$5,000 – $20,000</td><td>🟠 High</td></tr>
-          <tr><td>Exterior wall siding upgrade</td><td class="cost-highlight">$8,000 – $30,000</td><td>🟡 Medium</td></tr>
-          <tr><td>Garage door sealing</td><td class="cost-highlight">$500 – $2,000</td><td>🟠 High</td></tr>
-          <tr><td>Full home hardening package</td><td class="cost-highlight">$8,000 – $35,000</td><td>Varies</td></tr>
+          {states.map(state => (
+            <tr>
+              <td><strong>{state.name}</strong></td>
+              <td class="cost-highlight">{state.avgCuttingCost}</td>
+              <td class="cost-highlight">{state.avgWaterproofingCost}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
 
-      <h2 style="margin-top:40px;">Grants & Rebates Available</h2>
-      <p>Several state and federal programs offer financial assistance for wildfire mitigation work. Eligibility varies by state, income level, and property location.</p>
+      <h2 style="margin-top:48px;">Factors That Affect Concrete Cutting Cost</h2>
       <ul>
-        <li><strong>California:</strong> <a href="https://www.fire.ca.gov/programs/resource-management/grants/" target="_blank" rel="noopener">CAL FIRE Grants Program</a> — up to $5,000 for qualifying homeowners</li>
-        <li><strong>Colorado:</strong> <a href="https://dfpc.colorado.gov/wildfire-risk-reduction" target="_blank" rel="noopener">Colorado Wildfire Risk Reduction Program</a> — cost-share grants available</li>
-        <li><strong>Oregon:</strong> <a href="https://www.oregon.gov/odf/fire/pages/defensiblespace.aspx" target="_blank" rel="noopener">Oregon ODF Defensible Space Program</a> — technical assistance and rebates</li>
-        <li><strong>Federal:</strong> <a href="https://www.usda.gov/topics/forestry/wildfire" target="_blank" rel="noopener">USDA Forest Service</a> — community wildfire defense grants</li>
+        <li><strong>Concrete thickness:</strong> 4" residential slab vs. 12"+ commercial foundation significantly affects cutting time and blade wear</li>
+        <li><strong>Rebar presence:</strong> Cutting through reinforced concrete requires diamond blades and takes longer</li>
+        <li><strong>Accessibility:</strong> Confined spaces, upper floors, or difficult angles add cost</li>
+        <li><strong>Cut length and type:</strong> Wall saw vs. flat saw vs. core drill have different day rates</li>
+        <li><strong>Permit requirements:</strong> Structural permits can add $200–$800 to total project cost</li>
+      </ul>
+
+      <h2 style="margin-top:48px;">Factors That Affect Waterproofing Cost</h2>
+      <ul>
+        <li><strong>Interior vs. exterior:</strong> Exterior waterproofing requires excavation and costs 2–3× more</li>
+        <li><strong>Severity of water intrusion:</strong> Active leaks with hydrostatic pressure cost more to fix</li>
+        <li><strong>Square footage:</strong> Larger basements and crawl spaces cost more per project</li>
+        <li><strong>Drainage system:</strong> Adding a French drain or sump pump adds $1,500–$4,000</li>
+        <li><strong>Climate:</strong> States with higher water tables (FL) or clay soils (TX) often require more robust systems</li>
+      </ul>
+
+      <h2 style="margin-top:48px;">Factors That Affect Driveway Replacement Cost</h2>
+      <ul>
+        <li><strong>Size:</strong> A standard 2-car driveway (400–600 sq ft) vs. a large estate driveway (2,000+ sq ft)</li>
+        <li><strong>Demo & haul-away:</strong> Removing old concrete or asphalt adds $500–$2,000</li>
+        <li><strong>Base preparation:</strong> Poor soil may require additional gravel base or compaction</li>
+        <li><strong>Finish type:</strong> Standard broom finish vs. stamped or exposed aggregate</li>
+        <li><strong>Permits:</strong> Required in most municipalities when connecting to a public street</li>
       </ul>
 
       <div style="margin-top: 40px; text-align:center;">
-        <a href={phoneHref} class="btn btn-primary btn-lg">📞 Call {phone} — Free Assessment</a>
+        <p style="font-size:1.1rem; margin-bottom:16px;">Get an accurate quote for your project — free, no obligation.</p>
+        <a href={phoneHref} class="btn btn-primary btn-lg">📞 Call {phone} — Free Estimate</a>
+        <span style="margin: 0 16px; color:var(--color-text-muted);">or</span>
+        <a href="/jobs/post/" class="btn btn-outline btn-lg">Post a Job &amp; Get Multiple Bids</a>
       </div>
+
     </div>
   </section>
 
