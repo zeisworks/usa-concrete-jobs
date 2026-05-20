@@ -17,7 +17,7 @@ const totalCities = state.counties.reduce((sum, c) => sum + c.cities.length, 0);
 const schema = {
   "@context": "https://schema.org",
   "@type": "HomeAndConstructionBusiness",
-  "name": `Concrete Cutting Pros — ${state.name}`,
+  "name": `USA Concrete Jobs — ${state.name}`,
   "description": `Licensed concrete cutting, waterproofing, and concrete finishing contractors in ${state.name}. Serving ${state.counties.length} metro areas. Free estimates.`,
   "telephone": "+18552887767",
   "areaServed": { "@type": "State", "name": state.name }
@@ -25,7 +25,7 @@ const schema = {
 ---
 
 <Base
-  title={`Concrete Cutting, Waterproofing & Finishing in ${state.name} | Concrete Cutting Pros`}
+  title={`Concrete Cutting, Waterproofing & Finishing in ${state.name} | USA Concrete Jobs`}
   description={`Find licensed concrete cutting, waterproofing, and concrete finishing contractors in ${state.name}. Serving ${totalCities}+ cities. Free estimates. Call ${phone}.`}
   canonical={`https://usaconcretejobs.com/states/${state.slug}/`}
   schema={schema}

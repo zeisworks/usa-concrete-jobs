@@ -23,7 +23,7 @@ const orgSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   "@id": `${SITE_URL}/#organization`,
-  "name": "Concrete Cutting Pros",
+  "name": "USA Concrete Jobs",
   "url": SITE_URL,
   "logo": `${SITE_URL}/logo.png`,
   "telephone": PHONE.json,
@@ -50,7 +50,7 @@ const websiteSchema = {
   "@type": "WebSite",
   "@id": `${SITE_URL}/#website`,
   "url": SITE_URL,
-  "name": "Concrete Cutting Pros",
+  "name": "USA Concrete Jobs",
   "publisher": { "@id": `${SITE_URL}/#organization` }
 };
 
@@ -79,7 +79,7 @@ const allSchemas = [orgSchema, websiteSchema, ...(schema ? [schema] : []), ...ex
   <meta property="og:description" content={description} />
   <meta property="og:type" content="website" />
   <meta property="og:url" content={canonicalUrl} />
-  <meta property="og:site_name" content="Concrete Cutting Pros" />
+  <meta property="og:site_name" content="USA Concrete Jobs" />
   <meta name="twitter:card" content="summary" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
   {allSchemas.map(s => (
@@ -99,7 +99,7 @@ const allSchemas = [orgSchema, websiteSchema, ...(schema ? [schema] : []), ...ex
     <div class="container header-inner">
       <a href="/" class="logo">
         <span class="logo-icon">🔧</span>
-        <span class="logo-text">Concrete Cutting Pros</span>
+        <span class="logo-text">USA Concrete Jobs</span>
       </a>
       <nav class="main-nav">
         <a href="/services/concrete-cutting/">Concrete Cutting</a>
@@ -134,7 +134,7 @@ const allSchemas = [orgSchema, websiteSchema, ...(schema ? [schema] : []), ...ex
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-col">
-        <h3>Concrete Cutting Pros</h3>
+        <h3>USA Concrete Jobs</h3>
         <p>Licensed concrete cutting, waterproofing, and concrete finishing contractors serving Texas, Florida, California, Arizona, and Colorado. Free estimates, insured work.</p>
         <a href={PHONE.href} class="footer-phone">{PHONE.display}</a>
         <p class="footer-license">Licensed · Insured · TX · FL · CA · AZ · CO</p>
@@ -168,7 +168,7 @@ const allSchemas = [orgSchema, websiteSchema, ...(schema ? [schema] : []), ...ex
     </div>
     <div class="footer-bottom">
       <div class="container">
-        <p>© {new Date().getFullYear()} Concrete Cutting Pros. All rights reserved. Licensed contractors in TX, FL, CA, AZ, CO.</p>
+        <p>© {new Date().getFullYear()} USA Concrete Jobs. All rights reserved. Licensed contractors in TX, FL, CA, AZ, CO.</p>
         <p class="disclaimer">This site connects property owners with licensed concrete and waterproofing contractors. Project estimates are for informational purposes only. Verify all work with your local building department.</p>
       </div>
     </div>
