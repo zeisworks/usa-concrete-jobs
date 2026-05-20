@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import { states, services } from '../data/states.js';
 
-const phone = "(855) 288-7767";
+const phone = "(833) 722-3359";
 const phoneHref = "tel:+18552887767";
 const totalCounties = states.reduce((sum, s) => sum + s.counties.length, 0);
 const totalCities = states.reduce((sum, s) => sum + s.counties.reduce((cs, c) => cs + c.cities.length, 0), 0);
@@ -11,7 +11,7 @@ const homeSchema = {
   "@context": "https://schema.org",
   "@type": "HomeAndConstructionBusiness",
   "name": "Concrete Cutting Pros",
-  "url": "https://concretecuttingpros.com",
+  "url": "https://usaconcretejobs.com",
   "telephone": "+18552887767",
   "description": "Licensed concrete cutting, waterproofing, and concrete finishing contractors serving Texas, Florida, California, Arizona, and Colorado.",
   "areaServed": states.map(s => ({ "@type": "State", "name": s.name })),
@@ -22,7 +22,7 @@ const homeSchema = {
 <Base
   title="Concrete Cutting Pros — Licensed Concrete Cutting, Waterproofing & Finishing Contractors"
   description="Find licensed concrete cutting, waterproofing, and concrete finishing contractors in Texas, Florida, California, Arizona, and Colorado. Free estimates. Call (855) 288-7767."
-  canonical="https://concretecuttingpros.com/"
+  canonical="https://usaconcretejobs.com/"
   schema={homeSchema}
 >
 

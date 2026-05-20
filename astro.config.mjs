@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://concretecuttingpros.com',
+  site: 'https://usaconcretejobs.com',
   output: 'static',
   build: {
     format: 'directory'

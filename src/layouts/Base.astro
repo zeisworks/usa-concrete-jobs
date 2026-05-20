@@ -13,11 +13,11 @@ const canonicalUrl = canonical || Astro.url.href;
 
 // ── Single source of truth for phone numbers ──
 const PHONE = {
-  display: "(855) CUT-PROS",
+  display: "(833) 722-3359",
   href: "tel:+18552887767",
   json: "+18552887767",
 };
-const SITE_URL = "https://concretecuttingpros.com";
+const SITE_URL = "https://usaconcretejobs.com";
 
 const orgSchema = {
   "@context": "https://schema.org",
@@ -88,6 +88,8 @@ const allSchemas = [orgSchema, websiteSchema, ...(schema ? [schema] : []), ...ex
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="stylesheet" href="/styles/global.css" />
 </head>
 <body>
