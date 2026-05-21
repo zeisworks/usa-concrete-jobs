@@ -3,12 +3,13 @@ export interface Props {
   title: string;
   description: string;
   canonical?: string;
+  noindex?: boolean;
   schema?: object;
   extraSchemas?: object[];
   speakable?: string[];
 }
 
-const { title, description, canonical, schema, extraSchemas = [], speakable = [] } = Astro.props;
+const { title, description, canonical, noindex = false, schema, extraSchemas = [], speakable = [] } = Astro.props;
 const canonicalUrl = canonical || Astro.url.href;
 const phone = "(833) 722-3359";
 const phoneHref = "tel:+18552887767";
@@ -66,8 +67,16 @@ const allSchemas = [orgSchema, websiteSchema, ...(schema ? [schema] : []), ...ex
   <meta property="og:type" content="website" />
   <meta property="og:url" content={canonicalUrl} />
   <meta property="og:site_name" content="USA Concrete Jobs" />
-  <meta name="twitter:card" content="summary" />
-  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta property="og:image" content={`${siteUrl}/og-image.png`} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content={`${siteUrl}/og-image.png`} />
+  {noindex ? (
+    <meta name="robots" content="noindex, nofollow" />
+  ) : (
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  )}
   <meta name="author" content="USA Concrete Jobs" />
   <meta name="publisher" content="USA Concrete Jobs" />
   {allSchemas.map(s => (<script type="application/ld+json" set:html={JSON.stringify(s)} />))}
