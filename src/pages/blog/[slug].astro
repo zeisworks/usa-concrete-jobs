@@ -1,13 +1,19 @@
 ---
+export const prerender = false;
+
 import Base from '../../layouts/Base.astro';
 import { posts } from '../../data/blog.js';
+import { readArticles } from '../../lib/articleStore';
 
-export function getStaticPaths() {
-  return posts.map(post => ({ params: { slug: post.slug }, props: { post } }));
-}
-
-const { post } = Astro.props;
+const { slug } = Astro.params;
 const siteUrl = "https://usaconcretejobs.com";
+
+const dynamic = readArticles().find(a => a.slug === slug && a.status === 'publish');
+const post = dynamic ?? posts.find(p => p.slug === slug);
+
+if (!post) {
+  return Astro.redirect('/blog/', 302);
+}
 
 const articleSchema = {
   "@context": "https://schema.org",
@@ -64,7 +70,7 @@ const articleSchema = {
         <div class="sidebar-card" style="margin-top:20px;">
           <h3>More Articles</h3>
           <ul class="sidebar-links">
-            {posts.filter(p => p.slug !== post.slug).slice(0, 4).map(p => (
+            {[...readArticles().filter(a => a.status === 'publish' && a.slug !== slug), ...posts.filter(p => p.slug !== slug && !readArticles().some(a => a.slug === p.slug))].slice(0, 4).map(p => (
               <li><a href={`/blog/${p.slug}/`}>{p.title}</a></li>
             ))}
           </ul>

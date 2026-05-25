@@ -1,11 +1,13 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import node from '@astrojs/node';
 
 const SITE = 'https://usaconcretejobs.com';
 
 export default defineConfig({
   site: SITE,
-  output: 'static',
+  output: 'hybrid',
+  adapter: node({ mode: 'middleware' }),
   integrations: [
     sitemap({
       filter: (page) =>
