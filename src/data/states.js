@@ -149,5 +149,75 @@ export const services = [
       "Structural repair for cracks, spalling, and settlement",
       "Epoxy coatings for garage floors and commercial spaces"
     ]
+  },
+  {
+    slug: "core-drilling",
+    name: "Core Drilling",
+    description: "Precision core drilling for plumbing, electrical, HVAC, and structural penetrations in concrete walls, floors, and slabs.",
+    avgCost: "$75 – $350 per hole",
+    permitNote: "Core drilling into structural elements (load-bearing walls, foundations) typically requires a permit and engineering review. Non-structural penetrations may not require permits.",
+    keyFacts: [
+      "Plumbing and electrical conduit penetrations",
+      "HVAC duct and pipe openings through concrete slabs",
+      "Anchor bolt and rebar installation holes",
+      "Drainage and utility sleeves for new construction",
+      "Precise diameter control from 1\" to 36\" diameter cores"
+    ]
+  },
+  {
+    slug: "driveway-replacement",
+    name: "Driveway Replacement",
+    description: "Full concrete driveway removal and replacement, including grading, rebar reinforcement, forming, and finishing for residential and commercial properties.",
+    avgCost: "$3,000 – $12,000",
+    permitNote: "Driveway replacement typically requires a permit when connecting to a public street or alley. Check with your local municipality for specific requirements.",
+    keyFacts: [
+      "Full tear-out and disposal of existing concrete or asphalt",
+      "Grading and compacted base preparation",
+      "Rebar or wire mesh reinforcement for longevity",
+      "Control joint placement to minimize cracking",
+      "Broom or exposed-aggregate finish options"
+    ]
+  },
+  {
+    slug: "foundation-repair",
+    name: "Foundation Repair",
+    description: "Concrete foundation crack repair, underpinning, slab lifting, and structural reinforcement for homes and commercial buildings.",
+    avgCost: "$2,500 – $15,000",
+    permitNote: "Foundation repair almost always requires a building permit and often requires an engineer's report. Our contractors handle the permitting process and documentation.",
+    keyFacts: [
+      "Crack injection (epoxy or polyurethane) for hairline to major cracks",
+      "Piering and underpinning for settling foundations",
+      "Slab lifting and leveling (mudjacking or foam injection)",
+      "Carbon fiber straps for bowing basement walls",
+      "Full written assessment and engineer-approved repair plans"
+    ]
+  },
+  {
+    slug: "stamped-concrete",
+    name: "Stamped Concrete",
+    description: "Decorative stamped concrete for patios, driveways, pool decks, and walkways — replicating the look of brick, stone, slate, or wood at a fraction of the cost.",
+    avgCost: "$2,000 – $10,000",
+    permitNote: "Stamped concrete flatwork typically does not require permits unless it involves structural changes or exceeds a certain square footage. Check with your local building department.",
+    keyFacts: [
+      "100+ pattern options: brick, cobblestone, flagstone, wood plank",
+      "Color hardeners and release agents for realistic finishes",
+      "Sealed and protected against UV fading and staining",
+      "Custom patterns and borders for unique designs",
+      "Ideal for patios, pool decks, driveways, and walkways"
+    ]
+  },
+  {
+    slug: "concrete-pool-deck",
+    name: "Concrete Pool Deck",
+    description: "New concrete pool deck installation, resurfacing, and repair. Slip-resistant finishes, cool-to-the-touch coatings, and decorative options for residential and commercial pools.",
+    avgCost: "$3,500 – $14,000",
+    permitNote: "Pool deck work typically requires a permit, especially when tied to a new pool installation or significant expansion. Resurfacing of an existing deck may not require a permit.",
+    keyFacts: [
+      "Slip-resistant broom, travertine, and kool-deck finishes",
+      "Cool-deck coatings to reduce surface temperature",
+      "Expansion joint installation to prevent cracking",
+      "Drainage design to direct water away from pool and structure",
+      "Resurfacing and overlay options to refresh existing decks"
+    ]
   }
 ];
