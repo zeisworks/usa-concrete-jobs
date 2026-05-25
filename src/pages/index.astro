@@ -103,7 +103,7 @@ const homeSchema = {
         <h2>Get Your Free Concrete Project Estimate</h2>
         <p>Tell us about your project and we'll connect you with a licensed contractor in your area within 24 hours.</p>
       </div>
-      <form class="lead-form" id="estimateForm" style="max-width:700px; margin:0 auto;">
+      <form class="lead-form" id="estimateForm" style="max-width:700px; margin:0 auto;" novalidate>
         <div class="form-grid">
           <div class="form-group">
             <label for="name">Full Name *</label>
@@ -142,7 +142,38 @@ const homeSchema = {
         </div>
         <button type="submit" class="btn btn-primary btn-lg" style="width:100%; margin-top:16px;">Get My Free Estimate →</button>
         <p style="font-size:0.85rem; color:var(--color-text-muted); text-align:center; margin-top:12px;">We connect you with licensed contractors only. No spam. Response within 24 hours.</p>
+        <div id="estimateMsg" style="display:none; margin-top:16px; padding:16px; border-radius:8px; text-align:center; font-weight:600;"></div>
       </form>
+      <script>
+        document.getElementById('estimateForm')?.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const form = e.target as HTMLFormElement;
+          const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+          const msg = document.getElementById('estimateMsg') as HTMLElement;
+          btn.disabled = true;
+          btn.textContent = 'Submitting…';
+          const data = Object.fromEntries(new FormData(form));
+          try {
+            const res = await fetch('/api/leads', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+            if (res.ok) {
+              form.reset();
+              msg.style.display = 'block';
+              msg.style.background = '#d1fae5';
+              msg.style.color = '#065f46';
+              msg.textContent = '✓ Request received! A licensed contractor will contact you within 24 hours.';
+            } else {
+              throw new Error();
+            }
+          } catch {
+            msg.style.display = 'block';
+            msg.style.background = '#fee2e2';
+            msg.style.color = '#991b1b';
+            msg.textContent = 'Something went wrong. Please call us directly at (833) 722-3359.';
+            btn.disabled = false;
+            btn.textContent = 'Get My Free Estimate →';
+          }
+        });
+      </script>
     </div>
   </section>
 

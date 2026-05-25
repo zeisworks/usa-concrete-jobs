@@ -101,12 +101,7 @@ const phoneHref = "tel:+18337223359";
         <div>
           <h2>Join as a Contractor</h2>
           <p>Fill out the form and we'll reach out within 1 business day to verify your license and set up your account.</p>
-          <form
-            class="lead-form"
-            action="https://formspree.io/f/usaconcretejobs-contractor"
-            method="POST"
-          >
-            <input type="hidden" name="_subject" value="Contractor Application — USA Concrete Jobs" />
+          <form class="lead-form" id="contractorForm" novalidate>
 
             <div class="form-group">
               <label for="biz-name">Business Name *</label>
@@ -170,8 +165,41 @@ const phoneHref = "tel:+18337223359";
               <button type="submit" class="btn btn-primary btn-full btn-lg">
                 Apply to Join — Free
               </button>
+              <div id="contractorMsg" style="display:none; margin-top:16px; padding:16px; border-radius:8px; text-align:center; font-weight:600;"></div>
             </div>
           </form>
+          <script>
+            document.getElementById('contractorForm')?.addEventListener('submit', async (e) => {
+              e.preventDefault();
+              const form = e.target as HTMLFormElement;
+              const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+              const msg = document.getElementById('contractorMsg') as HTMLElement;
+              btn.disabled = true;
+              btn.textContent = 'Submitting…';
+              const formData = new FormData(form);
+              const services = formData.getAll('services');
+              const data = { ...Object.fromEntries(formData), services };
+              try {
+                const res = await fetch('/api/contractors', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+                if (res.ok) {
+                  form.reset();
+                  msg.style.display = 'block';
+                  msg.style.background = '#d1fae5';
+                  msg.style.color = '#065f46';
+                  msg.textContent = '✓ Application received! We\'ll review your license and reach out within 1 business day.';
+                } else {
+                  throw new Error();
+                }
+              } catch {
+                msg.style.display = 'block';
+                msg.style.background = '#fee2e2';
+                msg.style.color = '#991b1b';
+                msg.textContent = 'Something went wrong. Please call us at (833) 722-3359.';
+                btn.disabled = false;
+                btn.textContent = 'Apply to Join — Free';
+              }
+            });
+          </script>
         </div>
 
         <div>
