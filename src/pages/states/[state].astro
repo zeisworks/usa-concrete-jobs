@@ -11,7 +11,7 @@ export async function getStaticPaths() {
 
 const { state } = Astro.props;
 const phone = "(833) 722-3359";
-const phoneHref = "tel:+18552887767";
+const phoneHref = "tel:+18337223359";
 const totalCities = state.counties.reduce((sum, c) => sum + c.cities.length, 0);
 
 const schema = {
@@ -19,7 +19,7 @@ const schema = {
   "@type": "HomeAndConstructionBusiness",
   "name": `USA Concrete Jobs — ${state.name}`,
   "description": `Licensed concrete cutting, waterproofing, and concrete finishing contractors in ${state.name}. Serving ${state.counties.length} metro areas. Free estimates.`,
-  "telephone": "+18552887767",
+  "telephone": "+18337223359",
   "areaServed": { "@type": "State", "name": state.name }
 };
 ---

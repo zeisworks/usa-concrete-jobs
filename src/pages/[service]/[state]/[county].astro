@@ -1,4 +1,5 @@
 ---
+import { slugify } from '../../../lib/slugify';
 import Base from '../../../layouts/Base.astro';
 import { states, services } from '../../../data/states.js';
 
@@ -19,7 +20,7 @@ export async function getStaticPaths() {
 
 const { service, state, county } = Astro.props;
 const phone = "(833) 722-3359";
-const phoneHref = "tel:+18552887767";
+const phoneHref = "tel:+18337223359";
 const pageUrl = `https://usaconcretejobs.com/${service.slug}/${state.slug}/${county.slug}/`;
 ---
 
@@ -105,7 +106,7 @@ const pageUrl = `https://usaconcretejobs.com/${service.slug}/${state.slug}/${cou
       </div>
       <div class="town-grid">
         {county.cities.map(c => {
-          const cs = c.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+          const cs = slugify(c);
           return (
             <a href={`/${service.slug}/${state.slug}/${county.slug}/${cs}/`} class="town-link">
               {c}

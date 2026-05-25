@@ -17,7 +17,7 @@ export async function getStaticPaths() {
 
 const { service, state } = Astro.props;
 const phone = "(833) 722-3359";
-const phoneHref = "tel:+18552887767";
+const phoneHref = "tel:+18337223359";
 const pageUrl = `https://usaconcretejobs.com/${service.slug}/${state.slug}/`;
 const totalCities = state.counties.reduce((sum, c) => sum + c.cities.length, 0);
 ---

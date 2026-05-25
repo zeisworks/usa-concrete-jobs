@@ -2,7 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import { states, services } from '../../data/states.js';
 const phone = "(833) 722-3359";
-const phoneHref = "tel:+18552887767";
+const phoneHref = "tel:+18337223359";
 const totalCounties = states.reduce((sum, s) => sum + s.counties.length, 0);
 const totalCities = states.reduce((sum, s) => sum + s.counties.reduce((cs, c) => cs + c.cities.length, 0), 0);
 ---

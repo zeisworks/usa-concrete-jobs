@@ -1,4 +1,5 @@
 ---
+import { slugify } from '../../../../lib/slugify';
 import Base from '../../../../layouts/Base.astro';
 import { states, services } from '../../../../data/states.js';
 
@@ -8,7 +9,7 @@ export async function getStaticPaths() {
     for (const state of states) {
       for (const county of state.counties) {
         for (const city of county.cities) {
-          const citySlug = city.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+          const citySlug = slugify(city);
           paths.push({
             params: { service: service.slug, state: state.slug, county: county.slug, city: citySlug },
             props: { service, state, county, city, citySlug }
@@ -22,7 +23,7 @@ export async function getStaticPaths() {
 
 const { service, state, county, city, citySlug } = Astro.props;
 const phone = "(833) 722-3359";
-const phoneHref = "tel:+18552887767";
+const phoneHref = "tel:+18337223359";
 
 const pageUrl = `https://usaconcretejobs.com/${service.slug}/${state.slug}/${county.slug}/${citySlug}/`;
 
@@ -31,7 +32,7 @@ const schema = {
   "@type": "HomeAndConstructionBusiness",
   "name": `USA Concrete Jobs — ${service.name} in ${city}, ${state.abbr}`,
   "description": `Licensed ${service.name.toLowerCase()} contractors in ${city}, ${county.name}, ${state.name}. Free estimates. Call ${phone}.`,
-  "telephone": "+18552887767",
+  "telephone": "+18337223359",
   "url": pageUrl,
   "serviceType": service.name,
   "areaServed": {
@@ -91,7 +92,8 @@ const otherServices = services.filter(s => s.slug !== service.slug);
   title={`${service.name} in ${city}, ${state.name} | USA Concrete Jobs`}
   description={`Licensed ${service.name.toLowerCase()} contractors in ${city}, ${county.name}, ${state.name}. Free estimates, insured work, permit assistance. Call ${phone}.`}
   canonical={pageUrl}
-  schema={[schema, faqSchema]}
+  schema={schema}
+  extraSchemas={[faqSchema]}
 >
 
   <div class="container">
@@ -174,7 +176,7 @@ const otherServices = services.filter(s => s.slug !== service.slug);
             <h4 style="font-size:0.9rem; margin-bottom:8px;">Other Cities in {county.name}</h4>
             <div style="display:flex; flex-wrap:wrap; gap:6px;">
               {county.cities.filter(c => c !== city).slice(0, 6).map(c => {
-                const cs = c.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+                const cs = slugify(c);
                 return <a href={`/${service.slug}/${state.slug}/${county.slug}/${cs}/`} style="font-size:0.8rem; color: var(--color-primary); text-decoration:underline;">{c}</a>;
               })}
             </div>

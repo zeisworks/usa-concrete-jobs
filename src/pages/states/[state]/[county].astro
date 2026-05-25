@@ -1,4 +1,5 @@
 ---
+import { slugify } from '../../../lib/slugify';
 import Base from '../../../layouts/Base.astro';
 import { states, services } from '../../../data/states.js';
 
@@ -17,14 +18,14 @@ export async function getStaticPaths() {
 
 const { state, county } = Astro.props;
 const phone = "(833) 722-3359";
-const phoneHref = "tel:+18552887767";
+const phoneHref = "tel:+18337223359";
 
 const schema = {
   "@context": "https://schema.org",
   "@type": "HomeAndConstructionBusiness",
   "name": `USA Concrete Jobs — ${county.name}, ${state.abbr}`,
   "description": `Licensed concrete cutting, waterproofing, and concrete finishing contractors in ${county.name}, ${state.name}. Serving ${county.cities.length} cities. Free estimates.`,
-  "telephone": "+18552887767",
+  "telephone": "+18337223359",
   "areaServed": { "@type": "AdministrativeArea", "name": county.name }
 };
 ---
@@ -93,7 +94,7 @@ const schema = {
             <h4 style="font-size:0.9rem; margin-bottom:12px;">Cities in {county.name}</h4>
             <div style="display:flex; flex-wrap:wrap; gap:6px;">
               {county.cities.slice(0, 8).map(c => {
-                const cs = c.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+                const cs = slugify(c);
                 return <a href={`/states/${state.slug}/${county.slug}/${cs}/`} style="font-size:0.8rem; color: var(--color-primary); text-decoration:underline;">{c}</a>;
               })}
             </div>
@@ -110,7 +111,7 @@ const schema = {
       </div>
       <div class="town-grid">
         {county.cities.map(city => {
-          const citySlug = city.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+          const citySlug = slugify(city);
           return <a href={`/states/${state.slug}/${county.slug}/${citySlug}/`} class="town-link">{city}</a>;
         })}
       </div>

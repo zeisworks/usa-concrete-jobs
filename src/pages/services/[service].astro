@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 
 const { service } = Astro.props;
 const phone = "(833) 722-3359";
-const phoneHref = "tel:+18552887767";
+const phoneHref = "tel:+18337223359";
 ---
 
 <Base
@@ -70,7 +70,7 @@ const phoneHref = "tel:+18552887767";
       </div>
       <div class="county-grid">
         {states.map(state => (
-          <a href={`/states/${state.slug}/`} class="county-card">
+          <a href={`/${service.slug}/${state.slug}/`} class="county-card">
             <h3>{state.name}</h3>
             <p>{state.counties.length} metro areas · Cutting from {state.avgCuttingCost.split('–')[0]}</p>
           </a>

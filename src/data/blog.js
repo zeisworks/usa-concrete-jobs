@@ -6,6 +6,8 @@ export const posts = [
     date: "2026-04-10",
     category: "Cost Guide",
     readTime: "6 min read",
+    status: "publish",
+    heroImageUrl: undefined,
     excerpt: "Concrete cutting costs range from $500 to $5,000+ depending on project size, concrete thickness, rebar content, and your location. Here's what to expect.",
     content: `
       <h2>Average Concrete Cutting Costs</h2>

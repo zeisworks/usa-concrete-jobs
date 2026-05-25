@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync } from 'fs';
 import { resolve } from 'path';
 
-const DATA_PATH = resolve('data/articles.json');
+const DATA_PATH = resolve(process.cwd(), 'data/articles.json');
 
 export interface Article {
   slug: string;

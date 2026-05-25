@@ -3,7 +3,8 @@ export const prerender = false;
 import type { APIRoute } from 'astro';
 import { upsertArticle } from '../../lib/articleStore';
 
-const API_KEY = import.meta.env.BABYLOVEGROWTH_API_KEY ?? 'f2b21dd7-f88f-49ca-8107-3f2bf5b79ba5';
+const API_KEY = import.meta.env.BABYLOVEGROWTH_API_KEY;
+if (!API_KEY) throw new Error('BABYLOVEGROWTH_API_KEY environment variable is required');
 
 export const POST: APIRoute = async ({ request }) => {
   const auth = request.headers.get('Authorization') ?? '';
@@ -26,7 +27,7 @@ export const POST: APIRoute = async ({ request }) => {
     });
   }
 
-  const { title, slug, content_html, content_markdown, metaDescription, heroImageUrl, status = 'publish' } = body;
+  const { title, slug, content_html, content_markdown, metaDescription, heroImageUrl, status = 'publish', date } = body;
 
   if (!title || !slug || (!content_html && !content_markdown)) {
     return new Response(JSON.stringify({ error: 'title, slug, and content_html or content_markdown are required' }), {
@@ -44,7 +45,7 @@ export const POST: APIRoute = async ({ request }) => {
     slug,
     title,
     description: metaDescription ?? excerpt,
-    date: new Date().toISOString().split('T')[0],
+    date: date ?? new Date().toISOString().split('T')[0],
     category: 'Article',
     readTime,
     excerpt,

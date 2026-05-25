@@ -21,6 +21,7 @@ const articleSchema = {
   "headline": post.title,
   "description": post.description,
   "datePublished": post.date,
+  "image": post.heroImageUrl ?? `${siteUrl}/og-image.png`,
   "author": {
     "@type": "Organization",
     "name": "USA Concrete Jobs",
@@ -63,7 +64,7 @@ const articleSchema = {
         <div class="sidebar-card">
           <h3>Get a Free Estimate</h3>
           <p>Licensed contractors serving TX, FL, CA, AZ, and CO. Call for a free quote.</p>
-          <a href="tel:+18552887767" class="btn btn-primary btn-full">(833) 722-3359</a>
+          <a href="tel:+18337223359" class="btn btn-primary btn-full">(833) 722-3359</a>
           <a href="/contact/" class="btn btn-outline btn-full" style="margin-top:10px;">Contact Us</a>
         </div>
 
@@ -85,7 +86,7 @@ const articleSchema = {
     <div class="container">
       <h2>Ready to Start Your Project?</h2>
       <p>Get connected with a licensed concrete contractor for a free estimate.</p>
-      <a href="tel:+18552887767" class="cta-phone">(833) 722-3359</a>
+      <a href="tel:+18337223359" class="cta-phone">(833) 722-3359</a>
       <p class="cta-subtext">Available Mon–Sat, 7am–6pm</p>
     </div>
   </section>
