@@ -2,4 +2,3 @@ User-agent: *
 Allow: /
 
 Sitemap: https://usaconcretejobs.com/sitemap-index.xml
-Sitemap: https://usaconcretejobs.com/sitemap-blog.xml

@@ -40,7 +40,38 @@ const phoneHref = "tel:+18337223359";
             </div>
             <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">Get My Free Quote →</button>
             <p style="font-size:0.85rem;color:var(--color-text-muted);text-align:center;margin-top:12px;">No spam. Response within 24 hours.</p>
+            <div id="contactMsg" style="display:none; margin-top:16px; padding:16px; border-radius:8px; text-align:center; font-weight:600;"></div>
           </form>
+          <script>
+            document.querySelector('.lead-form')?.addEventListener('submit', async (e) => {
+              e.preventDefault();
+              const form = e.target;
+              const btn = form.querySelector('button[type="submit"]');
+              const msg = document.getElementById('contactMsg');
+              btn.disabled = true;
+              btn.textContent = 'Submitting…';
+              const data = Object.fromEntries(new FormData(form));
+              try {
+                const res = await fetch('/api/leads', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+                if (res.ok) {
+                  form.reset();
+                  msg.style.display = 'block';
+                  msg.style.background = '#d1fae5';
+                  msg.style.color = '#065f46';
+                  msg.textContent = '✓ Thanks! We\'ll be in touch within 24 hours.';
+                } else {
+                  throw new Error();
+                }
+              } catch {
+                msg.style.display = 'block';
+                msg.style.background = '#fee2e2';
+                msg.style.color = '#991b1b';
+                msg.textContent = 'Something went wrong. Please call us at (833) 722-3359.';
+                btn.disabled = false;
+                btn.textContent = 'Get My Free Quote →';
+              }
+            });
+          </script>
         </div>
         <div>
           <h2>Other Ways to Reach Us</h2>
