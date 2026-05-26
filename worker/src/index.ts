@@ -53,10 +53,16 @@ async function handleLeadSubmission(
     const data = await request.json() as LeadData;
     data.type = type;
 
-    // Store in KV with timestamp key
-    const timestamp = Date.now();
-    const key = `${type}:${timestamp}:${Math.random().toString(36).slice(2, 8)}`;
-    await env.LEADS_KV.put(key, JSON.stringify(data), { expirationTtl: 60 * 60 * 24 * 90 });
+    // Store in KV if available (create KV namespace in Cloudflare dashboard)
+    try {
+      if (env.LEADS_KV) {
+        const timestamp = Date.now();
+        const key = `${type}:${timestamp}:${Math.random().toString(36).slice(2, 8)}`;
+        await env.LEADS_KV.put(key, JSON.stringify(data), { expirationTtl: 60 * 60 * 24 * 90 });
+      }
+    } catch (kvErr) {
+      console.error('KV storage error (non-critical):', kvErr);
+    }
 
     // Optional: send to webhook (configure URL in Cloudflare dashboard)
     if (env.LEAD_WEBHOOK_URL) {
@@ -98,10 +104,13 @@ export default {
 
     switch (url.pathname) {
       case '/api/jobs':
+      case '/jobs':
         return handleLeadSubmission(request, env, 'job');
       case '/api/leads':
+      case '/leads':
         return handleLeadSubmission(request, env, 'contact');
       case '/api/contractors':
+      case '/contractors':
         return handleLeadSubmission(request, env, 'contractor');
       default:
         return jsonResponse({ error: 'Not found' }, 404);
