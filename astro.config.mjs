@@ -1,11 +1,14 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
+import cloudflare from '@astrojs/cloudflare';
+
 const SITE = 'https://usaconcretejobs.com';
 
 export default defineConfig({
   site: SITE,
   output: 'static',
+
   integrations: [
     sitemap({
       filter: (page) =>
@@ -23,7 +26,10 @@ export default defineConfig({
       },
     }),
   ],
+
   build: {
     format: 'directory'
-  }
+  },
+
+  adapter: cloudflare()
 });
