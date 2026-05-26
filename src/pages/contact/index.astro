@@ -42,7 +42,7 @@ const phoneHref = "tel:+18337223359";
             <p style="font-size:0.85rem;color:var(--color-text-muted);text-align:center;margin-top:12px;">No spam. Response within 24 hours.</p>
             <div id="contactMsg" style="display:none; margin-top:16px; padding:16px; border-radius:8px; text-align:center; font-weight:600;"></div>
           </form>
-          <script>
+          <script is:inline>
             document.querySelector('.lead-form')?.addEventListener('submit', async (e) => {
               e.preventDefault();
               const form = e.target;

@@ -110,7 +110,7 @@ const phoneHref = "tel:+18337223359";
               <div id="jobMsg" style="display:none; margin-top:16px; padding:16px; border-radius:8px; text-align:center; font-weight:600;"></div>
             </div>
           </form>
-          <script>
+          <script is:inline>
             document.getElementById('jobPostForm')?.addEventListener('submit', async (e) => {
               e.preventDefault();
               const form = e.target;
