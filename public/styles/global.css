@@ -167,10 +167,16 @@ li { margin-bottom: 0.5rem; }
 .logo {
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #fff;
+  overflow: hidden;
 }
 .logo:hover { text-decoration: none; opacity: 0.9; }
-.logo-img { height: 36px; width: auto; }
+.logo-img { height: 36px; width: auto; position: relative; z-index: 1; }
 .logo-icon { font-size: 1.4rem; }
 .main-nav { display: none; gap: 24px; }
 .main-nav a {
