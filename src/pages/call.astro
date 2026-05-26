@@ -103,58 +103,76 @@ const phoneHref = "tel:+183****3359";
     }
     .ppc-trust-item .check { color: #4ade80; font-weight: 700; }
 
-    /* Zip capture section */
-    .ppc-zip-section {
+    /* Callback form */
+    .ppc-callback-section {
       padding: 48px 0;
       background: var(--color-bg-alt);
     }
-    .ppc-zip-inner {
-      max-width: 520px;
+    .ppc-callback-inner {
+      max-width: 480px;
       margin: 0 auto;
       text-align: center;
     }
-    .ppc-zip-inner h2 {
+    .ppc-callback-inner h2 {
       font-size: 1.5rem;
       margin-bottom: 8px;
       color: var(--color-primary);
     }
-    .ppc-zip-inner p {
+    .ppc-callback-inner > p {
       color: var(--color-text-muted);
       margin-bottom: 24px;
     }
-    .ppc-zip-form {
+    .ppc-callback-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-align: left;
+    }
+    .ppc-callback-form .form-row {
       display: flex;
       gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
     }
-    .ppc-zip-form input[type="tel"] {
-      padding: 14px 20px;
-      font-size: 1.1rem;
+    .ppc-callback-form .form-row input { flex: 1; }
+    .ppc-callback-form input,
+    .ppc-callback-form select,
+    .ppc-callback-form textarea {
+      padding: 14px 16px;
+      font-size: 1rem;
       border: 2px solid var(--color-border);
-      border-radius: 12px;
-      width: 200px;
-      text-align: center;
-      letter-spacing: 2px;
-      font-weight: 600;
+      border-radius: 10px;
+      width: 100%;
+      box-sizing: border-box;
+      font-family: inherit;
     }
-    .ppc-zip-form input[type="tel"]:focus {
+    .ppc-callback-form input:focus,
+    .ppc-callback-form select:focus,
+    .ppc-callback-form textarea:focus {
       outline: none;
       border-color: #16a34a;
       box-shadow: 0 0 0 3px rgba(22,163,74,0.15);
     }
-    .ppc-zip-form button {
-      padding: 14px 32px;
-      font-size: 1.1rem;
+    .ppc-callback-form button {
+      padding: 16px 32px;
+      font-size: 1.15rem;
       font-weight: 700;
       background: #16a34a;
       color: #fff;
       border: none;
-      border-radius: 12px;
+      border-radius: 10px;
       cursor: pointer;
       transition: all 0.2s;
+      margin-top: 4px;
     }
-    .ppc-zip-form button:hover { background: #22c55e; transform: translateY(-1px); }
+    .ppc-callback-form button:hover { background: #22c55e; transform: translateY(-1px); }
+    .ppc-callback-form .form-note {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+      text-align: center;
+      margin-top: 8px;
+    }
+    @media (max-width: 480px) {
+      .ppc-callback-form .form-row { flex-direction: column; }
+    }
 
     /* Services strip */
     .ppc-services {
@@ -257,14 +275,29 @@ const phoneHref = "tel:+183****3359";
     </div>
   </section>
 
-  <!-- Zip code capture → routes to /call/thanks -->
-  <section class="ppc-zip-section">
-    <div class="ppc-zip-inner">
-      <h2>Or Enter Your Zip Code</h2>
-      <p>We'll connect you with the nearest licensed contractor. You'll get a call back within 15 minutes.</p>
-      <form class="ppc-zip-form" id="ppcZipForm" action="/call/thanks/" method="GET">
-        <input type="tel" name="zip" placeholder="Zip Code" maxlength="5" pattern="[0-9]{5}" required inputmode="numeric" aria-label="Enter your zip code" />
-        <button type="submit">Get a Call Back →</button>
+  <!-- Callback form → submits to Cloudflare Worker, then redirects to thanks -->
+  <section class="ppc-callback-section">
+    <div class="ppc-callback-inner">
+      <h2>Or Request a Call Back</h2>
+      <p>Give us your info and a licensed contractor will call you within 15 minutes.</p>
+      <form class="ppc-callback-form" id="ppcCallbackForm" method="POST" action="/api/leads">
+        <div class="form-row">
+          <input type="text" name="name" placeholder="Your Name *" required autocomplete="name" />
+          <input type="tel" name="phone" placeholder="Phone Number *" required autocomplete="tel" />
+        </div>
+        <div class="form-row">
+          <input type="text" name="zip" placeholder="Zip Code *" maxlength="5" pattern="[0-9]{5}" required inputmode="numeric" autocomplete="postal-code" />
+          <select name="service" required>
+            <option value="" disabled selected>Service Needed *</option>
+            {services.map(s => (
+              <option value={s.slug}>{s.name}</option>
+            ))}
+          </select>
+        </div>
+        <textarea name="details" rows="2" placeholder="Brief project description (optional)"></textarea>
+        <input type="hidden" name="source" value="ppc_call_page" />
+        <button type="submit">Get My Free Call Back →</button>
+        <p class="form-note">We'll only share your info with one licensed contractor in your area. No spam.</p>
       </form>
     </div>
   </section>
@@ -313,14 +346,35 @@ const phoneHref = "tel:+183****3359";
       } catch(e) {}
     });
 
-    // Zip form: store zip in session for thank-you page
-    document.getElementById('ppcZipForm')?.addEventListener('submit', function(e) {
-      var zip = this.querySelector('input[name="zip"]').value;
+    // Callback form: submit via fetch to worker, then redirect to thanks
+    document.getElementById('ppcCallbackForm')?.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var form = this;
+      var data = new FormData(form);
+      var json = {};
+      data.forEach(function(value, key) { json[key] = value; });
+
+      // Store for thank-you page display
       try {
-        sessionStorage.setItem('ppc_zip', zip);
+        sessionStorage.setItem('ppc_name', json.name || '');
+        sessionStorage.setItem('ppc_phone', json.phone || '');
+        sessionStorage.setItem('ppc_zip', json.zip || '');
+        sessionStorage.setItem('ppc_service', json.service || '');
         sessionStorage.setItem('ppc_click_time', Date.now().toString());
-        sessionStorage.setItem('ppc_source', 'zip_form');
+        sessionStorage.setItem('ppc_source', 'callback_form');
       } catch(e) {}
+
+      // Submit to worker
+      fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(json)
+      }).then(function() {
+        window.location.href = '/call/thanks/';
+      }).catch(function() {
+        // Still redirect to thanks even if submission fails
+        window.location.href = '/call/thanks/';
+      });
     });
   </script>
 </Base>

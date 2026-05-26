@@ -83,7 +83,7 @@ const phoneHref = "tel:+183****3359";
     <div class="ppc-thanks-inner">
       <span class="ppc-checkmark">✓</span>
       <h1>Got It! A Contractor Will Call You Soon.</h1>
-      <p>We've received your request and are matching you with a licensed concrete contractor in your area.</p>
+      <p id="ppcThanksMsg">We've received your request and are matching you with a licensed concrete contractor in your area.</p>
 
       <div class="ppc-call-box">
         <p style="color:rgba(255,255,255,0.85); margin:0 0 4px; font-size:0.9rem;">Or call us directly now:</p>
@@ -108,6 +108,23 @@ const phoneHref = "tel:+183****3359";
   </section>
 
   <script is:inline>
+    // Personalize thank-you page with submitted info
+    try {
+      var name = sessionStorage.getItem('ppc_name');
+      var zip = sessionStorage.getItem('ppc_zip');
+      var service = sessionStorage.getItem('ppc_service');
+      var msg = document.getElementById('ppcThanksMsg');
+      if (msg && (name || zip)) {
+        var parts = [];
+        if (name) parts.push('Thanks, ' + name.split(' ')[0]);
+        if (zip) parts.push('we\'ve got your request for the ' + zip + ' area');
+        if (service) parts.push('for ' + service.replace(/-/g, ' '));
+        if (parts.length > 0) {
+          msg.textContent = parts.join(' — ') + '. A licensed contractor will call you shortly.';
+        }
+      }
+    } catch(e) {}
+
     // Countdown timer for urgency
     var minutes = 8;
     var timerEl = document.getElementById('ppcTimer');
