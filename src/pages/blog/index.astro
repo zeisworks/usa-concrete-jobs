@@ -1,16 +1,10 @@
 ---
-export const prerender = false;
-
 import Base from '../../layouts/Base.astro';
 import { posts } from '../../data/blog.js';
-import { readArticles } from '../../lib/articleStore';
 
 const siteUrl = "https://usaconcretejobs.com";
 
-const dynamic = readArticles().filter(a => a.status === 'publish');
-const slugsSeen = new Set(dynamic.map(a => a.slug));
-const all = [...dynamic, ...posts.filter(p => !slugsSeen.has(p.slug))];
-const sorted = all.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+const sorted = [...posts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
 const blogSchema = {
   "@context": "https://schema.org",
