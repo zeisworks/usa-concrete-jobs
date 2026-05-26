@@ -1,0 +1,124 @@
+---
+// PPCall thank-you / confirmation page
+import Base from '../../layouts/Base.astro';
+const phone = "(833) 722-3359";
+const phoneHref = "tel:+183****3359";
+---
+
+<Base
+  title="Thank You — A Contractor Will Call You Soon | USA Concrete Jobs"
+  description="Thank you for your request. A licensed concrete contractor will contact you shortly."
+  canonical="https://usaconcretejobs.com/call/thanks/"
+  noindex={true}
+>
+  <style>
+    .ppc-thanks {
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .ppc-thanks-inner { max-width: 560px; }
+    .ppc-checkmark {
+      font-size: 4rem;
+      margin-bottom: 24px;
+      display: block;
+    }
+    .ppc-thanks h1 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 800;
+      color: var(--color-primary);
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .ppc-thanks p {
+      font-size: 1.1rem;
+      color: var(--color-text-muted);
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+    .ppc-next-steps {
+      background: var(--color-bg-alt);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 32px 0;
+      text-align: left;
+    }
+    .ppc-next-steps h3 {
+      font-size: 1rem;
+      margin-bottom: 12px;
+      color: var(--color-primary);
+    }
+    .ppc-next-steps ol {
+      padding-left: 20px;
+      color: var(--color-text-muted);
+    }
+    .ppc-next-steps li { margin-bottom: 8px; line-height: 1.5; }
+    .ppc-call-box {
+      background: #16a34a;
+      color: #fff;
+      padding: 20px 32px;
+      border-radius: 12px;
+      margin: 24px 0;
+      display: inline-block;
+    }
+    .ppc-call-box a {
+      color: #fff;
+      font-size: 1.4rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+    .ppc-call-box a:hover { text-decoration: underline; }
+    .ppc-timer {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      margin-top: 8px;
+    }
+  </style>
+
+  <section class="ppc-thanks">
+    <div class="ppc-thanks-inner">
+      <span class="ppc-checkmark">✓</span>
+      <h1>Got It! A Contractor Will Call You Soon.</h1>
+      <p>We've received your request and are matching you with a licensed concrete contractor in your area.</p>
+
+      <div class="ppc-call-box">
+        <p style="color:rgba(255,255,255,0.85); margin:0 0 4px; font-size:0.9rem;">Or call us directly now:</p>
+        <a href={phoneHref}>{phone}</a>
+      </div>
+
+      <div class="ppc-next-steps">
+        <h3>What happens next:</h3>
+        <ol>
+          <li>A licensed contractor in your area will call you within <strong>15 minutes</strong> during business hours</li>
+          <li>They'll ask about your project details, timeline, and budget</li>
+          <li>You'll receive a free, no-obligation estimate</li>
+          <li>If you like the quote, schedule the work — no pressure</li>
+        </ol>
+      </div>
+
+      <p class="ppc-timer" id="ppcTimer">⏱ Average response time: 8 minutes</p>
+      <p style="font-size:0.85rem; color:var(--color-text-muted); margin-top:24px;">
+        Your information is secure and will only be shared with one licensed contractor in your area.
+      </p>
+    </div>
+  </section>
+
+  <script is:inline>
+    // Countdown timer for urgency
+    var minutes = 8;
+    var timerEl = document.getElementById('ppcTimer');
+    var interval = setInterval(function() {
+      minutes--;
+      if (minutes <= 0) {
+        timerEl.textContent = '⏱ A contractor should be calling you any moment now';
+        clearInterval(interval);
+      } else {
+        timerEl.textContent = '⏱ Average response time: ' + minutes + ' minute' + (minutes !== 1 ? 's' : '');
+      }
+    }, 60000);
+  </script>
+</Base>

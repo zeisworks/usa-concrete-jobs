@@ -1,261 +1,326 @@
 ---
-// Pay-per-call optimized landing page
-// This page is designed for PPCall traffic — clean, fast, phone-first
-// No navigation distractions, no forms, just "call now"
+// Pay-per-call optimized landing page — branded to match site
 import Base from '../layouts/Base.astro';
+import { services } from '../data/states.js';
 const phone = "(833) 722-3359";
 const phoneHref = "tel:+183****3359";
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Licensed Concrete Contractors — Free Estimates | USA Concrete Jobs</title>
-  <meta name="description" content="Connect with licensed, insured concrete contractors in your area. Free estimates for concrete cutting, waterproofing, finishing, and more. Call now." />
-  <meta name="robots" content="noindex, nofollow" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+<Base
+  title={`Call Now — Licensed Concrete Contractors | ${phone} | USA Concrete Jobs`}
+  description="Call now to connect with licensed, insured concrete contractors in your area. Free estimates for concrete cutting, waterproofing, finishing, and more."
+  canonical="https://usaconcretejobs.com/call/"
+  noindex={true}
+>
   <style>
-    :root {
-      --green: #16a34a;
-      --green-dark: #166534;
-      --green-light: #22c55e;
-      --bg: #0a0f0d;
-      --bg-card: #111a15;
-      --text: #f0fdf4;
-      --text-muted: #86efac;
-      --accent: #facc15;
+    .ppc-hero {
+      background: linear-gradient(135deg, var(--color-primary-dark) 0%, #0d2818 50%, var(--color-primary) 100%);
+      padding: 60px 0 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Inter', system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+    .ppc-hero::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(ellipse at center, rgba(22,163,74,0.15) 0%, transparent 70%);
+      pointer-events: none;
     }
-    .container { max-width: 680px; margin: 0 auto; padding: 0 20px; text-align: center; }
-
-    /* Hero */
-    .hero {
-      padding: 48px 0 32px;
-      background: linear-gradient(180deg, #0d1f18 0%, var(--bg) 100%);
-    }
-    .hero-badge {
+    .ppc-hero-inner { position: relative; z-index: 1; }
+    .ppc-badge {
       display: inline-block;
-      background: rgba(22,163,74,0.15);
-      color: var(--green-light);
-      padding: 6px 16px;
+      background: rgba(22,163,74,0.2);
+      color: #4ade80;
+      padding: 8px 20px;
       border-radius: 20px;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       font-weight: 600;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
       border: 1px solid rgba(22,163,74,0.3);
     }
-    .hero h1 {
-      font-size: clamp(2rem, 6vw, 3rem);
+    .ppc-hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
       font-weight: 900;
-      line-height: 1.1;
+      color: #fff;
+      line-height: 1.15;
       margin-bottom: 16px;
     }
-    .hero h1 span { color: var(--accent); }
-    .hero-subtitle {
+    .ppc-hero h1 span { color: #facc15; }
+    .ppc-subtitle {
       font-size: 1.15rem;
-      color: var(--text-muted);
+      color: rgba(255,255,255,0.75);
       margin-bottom: 32px;
       max-width: 520px;
       margin-left: auto;
       margin-right: auto;
     }
-
-    /* CTA Button */
-    .cta-button {
+    .ppc-cta-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .ppc-cta {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      background: var(--green);
+      gap: 12px;
+      background: #16a34a;
       color: #fff;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       font-weight: 800;
-      padding: 20px 48px;
+      padding: 22px 52px;
       border-radius: 60px;
       text-decoration: none;
       transition: all 0.2s;
       box-shadow: 0 4px 24px rgba(22,163,74,0.4);
-      animation: pulse 2s infinite;
+      animation: ppc-pulse 2s infinite;
     }
-    .cta-button:hover {
-      background: var(--green-light);
+    .ppc-cta:hover {
+      background: #22c55e;
       transform: translateY(-2px);
       box-shadow: 0 8px 32px rgba(22,163,74,0.5);
     }
-    @keyframes pulse {
+    @keyframes ppc-pulse {
       0%, 100% { box-shadow: 0 4px 24px rgba(22,163,74,0.4); }
       50% { box-shadow: 0 4px 40px rgba(22,163,74,0.6); }
     }
-    .cta-phone { font-size: 1.6rem; letter-spacing: 1px; }
-
-    /* Trust */
-    .trust {
+    .ppc-phone { font-size: 1.7rem; letter-spacing: 1px; }
+    .ppc-trust {
       display: flex;
       justify-content: center;
       gap: 24px;
-      margin-top: 24px;
+      margin-top: 28px;
       flex-wrap: wrap;
     }
-    .trust-item {
+    .ppc-trust-item {
       display: flex;
       align-items: center;
       gap: 6px;
       font-size: 0.9rem;
-      color: var(--text-muted);
+      color: rgba(255,255,255,0.6);
     }
-    .trust-item .check { color: var(--green-light); font-weight: 700; }
+    .ppc-trust-item .check { color: #4ade80; font-weight: 700; }
 
-    /* Secondary CTA */
-    .secondary-cta {
-      padding: 32px 0;
+    /* Zip capture section */
+    .ppc-zip-section {
+      padding: 48px 0;
+      background: var(--color-bg-alt);
     }
-    .secondary-cta p {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      margin-bottom: 12px;
+    .ppc-zip-inner {
+      max-width: 520px;
+      margin: 0 auto;
+      text-align: center;
     }
-    .secondary-cta a {
-      color: var(--green-light);
-      font-weight: 700;
-      text-decoration: none;
-      font-size: 1.1rem;
+    .ppc-zip-inner h2 {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+      color: var(--color-primary);
     }
-    .secondary-cta a:hover { text-decoration: underline; }
-
-    /* Services */
-    .services {
-      padding: 32px 0;
-      border-top: 1px solid rgba(255,255,255,0.06);
+    .ppc-zip-inner p {
+      color: var(--color-text-muted);
+      margin-bottom: 24px;
     }
-    .services-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+    .ppc-zip-form {
+      display: flex;
       gap: 12px;
-      margin-top: 20px;
-    }
-    .service-item {
-      background: var(--bg-card);
-      padding: 14px 16px;
-      border-radius: 10px;
-      font-size: 0.9rem;
-      text-align: left;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .service-icon { font-size: 1.3rem; }
-
-    /* States */
-    .states {
-      padding: 24px 0;
-      border-top: 1px solid rgba(255,255,255,0.06);
-    }
-    .states-list {
-      display: flex;
       justify-content: center;
-      gap: 16px;
-      margin-top: 12px;
       flex-wrap: wrap;
     }
-    .state-badge {
-      background: var(--bg-card);
-      padding: 8px 20px;
+    .ppc-zip-form input[type="tel"] {
+      padding: 14px 20px;
+      font-size: 1.1rem;
+      border: 2px solid var(--color-border);
+      border-radius: 12px;
+      width: 200px;
+      text-align: center;
+      letter-spacing: 2px;
+      font-weight: 600;
+    }
+    .ppc-zip-form input[type="tel"]:focus {
+      outline: none;
+      border-color: #16a34a;
+      box-shadow: 0 0 0 3px rgba(22,163,74,0.15);
+    }
+    .ppc-zip-form button {
+      padding: 14px 32px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      background: #16a34a;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .ppc-zip-form button:hover { background: #22c55e; transform: translateY(-1px); }
+
+    /* Services strip */
+    .ppc-services {
+      padding: 40px 0;
+      border-top: 1px solid var(--color-border);
+    }
+    .ppc-services h3 {
+      text-align: center;
+      font-size: 1rem;
+      color: var(--color-text-muted);
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+    .ppc-services-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+    .ppc-service-tag {
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      color: var(--color-text);
+    }
+    .ppc-service-tag .icon { margin-right: 6px; }
+
+    /* States */
+    .ppc-states {
+      padding: 32px 0 48px;
+      text-align: center;
+      border-top: 1px solid var(--color-border);
+    }
+    .ppc-states h3 {
+      font-size: 1rem;
+      color: var(--color-text-muted);
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+    .ppc-states-list {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .ppc-state-badge {
+      background: var(--color-primary);
+      color: #fff;
+      padding: 10px 24px;
       border-radius: 8px;
       font-weight: 600;
       font-size: 0.95rem;
     }
 
-    /* Footer */
-    footer {
-      padding: 24px 0;
-      margin-top: auto;
-      border-top: 1px solid rgba(255,255,255,0.06);
-    }
-    footer p {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.3);
+    /* Urgency bar */
+    .ppc-urgency {
+      background: #f57c00;
+      color: #fff;
+      text-align: center;
+      padding: 12px 20px;
+      font-weight: 600;
+      font-size: 0.95rem;
     }
 
     @media (max-width: 480px) {
-      .services-grid { grid-template-columns: 1fr; }
-      .trust { gap: 12px; }
-      .cta-button { padding: 18px 36px; font-size: 1.2rem; }
+      .ppc-cta { padding: 18px 36px; font-size: 1.2rem; }
+      .ppc-phone { font-size: 1.4rem; }
+      .ppc-trust { gap: 12px; }
+      .ppc-zip-form { flex-direction: column; align-items: center; }
+      .ppc-zip-form input[type="tel"] { width: 100%; max-width: 280px; }
     }
   </style>
-</head>
-<body>
 
-  <section class="hero">
-    <div class="container">
-      <div class="hero-badge">✓ Licensed & Insured Contractors</div>
-      <h1>Need Concrete Work? <span>Call Now for a Free Estimate.</span></h1>
-      <p class="hero-subtitle">
+  <!-- Urgency bar -->
+  <div class="ppc-urgency">
+    ⚡ High demand in your area — contractors are available now for immediate estimates
+  </div>
+
+  <!-- Hero -->
+  <section class="ppc-hero">
+    <div class="container ppc-hero-inner">
+      <div class="ppc-badge">✓ Licensed & Insured Contractors — 5 States</div>
+      <h1>Need Concrete Work?<br><span>Call Now for a Free Estimate.</span></h1>
+      <p class="ppc-subtitle">
         We connect you with top-rated, licensed concrete contractors in your area. No obligation. No hassle. Just quality work at a fair price.
       </p>
-      <a href={phoneHref} class="cta-button">
-        📞 <span class="cta-phone">{phone}</span>
-      </a>
-      <div class="trust">
-        <div class="trust-item"><span class="check">✓</span> Free Estimates</div>
-        <div class="trust-item"><span class="check">✓</span> Licensed & Insured</div>
-        <div class="trust-item"><span class="check">✓</span> 500+ Cities</div>
-        <div class="trust-item"><span class="check">✓</span> Same-Day Response</div>
+      <div class="ppc-cta-wrap">
+        <a href={phoneHref} class="ppc-cta" id="ppcMainCta">
+          📞 <span class="ppc-phone">{phone}</span>
+        </a>
+      </div>
+      <div class="ppc-trust">
+        <div class="ppc-trust-item"><span class="check">✓</span> Free Estimates</div>
+        <div class="ppc-trust-item"><span class="check">✓</span> Licensed & Insured</div>
+        <div class="ppc-trust-item"><span class="check">✓</span> 456+ Cities</div>
+        <div class="ppc-trust-item"><span class="check">✓</span> Same-Day Response</div>
       </div>
     </div>
   </section>
 
-  <section class="secondary-cta">
-    <div class="container">
-      <p>Or call us directly — speak to a contractor in your area now:</p>
-      <a href={phoneHref}>{phone}</a>
+  <!-- Zip code capture → routes to /call/thanks -->
+  <section class="ppc-zip-section">
+    <div class="ppc-zip-inner">
+      <h2>Or Enter Your Zip Code</h2>
+      <p>We'll connect you with the nearest licensed contractor. You'll get a call back within 15 minutes.</p>
+      <form class="ppc-zip-form" id="ppcZipForm" action="/call/thanks/" method="GET">
+        <input type="tel" name="zip" placeholder="Zip Code" maxlength="5" pattern="[0-9]{5}" required inputmode="numeric" aria-label="Enter your zip code" />
+        <button type="submit">Get a Call Back →</button>
+      </form>
     </div>
   </section>
 
-  <section class="services">
+  <!-- Services strip -->
+  <section class="ppc-services">
     <div class="container">
-      <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:4px;">Our Contractors Specialize In:</p>
-      <div class="services-grid">
-        <div class="service-item"><span class="service-icon">🔪</span> Concrete Cutting & Sawing</div>
-        <div class="service-item"><span class="service-icon">💧</span> Basement Waterproofing</div>
-        <div class="service-item"><span class="service-icon">🎨</span> Concrete Finishing & Repair</div>
-        <div class="service-item"><span class="service-icon">⭕</span> Core Drilling</div>
-        <div class="service-item"><span class="service-icon">🏠</span> Driveway Replacement</div>
-        <div class="service-item"><span class="service-icon">🏗️</span> Foundation Repair</div>
-        <div class="service-item"><span class="service-icon">✨</span> Stamped Concrete</div>
-        <div class="service-item"><span class="service-icon">🏊</span> Pool Deck Concrete</div>
+      <h3>Our Contractors Specialize In:</h3>
+      <div class="ppc-services-grid">
+        {services.map(s => (
+          <span class="ppc-service-tag"><span class="icon">
+            {s.slug === 'concrete-cutting' && '🔪'}
+            {s.slug === 'waterproofing' && '💧'}
+            {s.slug === 'concrete-finishing' && '🎨'}
+            {s.slug === 'core-drilling' && '⭕'}
+            {s.slug === 'driveway-replacement' && '🏠'}
+            {s.slug === 'foundation-repair' && '🏗️'}
+            {s.slug === 'stamped-concrete' && '✨'}
+            {s.slug === 'concrete-pool-deck' && '🏊'}
+          </span>{s.name}</span>
+        ))}
       </div>
     </div>
   </section>
 
-  <section class="states">
+  <!-- States -->
+  <section class="ppc-states">
     <div class="container">
-      <p style="color:var(--text-muted); font-size:0.9rem;">Serving 5 States:</p>
-      <div class="states-list">
-        <span class="state-badge">Texas</span>
-        <span class="state-badge">Florida</span>
-        <span class="state-badge">California</span>
-        <span class="state-badge">Arizona</span>
-        <span class="state-badge">Colorado</span>
+      <h3>Serving 5 States:</h3>
+      <div class="ppc-states-list">
+        <span class="ppc-state-badge">Texas</span>
+        <span class="ppc-state-badge">Florida</span>
+        <span class="ppc-state-badge">California</span>
+        <span class="ppc-state-badge">Arizona</span>
+        <span class="ppc-state-badge">Colorado</span>
       </div>
     </div>
   </section>
 
-  <footer>
-    <div class="container">
-      <p>© 2026 USA Concrete Jobs. Connecting homeowners with licensed concrete contractors.</p>
-    </div>
-  </footer>
+  <script is:inline>
+    // Track CTA clicks for attribution
+    document.getElementById('ppcMainCta')?.addEventListener('click', function() {
+      try {
+        sessionStorage.setItem('ppc_click_time', Date.now().toString());
+        sessionStorage.setItem('ppc_source', 'direct');
+      } catch(e) {}
+    });
 
-</body>
-</html>
+    // Zip form: store zip in session for thank-you page
+    document.getElementById('ppcZipForm')?.addEventListener('submit', function(e) {
+      var zip = this.querySelector('input[name="zip"]').value;
+      try {
+        sessionStorage.setItem('ppc_zip', zip);
+        sessionStorage.setItem('ppc_click_time', Date.now().toString());
+        sessionStorage.setItem('ppc_source', 'zip_form');
+      } catch(e) {}
+    });
+  </script>
+</Base>
