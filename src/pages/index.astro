@@ -144,17 +144,17 @@ const homeSchema = {
         <p style="font-size:0.85rem; color:var(--color-text-muted); text-align:center; margin-top:12px;">We connect you with licensed contractors only. No spam. Response within 24 hours.</p>
         <div id="estimateMsg" style="display:none; margin-top:16px; padding:16px; border-radius:8px; text-align:center; font-weight:600;"></div>
       </form>
-      <script>
+      <script is:inline>
         document.getElementById('estimateForm')?.addEventListener('submit', async (e) => {
           e.preventDefault();
-          const form = e.target as HTMLFormElement;
-          const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
-          const msg = document.getElementById('estimateMsg') as HTMLElement;
+          const form = e.target;
+          const btn = form.querySelector('button[type="submit"]');
+          const msg = document.getElementById('estimateMsg');
           btn.disabled = true;
           btn.textContent = 'Submitting…';
           const data = Object.fromEntries(new FormData(form));
           try {
-            const res = await fetch('/api/leads', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+            const res = await fetch('https://ucj-api.jack-be1.workers.dev/leads', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
             if (res.ok) {
               form.reset();
               msg.style.display = 'block';
@@ -174,6 +174,27 @@ const homeSchema = {
           }
         });
       </script>
+    </div>
+  </section>
+
+  <!-- CONTRACTOR CTA -->
+  <section class="section section-contractor">
+    <div class="container">
+      <div class="contractor-cta-inner">
+        <div class="contractor-cta-text">
+          <h2>Are You a Concrete Contractor?</h2>
+          <p>Get pay-per-call leads and bid on jobs in your area. Only pay for results — no subscriptions, no junk leads. Join 500+ contractors already growing their business with us.</p>
+          <div class="contractor-cta-buttons">
+            <a href="/grow-your-business/" class="btn btn-accent btn-lg">Grow Your Business →</a>
+            <a href={phoneHref} class="btn btn-outline btn-lg" style="color:var(--color-accent); border-color:var(--color-accent);">📞 {phone}</a>
+          </div>
+        </div>
+        <div class="contractor-cta-stats">
+          <div class="stat"><span class="stat-number">$20–50</span><span class="stat-label">Per Qualified Call</span></div>
+          <div class="stat"><span class="stat-number">$25–75</span><span class="stat-label">Per Won Bid</span></div>
+          <div class="stat"><span class="stat-number">5</span><span class="stat-label">States</span></div>
+        </div>
+      </div>
     </div>
   </section>
 

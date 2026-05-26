@@ -726,3 +726,62 @@ img { max-width: 100%; height: auto; }
   .site-header, .sticky-cta, .cta-section { display: none; }
   body { padding-bottom: 0; }
 }
+
+/* ── Contractor Section ── */
+.section-contractor {
+  background: linear-gradient(135deg, #1a3a2a 0%, #0d1f18 100%);
+  color: #fff;
+}
+.section-contractor h2 { color: #fff; }
+.section-contractor p { color: #86efac; }
+.contractor-cta-inner {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 48px;
+  align-items: center;
+}
+.contractor-cta-buttons {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+.contractor-cta-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.contractor-cta-stats .stat {
+  background: rgba(255,255,255,0.08);
+  padding: 16px 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+.stat-number {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #4ade80;
+}
+.stat-label {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.6);
+}
+.nav-contractor {
+  color: #4ade80 !important;
+  font-weight: 600;
+}
+.btn-accent {
+  background: #e85d04;
+  color: #fff;
+  border-color: #e85d04;
+}
+.btn-accent:hover {
+  background: #f97316;
+  border-color: #f97316;
+}
+
+@media (max-width: 768px) {
+  .contractor-cta-inner { grid-template-columns: 1fr; }
+  .contractor-cta-stats { flex-direction: row; }
+}

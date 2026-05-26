@@ -1,0 +1,385 @@
+---
+import Base from '../../layouts/Base.astro';
+const phone = "(833) 722-3359";
+const phoneHref = "tel:+183****3359";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Grow Your Concrete Business | USA Concrete Jobs",
+  "description": "Free resources for concrete contractors: get pay-per-call leads, bid on jobs, and grow your business. Licensed contractors only.",
+  "url": "https://usaconcretejobs.com/grow-your-business/"
+};
+---
+
+<Base
+  title="Grow Your Concrete Business — Get Pay-Per-Call Leads & Job Bids"
+  description="Concrete contractors: join USA Concrete Jobs to receive pay-per-call leads and bid on posted jobs. Only pay for results. TX, FL, CA, AZ, CO."
+  canonical="https://usaconcretejobs.com/grow-your-business/"
+  schema={schema}
+>
+
+  <!-- HERO: Contractor-focused, clean, phone-optimized -->
+  <section class="hero hero-contractor">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-badge">🔧 For Concrete Contractors</div>
+        <h1>More Leads. More Jobs. <span style="color:var(--color-accent);">Zero Waste.</span></h1>
+        <p class="hero-subtitle">
+          Connect with homeowners actively searching for concrete services in your area. Pay only when you get a qualified call or win a bid — no subscriptions, no junk leads.
+        </p>
+        <div class="hero-cta-group">
+          <a href={phoneHref} class="btn btn-accent btn-lg">📞 Call Now — Set Up Your Account</a>
+          <a href="#join-form" class="btn btn-outline btn-lg" style="color:#fff; border-color:rgba(255,255,255,0.5);">Apply Online — Free</a>
+        </div>
+        <div class="hero-trust">
+          <div class="trust-item"><span class="check">✓</span> Pay-Per-Call Leads</div>
+          <div class="trust-item"><span class="check">✓</span> Job Board Bidding</div>
+          <div class="trust-item"><span class="check">✓</span> Only Pay for Results</div>
+          <div class="trust-item"><span class="check">✓</span> 5 States</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Two Ways to Get More Work</h2>
+        <p>Choose one or use both. You're in control of your budget and service area.</p>
+      </div>
+      <div class="grid-2" style="gap:32px;">
+        <div class="card card-featured">
+          <div class="card-icon">📞</div>
+          <h3>Pay-Per-Call Leads</h3>
+          <p>Homeowners call our number looking for concrete services. We connect them directly to you. You only pay for qualified calls from customers in your service area who are ready to hire.</p>
+          <ul class="feature-list">
+            <li><strong>$20–$50 per qualified call</strong></li>
+            <li>Set your service area by zip code or city</li>
+            <li>Control monthly call volume and budget</li>
+            <li>Pause or adjust anytime</li>
+          </ul>
+          <div class="card-rate">
+            <span class="rate-label">Standard Lead</span>
+            <span class="rate-value">$20–$35</span>
+          </div>
+          <div class="card-rate">
+            <span class="rate-label">Commercial Job Lead</span>
+            <span class="rate-value">$35–$50</span>
+          </div>
+        </div>
+        <div class="card card-featured">
+          <div class="card-icon">🏗️</div>
+          <h3>Job Board Bidding</h3>
+          <p>Browse posted jobs in your area and submit competitive bids. Homeowners compare and choose their contractor. You pay a small fee only when you win.</p>
+          <ul class="feature-list">
+            <li>Browse all jobs in your service area</li>
+            <li>Bid on jobs that match your specialty</li>
+            <li>See project details before bidding</li>
+            <li>Build your reputation with reviews</li>
+          </ul>
+          <div class="card-rate">
+            <span class="rate-label">Jobs under $2K</span>
+            <span class="rate-value">$25 flat</span>
+          </div>
+          <div class="card-rate">
+            <span class="rate-label">Jobs $2K–$5K</span>
+            <span class="rate-value">$50 flat</span>
+          </div>
+          <div class="card-rate">
+            <span class="rate-label">Jobs $5K–$15K</span>
+            <span class="rate-value">$75 flat</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESOURCES FOR CONTRACTORS -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <h2>Free Resources to Grow Your Concrete Business</h2>
+        <p>Tools, guides, and partnerships to help you get more jobs and earn more per job.</p>
+      </div>
+      <div class="grid-3" style="gap:24px;">
+
+        <div class="card">
+          <h3>📋 How to Get Your First 100 Reviews</h3>
+          <p>Reviews win bids. Our step-by-step guide shows you how to systematically collect Google reviews from every job — even from customers who don't leave them on their own.</p>
+          <a href="#reviews-guide" class="card-link">Read the Guide →</a>
+        </div>
+
+        <div class="card">
+          <h3>💰 Concrete Pricing Guide 2026</h3>
+          <p>What to charge for cutting, waterproofing, finishing, and more — by region. Based on real project data from 500+ jobs across TX, FL, CA, AZ, and CO.</p>
+          <a href="#pricing-guide" class="card-link">Get the Guide →</a>
+        </div>
+
+        <div class="card">
+          <h3>📱 Free Estimate Template</h3>
+          <p>Professional estimate template that wins jobs. Includes line items, terms, and a follow-up sequence. Download and customize for your business.</p>
+          <a href="#estimate-template" class="card-link">Download Free →</a>
+        </div>
+
+        <div class="card card-affiliate">
+          <h3>🛡️ Contractor Insurance</h3>
+          <p>Get covered for less. We've partnered with commercial insurance providers who specialize in concrete contractors. General liability, workers comp, and auto.</p>
+          <a href="#insurance" class="card-link">Get a Free Quote →</a>
+          <span class="affiliate-note">Partner</span>
+        </div>
+
+        <div class="card card-affiliate">
+          <h3>💳 Contractor Financing</h3>
+          <p>Offer your customers financing and close more jobs. Homeowners can split payments over 12–60 months. You get paid in full upfront.</p>
+          <a href="#financing" class="card-link">Learn More →</a>
+          <span class="affiliate-note">Partner</span>
+        </div>
+
+        <div class="card card-affiliate">
+          <h3>📊 Job Management Software</h3>
+          <p>Scheduling, invoicing, CRM, and payment processing — built for contractors. Free trial for USA Concrete Jobs partners.</p>
+          <a href="#job-software" class="card-link">Start Free Trial →</a>
+          <span class="affiliate-note">Partner</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- REQUIREMENTS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Requirements to Join</h2>
+        <p>We verify every contractor to ensure quality for homeowners.</p>
+      </div>
+      <div class="grid-2" style="gap:32px; align-items:start;">
+        <div>
+          <ul class="requirements-list">
+            <li>
+              <span class="req-icon">📜</span>
+              <div>
+                <strong>Active State License</strong>
+                <p>Concrete or relevant contractor classification in TX, FL, CA, AZ, or CO.</p>
+              </div>
+            </li>
+            <li>
+              <span class="req-icon">🛡️</span>
+              <div>
+                <strong>General Liability Insurance</strong>
+                <p>$1M minimum coverage. Protects you and the homeowner.</p>
+              </div>
+            </li>
+            <li>
+              <span class="req-icon">👷</span>
+              <div>
+                <strong>Workers' Compensation</strong>
+                <p>Required for all employees. Sole proprietors may be exempt in some states.</p>
+              </div>
+            </li>
+            <li>
+              <span class="req-icon">⭐</span>
+              <div>
+                <strong>3+ Years in Business Preferred</strong>
+                <p>Newer contractors considered on a case-by-case basis.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="card card-cta">
+          <h3>Ready to Get Started?</h3>
+          <p>Apply in 2 minutes. We'll verify your license and set up your account within 1 business day.</p>
+          <a href={phoneHref} class="btn btn-accent btn-lg btn-full" style="margin-top:16px;">📞 {phone}</a>
+          <p style="text-align:center; margin-top:8px; font-size:0.85rem; color:var(--color-text-muted);">Mon–Sat, 7am–6pm CT</p>
+          <div style="text-align:center; margin-top:12px;">
+            <span style="color:var(--color-text-muted); font-size:0.9rem;">or</span>
+          </div>
+          <a href="#join-form" class="btn btn-outline btn-full" style="margin-top:12px;">Apply Online — Free</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOIN FORM -->
+  <section class="section section-alt" id="join-form">
+    <div class="container" style="max-width:800px;">
+      <div class="section-header">
+        <h2>Apply to Join — Free</h2>
+        <p>No commitment. No subscription. Only pay when you get results.</p>
+      </div>
+      <form class="lead-form" id="contractorApplyForm" novalidate>
+        <div class="grid-2" style="gap:16px;">
+          <div class="form-group">
+            <label for="biz-name">Business Name *</label>
+            <input type="text" id="biz-name" name="business_name" placeholder="Acme Concrete LLC" required />
+          </div>
+          <div class="form-group">
+            <label for="owner-name">Owner Name *</label>
+            <input type="text" id="owner-name" name="owner_name" placeholder="John Smith" required />
+          </div>
+        </div>
+        <div class="grid-2" style="gap:16px;">
+          <div class="form-group">
+            <label for="app-phone">Phone *</label>
+            <input type="tel" id="app-phone" name="phone" placeholder="(555) 000-0000" required />
+          </div>
+          <div class="form-group">
+            <label for="app-email">Email *</label>
+            <input type="email" id="app-email" name="email" placeholder="john@acmeconcrete.com" required />
+          </div>
+        </div>
+        <div class="grid-2" style="gap:16px;">
+          <div class="form-group">
+            <label for="app-state">State of Operation *</label>
+            <select id="app-state" name="state" required>
+              <option value="">Select state...</option>
+              <option value="TX">Texas</option>
+              <option value="FL">Florida</option>
+              <option value="CA">California</option>
+              <option value="AZ">Arizona</option>
+              <option value="CO">Colorado</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="license-num">State License Number *</label>
+            <input type="text" id="license-num" name="license_number" placeholder="e.g. TX-12345" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Services Offered *</label>
+          <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:8px;">
+            <label class="checkbox-label"><input type="checkbox" name="services" value="concrete-cutting" /> Concrete Cutting</label>
+            <label class="checkbox-label"><input type="checkbox" name="services" value="waterproofing" /> Waterproofing</label>
+            <label class="checkbox-label"><input type="checkbox" name="services" value="concrete-finishing" /> Concrete Finishing</label>
+            <label class="checkbox-label"><input type="checkbox" name="services" value="core-drilling" /> Core Drilling</label>
+            <label class="checkbox-label"><input type="checkbox" name="services" value="driveway-replacement" /> Driveway Replacement</label>
+            <label class="checkbox-label"><input type="checkbox" name="services" value="foundation-repair" /> Foundation Repair</label>
+            <label class="checkbox-label"><input type="checkbox" name="services" value="stamped-concrete" /> Stamped Concrete</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="service-area">Service Area (cities / counties) *</label>
+          <textarea id="service-area" name="service_area" rows="2" placeholder="e.g. Dallas, Fort Worth, Plano, and all of Dallas County" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-accent btn-lg btn-full">Apply to Join — Free</button>
+        <div id="applyMsg" style="display:none; margin-top:16px; padding:16px; border-radius:8px; text-align:center; font-weight:600;"></div>
+      </form>
+      <script is:inline>
+        document.getElementById('contractorApplyForm')?.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const form = e.target;
+          const btn = form.querySelector('button[type="submit"]');
+          const msg = document.getElementById('applyMsg');
+          btn.disabled = true;
+          btn.textContent = 'Submitting…';
+          const formData = new FormData(form);
+          const services = formData.getAll('services');
+          const data = { ...Object.fromEntries(formData), services };
+          try {
+            const res = await fetch('https://ucj-api.jack-be1.workers.dev/contractors', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+            if (res.ok) {
+              form.reset();
+              msg.style.display = 'block';
+              msg.style.background = '#d1fae5';
+              msg.style.color = '#065f46';
+              msg.textContent = '✓ Application received! We\'ll review your license and reach out within 1 business day.';
+            } else {
+              throw new Error();
+            }
+          } catch {
+            msg.style.display = 'block';
+            msg.style.background = '#fee2e2';
+            msg.style.color = '#991b1b';
+            msg.textContent = 'Something went wrong. Please call us at (833) 722-3359.';
+            btn.disabled = false;
+            btn.textContent = 'Apply to Join — Free';
+          }
+        });
+      </script>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container" style="max-width:800px;">
+      <div class="section-header">
+        <h2>Frequently Asked Questions</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question">How much does it cost to join? <span class="faq-toggle">+</span></button>
+          <div class="faq-answer">
+            <p>Joining is completely free. There are no subscription fees, no setup costs, and no minimum commitments. You only pay when you receive a qualified pay-per-call lead ($20–$50) or when you win a job board bid ($25–$75 flat fee).</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">How do pay-per-call leads work? <span class="faq-toggle">+</span></button>
+          <div class="faq-answer">
+            <p>Homeowners visit our site or call our number looking for concrete services. When they're in your service area, we connect them directly to you via phone. You only pay for calls that last at least 60 seconds and are from genuine potential customers. Wrong numbers, spam, and hang-ups are never charged.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Can I set a monthly budget? <span class="faq-toggle">+</span></button>
+          <div class="faq-answer">
+            <p>Yes. You set your monthly call budget and we'll stop routing calls to you once you hit it. You can adjust your budget or pause your account anytime. You're always in control of your spend.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">What states do you cover? <span class="faq-toggle">+</span></button>
+          <div class="faq-answer">
+            <p>We currently serve Texas, Florida, California, Arizona, and Colorado. We're expanding to additional states based on contractor demand. Contact us if you're in a different state and we'll let you know when we launch in your area.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">How quickly will I start getting leads? <span class="faq-toggle">+</span></button>
+          <div class="faq-answer">
+            <p>Most contractors start receiving calls within 24–48 hours of approval. The volume depends on your service area and the demand for concrete services in your region. High-demand areas like Dallas, Houston, Phoenix, and Los Angeles typically see the fastest results.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Start Getting More Concrete Leads Today</h2>
+      <p>Join 500+ contractors already using USA Concrete Jobs to grow their business.</p>
+      <a href={phoneHref} class="cta-phone">{phone}</a>
+      <p class="cta-subtext">Mon–Sat, 7am–6pm CT · <a href="#join-form" style="color:var(--color-accent);">or apply online</a></p>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  .hero-contractor { background: linear-gradient(135deg, #1a3a2a 0%, #0d1f18 100%); }
+  .card-featured { border: 2px solid var(--color-accent); position: relative; }
+  .card-icon { font-size: 2.5rem; margin-bottom: 12px; }
+  .feature-list { list-style: none; padding: 0; margin: 16px 0; }
+  .feature-list li { padding: 6px 0; border-bottom: 1px solid rgba(0,0,0,0.06); font-size: 0.95rem; }
+  .feature-list li:last-child { border-bottom: none; }
+  .card-rate { display: flex; justify-content: space-between; padding: 8px 12px; background: var(--color-bg-alt); border-radius: 6px; margin-top: 8px; font-size: 0.9rem; }
+  .rate-value { font-weight: 700; color: var(--color-accent); }
+  .card-affiliate { position: relative; }
+  .affiliate-note { position: absolute; top: 12px; right: 12px; font-size: 0.7rem; background: rgba(0,0,0,0.08); padding: 2px 8px; border-radius: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .card-link { display: inline-block; margin-top: 12px; font-weight: 600; color: var(--color-accent); text-decoration: none; }
+  .card-link:hover { text-decoration: underline; }
+  .card-cta { background: linear-gradient(135deg, #1a3a2a, #0d1f18); color: #fff; }
+  .card-cta h3 { color: #fff; }
+  .requirements-list { list-style: none; padding: 0; }
+  .requirements-list li { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid rgba(0,0,0,0.06); }
+  .requirements-list li:last-child { border-bottom: none; }
+  .req-icon { font-size: 1.5rem; flex-shrink: 0; }
+  .checkbox-label { display: flex; align-items: center; gap: 6px; font-size: 0.9rem; font-weight: normal; cursor: pointer; padding: 6px 12px; background: var(--color-bg-alt); border-radius: 6px; }
+  .checkbox-label input { margin: 0; }
+  .faq-list { display: flex; flex-direction: column; gap: 8px; }
+  .faq-item { border: 1px solid rgba(0,0,0,0.08); border-radius: 8px; overflow: hidden; }
+  .faq-question { width: 100%; text-align: left; padding: 16px 20px; background: none; border: none; font-size: 1rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-family: inherit; }
+  .faq-question:hover { background: var(--color-bg-alt); }
+  .faq-toggle { font-size: 1.2rem; color: var(--color-accent); }
+  .faq-answer { display: none; padding: 0 20px 16px; }
+  .faq-answer.open { display: block; }
+</style>
