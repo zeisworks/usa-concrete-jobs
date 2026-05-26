@@ -180,7 +180,7 @@ const phoneHref = "tel:+18337223359";
               const services = formData.getAll('services');
               const data = { ...Object.fromEntries(formData), services };
               try {
-                const res = await fetch('/api/contractors', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+                const res = await fetch('https://ucj-api.jack-be1.workers.dev/contractors', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
                 if (res.ok) {
                   form.reset();
                   msg.style.display = 'block';

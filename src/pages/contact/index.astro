@@ -52,7 +52,7 @@ const phoneHref = "tel:+18337223359";
               btn.textContent = 'Submitting…';
               const data = Object.fromEntries(new FormData(form));
               try {
-                const res = await fetch('/api/leads', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+                const res = await fetch('https://ucj-api.jack-be1.workers.dev/leads', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
                 if (res.ok) {
                   form.reset();
                   msg.style.display = 'block';
