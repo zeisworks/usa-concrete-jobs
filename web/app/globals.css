@@ -124,6 +124,85 @@ h2 {
 
 .sourcenote { font-family: var(--mono); font-size: 12px; color: var(--mid); margin-top: 10px; }
 
+/* prose blocks — methodology / claim copy */
+.prose { max-width: 720px; }
+.prose p { margin: 14px 0; }
+
+/* city cards — cast slabs, same register as the stat strip */
+.cards {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 2px; background: var(--line); border: 1px solid var(--line);
+  margin: 24px 0 16px;
+}
+.card {
+  background: var(--slab-deep); padding: 18px 18px 16px;
+  text-decoration: none; display: flex; flex-direction: column; gap: 2px;
+}
+.card:hover { background: var(--slab); }
+.card-eyebrow {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--mid);
+}
+.card b {
+  font-family: var(--display); font-weight: 800; font-size: 26px;
+  line-height: 1.05; text-transform: uppercase; margin: 2px 0 6px;
+}
+.card-line { font-family: var(--mono); font-size: 12px; color: var(--mid); }
+
+/* how-it-works steps */
+.steps {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2px; background: var(--line); border: 1px solid var(--line);
+  margin: 24px 0 16px;
+}
+.step { background: var(--slab-deep); padding: 20px 20px 18px; }
+.step-no {
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em;
+  color: var(--safety);
+}
+.step b {
+  display: block; font-family: var(--display); font-weight: 800;
+  font-size: 22px; text-transform: uppercase; margin: 4px 0 6px;
+}
+.step p { margin: 0; font-size: 14px; color: var(--ink); }
+
+/* claim form — clipboard register */
+.claim-form {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 18px 24px;
+  max-width: 720px; margin: 28px 0 16px;
+}
+.claim-form label {
+  display: flex; flex-direction: column; gap: 6px;
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--mid);
+}
+.claim-form .full { grid-column: 1 / -1; }
+.claim-form .opt { text-transform: none; letter-spacing: 0; }
+.claim-form input, .claim-form select, .claim-form textarea {
+  font-family: var(--body); font-size: 16px; color: var(--ink);
+  background: var(--slab-deep); border: 1px solid var(--line);
+  border-radius: 0; padding: 10px 12px;
+}
+.claim-form input:focus-visible, .claim-form select:focus-visible,
+.claim-form textarea:focus-visible {
+  outline: 3px solid var(--safety); outline-offset: 1px;
+}
+.claim-form button {
+  grid-column: 1 / -1; justify-self: start; cursor: pointer;
+  font-family: var(--display); font-weight: 700; font-size: 15px;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  background: var(--safety); color: var(--form);
+  border: none; padding: 14px 26px;
+}
+.claim-form button:focus-visible { outline: 3px solid var(--form); outline-offset: 2px; }
+.form-error {
+  font-family: var(--mono); font-size: 13px; color: var(--fail);
+  border: 1px solid var(--fail); padding: 10px 14px; max-width: 720px;
+}
+@media (max-width: 640px) { .claim-form { grid-template-columns: 1fr; } }
+
+.foot-nav a { color: var(--mid); }
+
 @media (prefers-reduced-motion: no-preference) {
   .stamp { transition: transform 0.15s ease; }
   .stamp:hover { transform: rotate(-2deg) scale(1.02); }

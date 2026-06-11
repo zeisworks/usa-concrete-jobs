@@ -155,6 +155,22 @@ CREATE TABLE lead_signal (
 );
 
 -- ---------------------------------------------------------------------------
+-- Profile claims (web form → manual verification → contractor.claimed)
+-- ---------------------------------------------------------------------------
+CREATE TABLE claim_request (
+  id            BIGSERIAL PRIMARY KEY,
+  contractor_id UUID REFERENCES contractor(id) ON DELETE CASCADE,
+  name          TEXT NOT NULL,
+  email         TEXT NOT NULL,
+  phone         TEXT,
+  role          TEXT,                          -- 'owner','office','field','other'
+  message       TEXT,
+  created_at    TIMESTAMPTZ DEFAULT now(),
+  verified_at   TIMESTAMPTZ                    -- set when ownership is confirmed
+);
+CREATE INDEX claim_request_contractor_idx ON claim_request (contractor_id);
+
+-- ---------------------------------------------------------------------------
 -- Page-serving views (what the Next.js app reads)
 -- ---------------------------------------------------------------------------
 CREATE MATERIALIZED VIEW contractor_profile AS

@@ -48,6 +48,63 @@ export async function getCity(citySlug) {
     : null;
 }
 
+export async function getCities() {
+  if (!pool)
+    return seed.cities.map((c) => ({
+      slug: c.slug,
+      name: c.name,
+      state: "CO",
+      permits: c.activity.reduce((s, a) => s + Number(a.permits), 0),
+      total_value: c.activity.reduce((s, a) => s + Number(a.total_value), 0),
+      contractors: c.contractors.length,
+    }));
+  const { rows } = await pool.query(
+    `SELECT lower(replace(city, ' ', '-')) AS slug, city AS name, state,
+            sum(permits)::int AS permits, sum(total_value) AS total_value,
+            0 AS contractors
+     FROM city_activity
+     WHERE month > CURRENT_DATE - INTERVAL '12 months'
+     GROUP BY 1, 2, 3 ORDER BY permits DESC`);
+  return rows;
+}
+
+export async function getContractors() {
+  if (!pool)
+    return seed.contractors.map((c) => ({
+      slug: c.slug,
+      canonical_name: c.canonical_name,
+      city: c.city,
+      state: c.state,
+      concrete_permits: c.concrete_permits,
+      permits_12mo: c.permits_12mo,
+      median_job_value: c.median_job_value,
+      has_active_license: c.has_active_license,
+    }));
+  const { rows } = await pool.query(
+    `SELECT c.slug, c.canonical_name, c.city, c.state, cp.concrete_permits,
+            cp.permits_12mo, cp.median_job_value, cp.has_active_license
+     FROM contractor c JOIN contractor_profile cp ON cp.id = c.id
+     WHERE cp.concrete_permits > 0
+     ORDER BY cp.permits_12mo DESC, cp.concrete_permits DESC LIMIT 500`);
+  return rows;
+}
+
+export async function createClaimRequest({ slug, name, email, phone, role, message }) {
+  if (!pool) {
+    // No database connected (seed mode): keep the request in worker logs so
+    // nothing is silently dropped before the claim_request table is live.
+    console.log("claim_request (no DB)", JSON.stringify({ slug, name, email, phone, role, message }));
+    return true;
+  }
+  const { rows } = await pool.query(`SELECT id FROM contractor WHERE slug = $1`, [slug]);
+  if (!rows[0]) return false;
+  await pool.query(
+    `INSERT INTO claim_request (contractor_id, name, email, phone, role, message)
+     VALUES ($1, $2, $3, $4, $5, $6)`,
+    [rows[0].id, name, email, phone, role, message]);
+  return true;
+}
+
 export async function allContractorSlugs() {
   if (!pool) return seed.contractors.map((c) => c.slug);
   const { rows } = await pool.query(`SELECT slug FROM contractor`);

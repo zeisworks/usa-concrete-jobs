@@ -25,6 +25,153 @@
         { "permit_no": "2026-BLD-014567", "concrete_class": "retaining_wall", "description": "MSE retaining wall, 4 ft exposed", "declared_value": 27500, "issued_on": "2026-03-30", "status": "issued", "site_city": "Lakewood", "jurisdiction": "Jefferson County" },
         { "permit_no": "2026-COM-002218", "concrete_class": "structural", "description": "Sawcut and core drill, tenant finish", "declared_value": 18400, "issued_on": "2026-02-21", "status": "finaled", "site_city": "Denver", "jurisdiction": "City and County of Denver" }
       ]
+    },
+    {
+      "slug": "front-range-flatwork-golden-co",
+      "canonical_name": "Front Range Flatwork Inc",
+      "city": "Golden",
+      "state": "CO",
+      "claimed": false,
+      "has_active_license": true,
+      "concrete_permits": 78,
+      "permits_12mo": 31,
+      "median_job_value": 9600,
+      "first_permit": "2022-06-03",
+      "latest_permit": "2026-06-02",
+      "jurisdictions_active": 2,
+      "enforcement_count": 0,
+      "licenses": [
+        { "license_no": "JC-22-1180", "license_type": "Contractor — Concrete", "status": "active", "expires_on": "2026-09-01", "jurisdiction": "Jefferson County" },
+        { "license_no": "GLD-2023-0412", "license_type": "Flatwork Specialty", "status": "active", "expires_on": "2027-01-10", "jurisdiction": "City of Golden" }
+      ],
+      "permits": [
+        { "permit_no": "2026-BLD-019021", "concrete_class": "flatwork", "description": "Sidewalk replacement, 12 panels, ROW", "declared_value": 7400, "issued_on": "2026-06-02", "status": "issued", "site_city": "Golden", "jurisdiction": "City of Golden" },
+        { "permit_no": "2026-BLD-017788", "concrete_class": "driveway", "description": "New exposed-aggregate driveway, 980 sf", "declared_value": 13900, "issued_on": "2026-05-19", "status": "issued", "site_city": "Golden", "jurisdiction": "Jefferson County" },
+        { "permit_no": "2026-BLD-015340", "concrete_class": "flatwork", "description": "Garage slab pour, 4 in. with mesh", "declared_value": 6100, "issued_on": "2026-04-22", "status": "finaled", "site_city": "Arvada", "jurisdiction": "Jefferson County" },
+        { "permit_no": "2026-BLD-013092", "concrete_class": "flatwork", "description": "Patio and steps, broom finish, 520 sf", "declared_value": 8800, "issued_on": "2026-03-11", "status": "finaled", "site_city": "Golden", "jurisdiction": "Jefferson County" }
+      ]
+    },
+    {
+      "slug": "clear-creek-concrete-golden-co",
+      "canonical_name": "Clear Creek Concrete Co",
+      "city": "Golden",
+      "state": "CO",
+      "claimed": false,
+      "has_active_license": false,
+      "concrete_permits": 52,
+      "permits_12mo": 19,
+      "median_job_value": 14250,
+      "first_permit": "2019-08-21",
+      "latest_permit": "2026-05-14",
+      "jurisdictions_active": 2,
+      "enforcement_count": 1,
+      "licenses": [
+        { "license_no": "JC-19-2206", "license_type": "Contractor — Concrete", "status": "expired", "expires_on": "2026-03-31", "jurisdiction": "Jefferson County" }
+      ],
+      "permits": [
+        { "permit_no": "2026-BLD-017501", "concrete_class": "retaining_wall", "description": "CIP retaining wall, 6 ft, engineered", "declared_value": 31200, "issued_on": "2026-05-14", "status": "issued", "site_city": "Golden", "jurisdiction": "Jefferson County" },
+        { "permit_no": "2026-BLD-014990", "concrete_class": "foundation", "description": "Detached garage foundation and slab", "declared_value": 22600, "issued_on": "2026-04-08", "status": "issued", "site_city": "Wheat Ridge", "jurisdiction": "Jefferson County" },
+        { "permit_no": "2026-BLD-012474", "concrete_class": "driveway", "description": "Driveway widening with new apron", "declared_value": 9700, "issued_on": "2026-02-26", "status": "finaled", "site_city": "Golden", "jurisdiction": "Jefferson County" }
+      ]
+    },
+    {
+      "slug": "mile-high-foundations-denver-co",
+      "canonical_name": "Mile High Foundations LLC",
+      "city": "Denver",
+      "state": "CO",
+      "claimed": false,
+      "has_active_license": true,
+      "concrete_permits": 141,
+      "permits_12mo": 38,
+      "median_job_value": 41000,
+      "first_permit": "2018-04-30",
+      "latest_permit": "2026-06-05",
+      "jurisdictions_active": 4,
+      "enforcement_count": 0,
+      "licenses": [
+        { "license_no": "CL-2018-03327", "license_type": "Class B General", "status": "active", "expires_on": "2027-04-30", "jurisdiction": "City and County of Denver" },
+        { "license_no": "JC-20-3318", "license_type": "Contractor — Concrete", "status": "active", "expires_on": "2026-10-31", "jurisdiction": "Jefferson County" },
+        { "license_no": "ARV-21-0964", "license_type": "Class C Contractor", "status": "active", "expires_on": "2027-03-15", "jurisdiction": "City of Arvada" }
+      ],
+      "permits": [
+        { "permit_no": "2026-RES-011872", "concrete_class": "foundation", "description": "New duplex foundation, drilled piers", "declared_value": 96500, "issued_on": "2026-06-05", "status": "issued", "site_city": "Denver", "jurisdiction": "City and County of Denver" },
+        { "permit_no": "2026-RES-010904", "concrete_class": "foundation", "description": "Basement underpinning, 14 piers", "declared_value": 58200, "issued_on": "2026-05-21", "status": "issued", "site_city": "Denver", "jurisdiction": "City and County of Denver" },
+        { "permit_no": "2026-BLD-016233", "concrete_class": "foundation", "description": "ADU foundation, stem walls and slab", "declared_value": 38700, "issued_on": "2026-05-06", "status": "issued", "site_city": "Lakewood", "jurisdiction": "Jefferson County" },
+        { "permit_no": "2026-RES-008719", "concrete_class": "structural", "description": "Structural slab repair, helical piles", "declared_value": 44100, "issued_on": "2026-03-27", "status": "finaled", "site_city": "Denver", "jurisdiction": "City and County of Denver" },
+        { "permit_no": "2026-RES-007248", "concrete_class": "foundation", "description": "Crawlspace-to-basement conversion", "declared_value": 87300, "issued_on": "2026-02-13", "status": "finaled", "site_city": "Denver", "jurisdiction": "City and County of Denver" }
+      ]
+    },
+    {
+      "slug": "apex-structural-concrete-denver-co",
+      "canonical_name": "Apex Structural Concrete Inc",
+      "city": "Denver",
+      "state": "CO",
+      "claimed": false,
+      "has_active_license": true,
+      "concrete_permits": 97,
+      "permits_12mo": 26,
+      "median_job_value": 33500,
+      "first_permit": "2020-01-17",
+      "latest_permit": "2026-05-30",
+      "jurisdictions_active": 2,
+      "enforcement_count": 0,
+      "licenses": [
+        { "license_no": "CL-2020-00891", "license_type": "Class B General", "status": "active", "expires_on": "2026-12-31", "jurisdiction": "City and County of Denver" }
+      ],
+      "permits": [
+        { "permit_no": "2026-COM-003561", "concrete_class": "structural", "description": "Elevated deck pour, post-tension, level 3", "declared_value": 128000, "issued_on": "2026-05-30", "status": "issued", "site_city": "Denver", "jurisdiction": "City and County of Denver" },
+        { "permit_no": "2026-COM-003106", "concrete_class": "structural", "description": "Shear wall infill, parking structure", "declared_value": 52400, "issued_on": "2026-04-29", "status": "issued", "site_city": "Denver", "jurisdiction": "City and County of Denver" },
+        { "permit_no": "2026-COM-002445", "concrete_class": "foundation", "description": "Spread footings, warehouse addition", "declared_value": 71800, "issued_on": "2026-03-18", "status": "finaled", "site_city": "Denver", "jurisdiction": "City and County of Denver" },
+        { "permit_no": "2026-COM-001973", "concrete_class": "structural", "description": "Sawcut, demo and repour, loading dock", "declared_value": 24600, "issued_on": "2026-02-09", "status": "finaled", "site_city": "Denver", "jurisdiction": "City and County of Denver" }
+      ]
+    },
+    {
+      "slug": "lakewood-concrete-works-lakewood-co",
+      "canonical_name": "Lakewood Concrete Works LLC",
+      "city": "Lakewood",
+      "state": "CO",
+      "claimed": false,
+      "has_active_license": true,
+      "concrete_permits": 61,
+      "permits_12mo": 23,
+      "median_job_value": 7800,
+      "first_permit": "2021-09-02",
+      "latest_permit": "2026-06-08",
+      "jurisdictions_active": 2,
+      "enforcement_count": 0,
+      "licenses": [
+        { "license_no": "LKWD-21-2287", "license_type": "Contractor — Concrete/Flatwork", "status": "active", "expires_on": "2026-09-30", "jurisdiction": "City of Lakewood" },
+        { "license_no": "JC-21-5530", "license_type": "Contractor — Concrete", "status": "active", "expires_on": "2027-05-31", "jurisdiction": "Jefferson County" }
+      ],
+      "permits": [
+        { "permit_no": "2026-BLD-019412", "concrete_class": "driveway", "description": "Driveway tear-out and repour, 760 sf", "declared_value": 10400, "issued_on": "2026-06-08", "status": "issued", "site_city": "Lakewood", "jurisdiction": "City of Lakewood" },
+        { "permit_no": "2026-BLD-018027", "concrete_class": "flatwork", "description": "Backyard patio, stamped, 410 sf", "declared_value": 7800, "issued_on": "2026-05-23", "status": "issued", "site_city": "Lakewood", "jurisdiction": "City of Lakewood" },
+        { "permit_no": "2026-BLD-016671", "concrete_class": "flatwork", "description": "Walkway and stoop replacement", "declared_value": 4900, "issued_on": "2026-04-30", "status": "finaled", "site_city": "Lakewood", "jurisdiction": "City of Lakewood" },
+        { "permit_no": "2026-BLD-015118", "concrete_class": "retaining_wall", "description": "Block retaining wall, 3 ft, terraced", "declared_value": 12700, "issued_on": "2026-04-02", "status": "finaled", "site_city": "Morrison", "jurisdiction": "Jefferson County" }
+      ]
+    },
+    {
+      "slug": "bear-creek-flatwork-lakewood-co",
+      "canonical_name": "Bear Creek Flatwork LLC",
+      "city": "Lakewood",
+      "state": "CO",
+      "claimed": false,
+      "has_active_license": false,
+      "concrete_permits": 34,
+      "permits_12mo": 11,
+      "median_job_value": 6200,
+      "first_permit": "2023-05-15",
+      "latest_permit": "2026-05-11",
+      "jurisdictions_active": 1,
+      "enforcement_count": 0,
+      "licenses": [
+        { "license_no": "LKWD-23-0871", "license_type": "Contractor — Concrete/Flatwork", "status": "expired", "expires_on": "2026-04-30", "jurisdiction": "City of Lakewood" }
+      ],
+      "permits": [
+        { "permit_no": "2026-BLD-017266", "concrete_class": "flatwork", "description": "Front walkway and porch cap", "declared_value": 5300, "issued_on": "2026-05-11", "status": "issued", "site_city": "Lakewood", "jurisdiction": "City of Lakewood" },
+        { "permit_no": "2026-BLD-014203", "concrete_class": "driveway", "description": "Single-car driveway replacement", "declared_value": 8100, "issued_on": "2026-03-19", "status": "finaled", "site_city": "Lakewood", "jurisdiction": "City of Lakewood" },
+        { "permit_no": "2026-BLD-012830", "concrete_class": "flatwork", "description": "Shed slab, 200 sf", "declared_value": 3400, "issued_on": "2026-02-27", "status": "finaled", "site_city": "Lakewood", "jurisdiction": "City of Lakewood" }
+      ]
     }
   ],
   "cities": [
@@ -42,6 +189,38 @@
         { "slug": "rocky-mountain-concrete-golden-co", "canonical_name": "Rocky Mountain Concrete LLC", "permits_12mo": 47, "median_job_value": 18400, "has_active_license": true },
         { "slug": "front-range-flatwork-golden-co", "canonical_name": "Front Range Flatwork Inc", "permits_12mo": 31, "median_job_value": 9600, "has_active_license": true },
         { "slug": "clear-creek-concrete-golden-co", "canonical_name": "Clear Creek Concrete Co", "permits_12mo": 19, "median_job_value": 14250, "has_active_license": false }
+      ]
+    },
+    {
+      "slug": "denver",
+      "name": "Denver",
+      "activity": [
+        { "month": "2026-05-01", "concrete_class": "foundation", "permits": 38, "total_value": 2610000, "median_value": 58000 },
+        { "month": "2026-05-01", "concrete_class": "flatwork", "permits": 61, "total_value": 540000, "median_value": 8100 },
+        { "month": "2026-05-01", "concrete_class": "driveway", "permits": 44, "total_value": 470000, "median_value": 9800 },
+        { "month": "2026-05-01", "concrete_class": "structural", "permits": 19, "total_value": 1140000, "median_value": 36000 },
+        { "month": "2026-04-01", "concrete_class": "foundation", "permits": 33, "total_value": 2280000, "median_value": 55500 },
+        { "month": "2026-04-01", "concrete_class": "flatwork", "permits": 57, "total_value": 489000, "median_value": 7700 },
+        { "month": "2026-04-01", "concrete_class": "structural", "permits": 16, "total_value": 902000, "median_value": 31000 }
+      ],
+      "contractors": [
+        { "slug": "mile-high-foundations-denver-co", "canonical_name": "Mile High Foundations LLC", "permits_12mo": 38, "median_job_value": 41000, "has_active_license": true },
+        { "slug": "apex-structural-concrete-denver-co", "canonical_name": "Apex Structural Concrete Inc", "permits_12mo": 26, "median_job_value": 33500, "has_active_license": true }
+      ]
+    },
+    {
+      "slug": "lakewood",
+      "name": "Lakewood",
+      "activity": [
+        { "month": "2026-05-01", "concrete_class": "flatwork", "permits": 26, "total_value": 214000, "median_value": 7300 },
+        { "month": "2026-05-01", "concrete_class": "driveway", "permits": 21, "total_value": 226000, "median_value": 10300 },
+        { "month": "2026-05-01", "concrete_class": "foundation", "permits": 9, "total_value": 489000, "median_value": 47000 },
+        { "month": "2026-04-01", "concrete_class": "flatwork", "permits": 23, "total_value": 181000, "median_value": 6900 },
+        { "month": "2026-04-01", "concrete_class": "driveway", "permits": 18, "total_value": 192000, "median_value": 9900 }
+      ],
+      "contractors": [
+        { "slug": "lakewood-concrete-works-lakewood-co", "canonical_name": "Lakewood Concrete Works LLC", "permits_12mo": 23, "median_job_value": 7800, "has_active_license": true },
+        { "slug": "bear-creek-flatwork-lakewood-co", "canonical_name": "Bear Creek Flatwork LLC", "permits_12mo": 11, "median_job_value": 6200, "has_active_license": false }
       ]
     }
   ]
