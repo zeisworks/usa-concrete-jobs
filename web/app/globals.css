@@ -1,0 +1,130 @@
+:root {
+  --slab: #e9e7e1;        /* cured pour */
+  --slab-deep: #dcd9d0;   /* shadowed slab */
+  --form: #211f1b;        /* charcoal formwork */
+  --ink: #2c2a25;
+  --mid: #8d887c;         /* aggregate */
+  --line: #c6c2b7;
+  --safety: #e8540c;      /* cone orange — one accent, spent sparingly */
+  --stamp: #1e6b3c;       /* inspection-pass green */
+  --fail: #a32c1c;
+  --display: "Barlow Condensed", sans-serif;
+  --body: "Barlow", sans-serif;
+  --mono: "IBM Plex Mono", monospace;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--slab);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.55;
+}
+main { max-width: 1060px; margin: 0 auto; padding: 0 24px 96px; }
+a { color: inherit; }
+
+/* header: highway-sign register */
+.site-head {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 18px 28px; border-bottom: 3px solid var(--form);
+  background: var(--slab);
+}
+.wordmark {
+  font-family: var(--display); font-weight: 800; font-size: 22px;
+  letter-spacing: 0.04em; text-decoration: none;
+}
+.wordmark span { color: var(--safety); }
+.site-head nav a {
+  font-family: var(--display); font-weight: 600; font-size: 15px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  text-decoration: none; margin-left: 28px;
+}
+.site-foot {
+  border-top: 1px solid var(--line); margin-top: 48px;
+  padding: 24px 28px; font-size: 13px; color: var(--mid); max-width: 1060px;
+  margin-left: auto; margin-right: auto;
+}
+
+/* entity header — reads like a license card */
+.entity-head { padding: 48px 0 8px; }
+.eyebrow {
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--mid);
+}
+h1 {
+  font-family: var(--display); font-weight: 800;
+  font-size: clamp(38px, 6vw, 64px); line-height: 0.98;
+  text-transform: uppercase; letter-spacing: 0.01em; margin: 6px 0 4px;
+}
+.locale { font-family: var(--mono); font-size: 14px; color: var(--mid); }
+
+/* the signature: inspection stamp */
+.head-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; flex-wrap: wrap; }
+.stamp {
+  font-family: var(--display); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.14em; font-size: 15px; line-height: 1.2;
+  color: var(--stamp); border: 3px double var(--stamp);
+  border-radius: 6px; padding: 10px 16px; transform: rotate(-4deg);
+  text-align: center; margin-top: 14px; user-select: none;
+}
+.stamp small { display: block; font-family: var(--mono); font-weight: 400; font-size: 10px; letter-spacing: 0.08em; }
+.stamp.lapsed { color: var(--fail); border-color: var(--fail); }
+
+/* stat strip — cast as separate slabs */
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 2px; background: var(--line); border: 1px solid var(--line); margin: 28px 0 40px; }
+.stat { background: var(--slab-deep); padding: 16px 16px 14px; }
+.stat b { display: block; font-family: var(--display); font-weight: 800; font-size: 32px; line-height: 1; }
+.stat span { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); }
+
+/* the ledger — permits as official record rows */
+h2 {
+  font-family: var(--display); font-weight: 700; font-size: 22px;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  border-bottom: 2px solid var(--form); padding-bottom: 6px; margin: 40px 0 0;
+}
+.ledger { font-family: var(--mono); font-size: 13.5px; }
+.ledger-row {
+  display: grid; grid-template-columns: 110px 150px 1fr 110px 90px;
+  gap: 16px; padding: 13px 4px; border-bottom: 1px solid var(--line);
+  align-items: baseline;
+}
+.ledger-row .no { color: var(--mid); }
+.ledger-row .class { text-transform: uppercase; letter-spacing: 0.06em; font-size: 12px; }
+.ledger-row .val { text-align: right; font-weight: 500; }
+.ledger-row .date { text-align: right; color: var(--mid); }
+.ledger-head { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--mid); border-bottom: 2px solid var(--form); }
+@media (max-width: 720px) {
+  .ledger-row { grid-template-columns: 1fr 110px; }
+  .ledger-row .no, .ledger-row .class, .ledger-row .date { display: none; }
+}
+
+/* license table */
+.lic { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 13.5px; }
+.lic th { text-align: left; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); border-bottom: 2px solid var(--form); padding: 8px 12px 6px 0; }
+.lic td { border-bottom: 1px solid var(--line); padding: 11px 12px 11px 0; }
+.pill { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 8px; border-radius: 3px; border: 1px solid; }
+.pill.active { color: var(--stamp); border-color: var(--stamp); }
+.pill.lapsed { color: var(--fail); border-color: var(--fail); }
+
+/* claim band — the one orange moment */
+.claim {
+  margin-top: 56px; background: var(--form); color: var(--slab);
+  padding: 28px; display: flex; justify-content: space-between;
+  align-items: center; gap: 24px; flex-wrap: wrap;
+}
+.claim p { margin: 0; max-width: 560px; }
+.claim a {
+  font-family: var(--display); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; background: var(--safety); color: var(--form);
+  text-decoration: none; padding: 12px 22px; white-space: nowrap;
+}
+.claim a:focus-visible, .site-head a:focus-visible { outline: 3px solid var(--safety); outline-offset: 2px; }
+
+.sourcenote { font-family: var(--mono); font-size: 12px; color: var(--mid); margin-top: 10px; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .stamp { transition: transform 0.15s ease; }
+  .stamp:hover { transform: rotate(-2deg) scale(1.02); }
+}

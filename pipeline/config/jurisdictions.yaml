@@ -1,0 +1,77 @@
+# Front Range launch set. VERIFY each endpoint before first run — county portals
+# change, and this file was authored offline. Each adapter reads its block here.
+#
+# Strategy note: Denver first (clean open-data APIs, zero scraping risk),
+# then Accela-based counties, then the long tail.
+
+jurisdictions:
+  - slug: denver-co
+    name: City and County of Denver
+    kind: city
+    state: CO
+    permit_system: socrata_or_arcgis
+    license_system: socrata
+    source_config:
+      # Denver Open Data Catalog (data.denvergov.org). Datasets exist for both
+      # building permits and contractor licenses; confirm current dataset IDs.
+      permits_hint: "search catalog: 'building permits' — historically ArcGIS FeatureServer + CSV"
+      licenses_hint: "search catalog: 'contractor licenses' / 'business licenses'"
+      adapter: denver_permits_soda
+
+  - slug: jefferson-county-co
+    name: Jefferson County
+    kind: county
+    state: CO
+    permit_system: accela_or_portal
+    license_system: portal
+    source_config:
+      portal_hint: "Jeffco Planning & Zoning permit search portal; check for Accela Citizen Access instance"
+      adapter: accela_permits
+
+  - slug: arapahoe-county-co
+    name: Arapahoe County
+    kind: county
+    state: CO
+    permit_system: portal
+    source_config:
+      adapter: accela_permits
+
+  - slug: douglas-county-co
+    name: Douglas County
+    kind: county
+    state: CO
+    permit_system: portal
+    source_config:
+      adapter: accela_permits
+
+  - slug: el-paso-county-co
+    name: El Paso County (Pikes Peak RBD)
+    kind: county
+    state: CO
+    permit_system: pprbd
+    source_config:
+      portal_hint: "Pikes Peak Regional Building Dept — has its own public records search, historically scrape-friendly"
+      adapter: accela_permits   # swap for a pprbd adapter after recon
+
+  - slug: aurora-co
+    name: City of Aurora
+    kind: city
+    state: CO
+    permit_system: accela
+    license_system: portal
+    source_config:
+      adapter: accela_permits
+
+# Cross-reference source (entity resolution backbone):
+#   CO Secretary of State business entity database — bulk download available.
+#   Load into a sos_entity staging table; match on normalized name + reg agent.
+
+# Concrete classification keywords (used by resolve/classify.py)
+concrete_keywords:
+  foundation:   [foundation, footing, footer, caisson, pier, stem wall, slab on grade]
+  flatwork:     [flatwork, sidewalk, slab, patio, concrete pad, apron]
+  driveway:     [driveway]
+  retaining_wall: [retaining wall, mse wall]
+  structural:   [structural concrete, shotcrete, core drill, concrete cutting, sawcut, post-tension]
+  decorative:   [stamped, stained concrete, decorative concrete, exposed aggregate]
+  demolition:   [demo concrete, remove concrete, concrete removal]
