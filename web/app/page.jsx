@@ -1,29 +1,56 @@
-import { getCities, getContractors, fmtUSD } from "../lib/data";
+import { getCities, getContractors, getJobs, fmtUSD, fmtDate, daysUntil } from "../lib/data";
 
 export const revalidate = 86400;
 
 export default async function Home() {
-  const [cities, contractors] = await Promise.all([getCities(), getContractors()]);
+  const [cities, contractors, jobs] = await Promise.all([getCities(), getContractors(), getJobs()]);
   const totalPermits = cities.reduce((s, c) => s + Number(c.permits), 0);
   const top = contractors.slice(0, 5);
+  const nextJobs = jobs.slice(0, 5);
 
   return (
     <article>
       <div className="entity-head">
-        <p className="eyebrow">Public records · permits · licenses</p>
+        <p className="eyebrow">Public records · permits · licenses · open bids</p>
         <h1>Every concrete job is a public record.<br />We put them in one place.</h1>
         <p className="locale">
-          Permit and license records for concrete contractors, sourced directly
-          from city and county systems. Starting with the Colorado Front Range.
+          Permit and license records for concrete contractors — and concrete
+          work out for bid, federal to private — sourced directly from the
+          systems of record. Starting with the Colorado Front Range.
         </p>
       </div>
 
       <div className="stats">
+        <div className="stat"><b>{jobs.length}</b><span>jobs open for bid</span></div>
         <div className="stat"><b>{cities.length}</b><span>cities tracked</span></div>
         <div className="stat"><b>{contractors.length}</b><span>contractors on record</span></div>
         <div className="stat"><b>{totalPermits}</b><span>permits in window</span></div>
         <div className="stat"><b>Daily</b><span>refresh cadence</span></div>
       </div>
+
+      <h2>Open for bid</h2>
+      <div className="ledger">
+        <div className="ledger-row ledger-head">
+          <span>Bids due</span><span>Level</span><span>Project</span><span>Est. value</span><span>Closes</span>
+        </div>
+        {nextJobs.map((j) => {
+          const days = daysUntil(j.due_on);
+          return (
+            <div className="ledger-row" key={j.slug}>
+              <span className="no">{fmtDate(j.due_on)}</span>
+              <span className="class">{j.source_level}</span>
+              <span>
+                <a href={`/jobs/${j.slug}`}>{j.title}</a> — {j.buyer} · {j.city}, {j.state}
+              </span>
+              <span className="val">{fmtUSD(j.est_value)}</span>
+              <span className={`date ${days <= 7 ? "due-soon" : ""}`}>
+                {days <= 0 ? "today" : `${days} day${days === 1 ? "" : "s"}`}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+      <p><a href="/jobs">All open jobs →</a></p>
 
       <h2>Browse by city</h2>
       <div className="cards">

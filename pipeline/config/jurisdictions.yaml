@@ -62,6 +62,36 @@ jurisdictions:
     source_config:
       adapter: accela_permits
 
+# Bid board sources (record_type: solicitation → bid_opportunity)
+  - slug: federal-us
+    name: Federal (SAM.gov)
+    kind: federal
+    state: CO          # place-of-performance filter, not the source's location
+    permit_system: none
+    source_config:
+      adapter: sam_gov_opportunities
+      place_of_performance_state: CO
+      lookback_days: 30
+      # api_key via SAM_API_KEY env var — free key from sam.gov
+
+  - slug: cdot-co
+    name: Colorado DOT
+    kind: state
+    state: CO
+    permit_system: none
+    source_config:
+      portal_hint: "codot.gov bid tab — project list JSON behind the construction bidding page"
+      adapter: cdot_bids   # write after recon, same (source_id, payload) shape
+
+  - slug: bidnet-rmeps-co
+    name: Rocky Mountain E-Purchasing (BidNet)
+    kind: state
+    state: CO
+    permit_system: none
+    source_config:
+      portal_hint: "bidnetdirect.com/colorado — hosts most CO city/county solicitations; check ToS before automating"
+      adapter: bidnet_solicitations   # write after recon
+
 # Cross-reference source (entity resolution backbone):
 #   CO Secretary of State business entity database — bulk download available.
 #   Load into a sos_entity staging table; match on normalized name + reg agent.

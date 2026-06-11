@@ -13,7 +13,7 @@ CREATE TABLE jurisdiction (
   id            SERIAL PRIMARY KEY,
   slug          TEXT UNIQUE NOT NULL,          -- 'denver-co', 'jefferson-county-co'
   name          TEXT NOT NULL,
-  kind          TEXT NOT NULL CHECK (kind IN ('city','county','state')),
+  kind          TEXT NOT NULL CHECK (kind IN ('city','county','state','federal')),
   state         CHAR(2) NOT NULL,
   fips          TEXT,
   permit_system TEXT,                          -- 'socrata','arcgis','accela','etrakit','manual'
@@ -28,7 +28,7 @@ CREATE TABLE jurisdiction (
 CREATE TABLE raw_record (
   id            BIGSERIAL PRIMARY KEY,
   jurisdiction_id INT REFERENCES jurisdiction(id),
-  record_type   TEXT NOT NULL CHECK (record_type IN ('permit','license','violation','discipline')),
+  record_type   TEXT NOT NULL CHECK (record_type IN ('permit','license','violation','discipline','solicitation')),
   source_id     TEXT NOT NULL,                 -- the jurisdiction's own record id
   payload       JSONB NOT NULL,
   content_hash  TEXT NOT NULL,                 -- skip unchanged records on re-scrape
@@ -153,6 +153,39 @@ CREATE TABLE lead_signal (
   generated_on  DATE DEFAULT CURRENT_DATE,
   exported_at   TIMESTAMPTZ                    -- pushed to Instantly
 );
+
+-- ---------------------------------------------------------------------------
+-- Bid board: open concrete work out for bid (federal/state/local/private).
+-- Public solicitations arrive via scrapers (SAM.gov, CDOT, BidNet, city
+-- procurement pages) as raw_record 'solicitation' rows and resolve here;
+-- private rows are posted directly by buyers (raw_id NULL).
+-- ---------------------------------------------------------------------------
+CREATE TABLE bid_opportunity (
+  id            BIGSERIAL PRIMARY KEY,
+  slug          TEXT UNIQUE NOT NULL,
+  source_level  TEXT NOT NULL CHECK (source_level IN ('federal','state','local','private')),
+  buyer         TEXT NOT NULL,                 -- agency, owner, or GC issuing the bid
+  solicitation_no TEXT,
+  title         TEXT NOT NULL,
+  description   TEXT,
+  concrete_class TEXT CHECK (concrete_class IN
+    ('foundation','flatwork','driveway','retaining_wall','structural',
+     'decorative','demolition','other')),
+  est_value     NUMERIC(14,2),                 -- engineer's estimate / declared budget
+  set_aside     TEXT,                          -- e.g. 'Total Small Business' (federal)
+  city          TEXT,
+  state         CHAR(2),
+  posted_on     DATE,
+  due_on        DATE,
+  status        TEXT DEFAULT 'open' CHECK (status IN ('open','closed','awarded','cancelled')),
+  source_url    TEXT,                          -- the official solicitation (NULL = private)
+  contact       TEXT,                          -- bid contact for private postings
+  raw_id        BIGINT REFERENCES raw_record(id),
+  created_at    TIMESTAMPTZ DEFAULT now(),
+  updated_at    TIMESTAMPTZ DEFAULT now()
+);
+CREATE INDEX bid_opportunity_open_idx ON bid_opportunity (due_on) WHERE status = 'open';
+CREATE INDEX bid_opportunity_geo_idx ON bid_opportunity (state, city);
 
 -- ---------------------------------------------------------------------------
 -- Profile claims (web form → manual verification → contractor.claimed)

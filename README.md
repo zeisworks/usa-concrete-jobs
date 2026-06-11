@@ -15,6 +15,12 @@ entity records (the Zillow pattern), not templated content, so they survive
 AI Overviews and become the citable source when assistants are asked
 "is this contractor legit."
 
+The bid board closes the loop: open solicitations (SAM.gov, CDOT, BidNet,
+city procurement, plus owner/GC direct postings) flow through the same
+raw → resolve → publish pipeline into `/jobs`, so contractors come for work
+and leave with a claimed record — and buyers can verify any bidder's permit
+history on the same site.
+
 ## Repo layout
 ```
 db/schema.sql                    Postgres schema: raw → entities → views
@@ -23,6 +29,7 @@ pipeline/
   scrapers/base.py               Rate-limited, hash-deduped raw ingest
   scrapers/denver_permits_soda.py  Denver open data (start here — zero risk)
   scrapers/accela_permits.py     County portal pattern (API or Stagehand)
+  scrapers/sam_gov_opportunities.py  Federal bid board ingest (SAM.gov API)
   resolve/entity_resolution.py   Name/phone/SoS-id match cascade + classifier
   load/lead_signals.py           Velocity + expiry signals → Instantly export
 web/                             Next.js entity pages (ISR, JSON-LD, sitemap)
