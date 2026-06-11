@@ -1,4 +1,4 @@
-import { getCity, allCitySlugs, fmtUSD } from "../../../lib/data";
+import { getCity, getJobsByCity, allCitySlugs, fmtUSD, fmtDate, daysUntil } from "../../../lib/data";
 import { notFound } from "next/navigation";
 
 export const revalidate = 86400;
@@ -22,6 +22,7 @@ export default async function CityPage({ params }) {
   const { city } = await params;
   const c = await getCity(city);
   if (!c) notFound();
+  const jobs = await getJobsByCity(c.name);
   const latestMonth = c.activity[0]?.month;
   const latest = c.activity.filter((a) => a.month === latestMonth);
 
@@ -70,6 +71,34 @@ export default async function CityPage({ params }) {
         </tbody>
       </table>
       <p className="sourcenote">Ranking reflects permit volume only — a public-records fact, not an endorsement.</p>
+
+      {jobs.length > 0 && (
+        <>
+          <h2>Open for bid in {c.name}</h2>
+          <div className="ledger">
+            <div className="ledger-row ledger-head">
+              <span>Bids due</span><span>Level</span><span>Project</span><span>Est. value</span><span>Closes</span>
+            </div>
+            {jobs.map((j) => {
+              const days = daysUntil(j.due_on);
+              return (
+                <div className="ledger-row" key={j.slug}>
+                  <span className="no">{fmtDate(j.due_on)}</span>
+                  <span className="class">{j.source_level}</span>
+                  <span><a href={`/jobs/${j.slug}`}>{j.title}</a> — {j.buyer}</span>
+                  <span className="val">{fmtUSD(j.est_value)}</span>
+                  <span className={`date ${days <= 7 ? "due-soon" : ""}`}>
+                    {days <= 0 ? "today" : `${days} day${days === 1 ? "" : "s"}`}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+          <p className="sourcenote">
+            From each buyer&apos;s official solicitation system. <a href="/jobs">All open jobs →</a>
+          </p>
+        </>
+      )}
     </article>
   );
 }

@@ -203,6 +203,16 @@ h2 {
 
 .foot-nav a { color: var(--mid); }
 
+/* bid board */
+.due-soon { color: var(--safety) !important; font-weight: 500; }
+.cta {
+  display: inline-block; font-family: var(--display); font-weight: 700;
+  font-size: 15px; text-transform: uppercase; letter-spacing: 0.1em;
+  background: var(--form); color: var(--slab); text-decoration: none;
+  padding: 12px 22px;
+}
+.cta:focus-visible { outline: 3px solid var(--safety); outline-offset: 2px; }
+
 @media (prefers-reduced-motion: no-preference) {
   .stamp { transition: transform 0.15s ease; }
   .stamp:hover { transform: rotate(-2deg) scale(1.02); }

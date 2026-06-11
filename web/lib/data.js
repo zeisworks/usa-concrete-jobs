@@ -89,6 +89,40 @@ export async function getContractors() {
   return rows;
 }
 
+const todayISO = () => new Date().toISOString().slice(0, 10);
+
+export async function getJobs() {
+  if (!pool)
+    return seed.jobs
+      .filter((j) => j.status === "open" && j.due_on >= todayISO())
+      .sort((a, b) => a.due_on.localeCompare(b.due_on));
+  const { rows } = await pool.query(
+    `SELECT slug, title, source_level, buyer, solicitation_no, concrete_class,
+            est_value, set_aside, city, state, posted_on, due_on, status,
+            source_url, contact
+     FROM bid_opportunity
+     WHERE status = 'open' AND due_on >= CURRENT_DATE
+     ORDER BY due_on`);
+  return rows;
+}
+
+export async function getJob(slug) {
+  if (!pool) return seed.jobs.find((j) => j.slug === slug) || null;
+  const { rows } = await pool.query(
+    `SELECT * FROM bid_opportunity WHERE slug = $1`, [slug]);
+  return rows[0] || null;
+}
+
+export async function getJobsByCity(cityName) {
+  const jobs = await getJobs();
+  return jobs.filter((j) => j.city?.toLowerCase() === cityName.toLowerCase());
+}
+
+export async function allJobSlugs() {
+  const jobs = await getJobs();
+  return jobs.map((j) => j.slug);
+}
+
 export async function createClaimRequest({ slug, name, email, phone, role, message }) {
   if (!pool) {
     // No database connected (seed mode): keep the request in worker logs so
@@ -122,3 +156,13 @@ const titleCase = (s) => s.replace(/\b\w/g, (m) => m.toUpperCase());
 
 export const fmtUSD = (n) =>
   n == null ? "—" : Number(n).toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+
+export const fmtDate = (iso) =>
+  iso == null
+    ? "—"
+    : new Date(`${String(iso).slice(0, 10)}T00:00:00`).toLocaleDateString("en-US", {
+        month: "short", day: "numeric", year: "numeric",
+      });
+
+export const daysUntil = (iso) =>
+  Math.ceil((new Date(`${String(iso).slice(0, 10)}T00:00:00`) - Date.now()) / 86400000);
