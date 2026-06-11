@@ -30,21 +30,24 @@ export async function getContractor(slug) {
   return { ...rows[0], permits: permits.rows, licenses: licenses.rows };
 }
 
-export async function getCity(citySlug) {
-  if (!pool) return seed.cities.find((c) => c.slug === citySlug) || null;
+export async function getCity(stateAbbr, citySlug) {
+  const st = String(stateAbbr).toLowerCase();
+  if (!pool)
+    return seed.cities.find(
+      (c) => c.slug === citySlug && c.state.toLowerCase() === st) || null;
   const city = citySlug.replace(/-/g, " ");
   const { rows } = await pool.query(
     `SELECT month, concrete_class, permits, total_value, median_value
-     FROM city_activity WHERE lower(city) = lower($1)
-     ORDER BY month DESC LIMIT 60`, [city]);
+     FROM city_activity WHERE lower(city) = lower($1) AND lower(state) = $2
+     ORDER BY month DESC LIMIT 60`, [city, st]);
   const top = await pool.query(
     `SELECT c.slug, c.canonical_name, cp.permits_12mo, cp.median_job_value,
             cp.has_active_license
      FROM contractor c JOIN contractor_profile cp ON cp.id = c.id
-     WHERE lower(c.city) = lower($1) AND cp.permits_12mo > 0
-     ORDER BY cp.permits_12mo DESC LIMIT 25`, [city]);
+     WHERE lower(c.city) = lower($1) AND lower(c.state) = $2 AND cp.permits_12mo > 0
+     ORDER BY cp.permits_12mo DESC LIMIT 25`, [city, st]);
   return rows.length || top.rows.length
-    ? { slug: citySlug, name: titleCase(city), activity: rows, contractors: top.rows }
+    ? { slug: citySlug, name: titleCase(city), state: st.toUpperCase(), activity: rows, contractors: top.rows }
     : null;
 }
 
@@ -53,7 +56,7 @@ export async function getCities() {
     return seed.cities.map((c) => ({
       slug: c.slug,
       name: c.name,
-      state: "CO",
+      state: c.state,
       permits: c.activity.reduce((s, a) => s + Number(a.permits), 0),
       total_value: c.activity.reduce((s, a) => s + Number(a.total_value), 0),
       contractors: c.contractors.length,
@@ -66,6 +69,21 @@ export async function getCities() {
      WHERE month > CURRENT_DATE - INTERVAL '12 months'
      GROUP BY 1, 2, 3 ORDER BY permits DESC`);
   return rows;
+}
+
+// States with any tracked activity, aggregated from the city rollup.
+export async function getStates() {
+  const cities = await getCities();
+  const byState = new Map();
+  for (const c of cities) {
+    const key = c.state.toLowerCase();
+    const s = byState.get(key) || { abbr: key, state: c.state, cities: 0, permits: 0, total_value: 0 };
+    s.cities += 1;
+    s.permits += Number(c.permits);
+    s.total_value += Number(c.total_value);
+    byState.set(key, s);
+  }
+  return [...byState.values()].sort((a, b) => b.permits - a.permits);
 }
 
 export async function getContractors() {
@@ -113,9 +131,17 @@ export async function getJob(slug) {
   return rows[0] || null;
 }
 
-export async function getJobsByCity(cityName) {
+export async function getJobsByCity(cityName, stateAbbr) {
   const jobs = await getJobs();
-  return jobs.filter((j) => j.city?.toLowerCase() === cityName.toLowerCase());
+  return jobs.filter(
+    (j) =>
+      j.city?.toLowerCase() === cityName.toLowerCase() &&
+      (!stateAbbr || j.state?.toLowerCase() === String(stateAbbr).toLowerCase()));
+}
+
+export async function getJobsByState(stateAbbr) {
+  const jobs = await getJobs();
+  return jobs.filter((j) => j.state?.toLowerCase() === String(stateAbbr).toLowerCase());
 }
 
 export async function allJobSlugs() {
@@ -145,11 +171,14 @@ export async function allContractorSlugs() {
   return rows.map((r) => r.slug);
 }
 
-export async function allCitySlugs() {
-  if (!pool) return seed.cities.map((c) => c.slug);
+export async function allCityParams() {
+  if (!pool)
+    return seed.cities.map((c) => ({ state: c.state.toLowerCase(), city: c.slug }));
   const { rows } = await pool.query(
-    `SELECT DISTINCT lower(replace(city, ' ', '-')) AS slug FROM city_activity`);
-  return rows.map((r) => r.slug);
+    `SELECT DISTINCT lower(state) AS state,
+            lower(replace(city, ' ', '-')) AS city
+     FROM city_activity`);
+  return rows;
 }
 
 const titleCase = (s) => s.replace(/\b\w/g, (m) => m.toUpperCase());

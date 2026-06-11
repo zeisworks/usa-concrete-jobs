@@ -1,18 +1,19 @@
-import { allContractorSlugs, allCitySlugs, allJobSlugs } from "../lib/data";
+import { allContractorSlugs, allCityParams, allJobSlugs, getStates } from "../lib/data";
 
 export default async function sitemap() {
   const base = "https://usaconcretejobs.com";
-  const [contractors, cities, jobs] = await Promise.all([
-    allContractorSlugs(), allCitySlugs(), allJobSlugs(),
+  const [contractors, cityParams, jobs, states] = await Promise.all([
+    allContractorSlugs(), allCityParams(), allJobSlugs(), getStates(),
   ]);
   return [
     { url: base, changeFrequency: "daily" },
     { url: `${base}/jobs`, changeFrequency: "daily" },
-    { url: `${base}/co`, changeFrequency: "daily" },
+    { url: `${base}/cities`, changeFrequency: "daily" },
     { url: `${base}/contractors`, changeFrequency: "daily" },
     { url: `${base}/about-data`, changeFrequency: "monthly" },
+    ...states.map((s) => ({ url: `${base}/${s.abbr}`, changeFrequency: "daily" })),
     ...jobs.map((s) => ({ url: `${base}/jobs/${s}`, changeFrequency: "daily" })),
-    ...cities.map((c) => ({ url: `${base}/co/${c}`, changeFrequency: "daily" })),
+    ...cityParams.map((p) => ({ url: `${base}/${p.state}/${p.city}`, changeFrequency: "daily" })),
     ...contractors.map((s) => ({ url: `${base}/contractor/${s}`, changeFrequency: "weekly" })),
   ];
 }

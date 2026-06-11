@@ -11,7 +11,8 @@ export default function NotFound() {
       </div>
       <div className="prose">
         <p>
-          Try browsing <a href="/co">cities</a> or{" "}
+          Try browsing <a href="/cities">cities</a>,{" "}
+          <a href="/jobs">open jobs</a>, or{" "}
           <a href="/contractors">contractors on record</a>, or head{" "}
           <a href="/">back to the front page</a>.
         </p>

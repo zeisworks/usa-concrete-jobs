@@ -62,15 +62,80 @@ jurisdictions:
     source_config:
       adapter: accela_permits
 
+# National expansion tier — big metros with documented open-data permit APIs.
+# The denver_permits_soda adapter is already a generic Socrata/ArcGIS client;
+# each of these only needs the dataset id confirmed and a field map. Order is
+# roughly by data quality + market size. VERIFY dataset ids before first run.
+  - slug: austin-tx
+    name: City of Austin
+    kind: city
+    state: TX
+    permit_system: socrata
+    source_config: { soda_hint: "data.austintexas.gov — 'Issued Construction Permits'", adapter: denver_permits_soda }
+  - slug: houston-tx
+    name: City of Houston
+    kind: city
+    state: TX
+    permit_system: portal
+    source_config: { portal_hint: "Houston Permitting Center / eGovernment reports; monthly CSVs available", adapter: accela_permits }
+  - slug: phoenix-az
+    name: City of Phoenix
+    kind: city
+    state: AZ
+    permit_system: portal
+    source_config: { portal_hint: "SHAPE PHX (Salesforce) — check open-data extracts; AZ ROC bulk license file is the state backbone", adapter: accela_permits }
+  - slug: chicago-il
+    name: City of Chicago
+    kind: city
+    state: IL
+    permit_system: socrata
+    source_config: { soda_hint: "data.cityofchicago.org — 'Building Permits' (ydr8-5enu)", adapter: denver_permits_soda }
+  - slug: nyc-ny
+    name: New York City
+    kind: city
+    state: NY
+    permit_system: socrata
+    source_config: { soda_hint: "data.cityofnewyork.us — DOB NOW + legacy 'DOB Permit Issuance'", adapter: denver_permits_soda }
+  - slug: los-angeles-ca
+    name: City of Los Angeles
+    kind: city
+    state: CA
+    permit_system: socrata
+    source_config: { soda_hint: "data.lacity.org — LADBS 'Building and Safety Permit Information'; CSLB bulk license file is the state backbone", adapter: denver_permits_soda }
+  - slug: seattle-wa
+    name: City of Seattle
+    kind: city
+    state: WA
+    permit_system: socrata
+    source_config: { soda_hint: "data.seattle.gov — SDCI 'Building Permits'", adapter: denver_permits_soda }
+  - slug: nashville-tn
+    name: Metro Nashville
+    kind: city
+    state: TN
+    permit_system: socrata
+    source_config: { soda_hint: "data.nashville.gov — 'Building Permits Issued'", adapter: denver_permits_soda }
+  - slug: charlotte-nc
+    name: Mecklenburg County (Charlotte)
+    kind: county
+    state: NC
+    permit_system: accela
+    source_config: { portal_hint: "Mecklenburg County LUESA / Accela Citizen Access", adapter: accela_permits }
+  - slug: tampa-fl
+    name: City of Tampa / Hillsborough County
+    kind: city
+    state: FL
+    permit_system: accela
+    source_config: { portal_hint: "Accela instances both city and county; FL DBPR bulk license file is the state backbone", adapter: accela_permits }
+
 # Bid board sources (record_type: solicitation → bid_opportunity)
   - slug: federal-us
     name: Federal (SAM.gov)
     kind: federal
-    state: CO          # place-of-performance filter, not the source's location
+    state: US
     permit_system: none
     source_config:
       adapter: sam_gov_opportunities
-      place_of_performance_state: CO
+      # place_of_performance_state omitted → nationwide pull
       lookback_days: 30
       # api_key via SAM_API_KEY env var — free key from sam.gov
 

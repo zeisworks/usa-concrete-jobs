@@ -6,9 +6,10 @@ marketplace, in that order, with the lead-signal layer feeding the existing
 stratawidth/Instantly operation from day one.
 
 ## Why this works (one paragraph)
-Colorado has no statewide GC license; concrete contractors are licensed
-city-by-city and their work is disproportionately permitted (foundations,
-flatwork over thresholds, retaining walls, structural cutting). The records are
+US contractor licensing is a patchwork — some states license statewide (AZ,
+FL, TN, NC), others city-by-city (CO, TX) — and concrete work is
+disproportionately permitted everywhere (foundations, flatwork over
+thresholds, retaining walls, structural cutting). The records are
 public, fragmented, and miserable to access — which is exactly the aggregation
 pain that makes the unified dataset defensible. Pages are primary-source
 entity records (the Zillow pattern), not templated content, so they survive
@@ -82,6 +83,12 @@ serves the prerendered seed pages.
 5. **Expand or pivot.** If claims and leads both convert, add counties and
    verticals. Architecture is already service-agnostic: `concrete_class` and
    the keyword config are the only concrete-specific pieces.
+6. **Go national.** URL structure (`/{state}/{city}`), the data model, and the
+   bid board are national already; expansion is config-driven. The
+   `national expansion tier` in `jurisdictions.yaml` lists the metros with
+   documented open-data permit APIs (the Socrata/ArcGIS adapter is generic) —
+   each new market is a dataset id, a field map, and the state's bulk license
+   file for the resolution backbone.
 
 ## Legal/positioning notes (not legal advice — review before launch)
 - Everything published is public record, but rankings must stay factual:
