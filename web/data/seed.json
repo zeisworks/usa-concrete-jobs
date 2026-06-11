@@ -1,0 +1,48 @@
+{
+  "contractors": [
+    {
+      "slug": "rocky-mountain-concrete-golden-co",
+      "canonical_name": "Rocky Mountain Concrete LLC",
+      "city": "Golden",
+      "state": "CO",
+      "claimed": false,
+      "has_active_license": true,
+      "concrete_permits": 112,
+      "permits_12mo": 47,
+      "median_job_value": 18400,
+      "first_permit": "2021-03-12",
+      "latest_permit": "2026-05-28",
+      "jurisdictions_active": 3,
+      "enforcement_count": 0,
+      "licenses": [
+        { "license_no": "CL-2021-08841", "license_type": "Class C General", "status": "active", "expires_on": "2026-11-30", "jurisdiction": "City and County of Denver" },
+        { "license_no": "JC-19-4471", "license_type": "Contractor — Concrete", "status": "active", "expires_on": "2027-02-15", "jurisdiction": "Jefferson County" }
+      ],
+      "permits": [
+        { "permit_no": "2026-BLD-018443", "concrete_class": "foundation", "description": "New SFR foundation, caissons and stem walls", "declared_value": 64200, "issued_on": "2026-05-28", "status": "issued", "site_city": "Arvada", "jurisdiction": "Jefferson County" },
+        { "permit_no": "2026-BLD-016102", "concrete_class": "driveway", "description": "Remove and replace driveway and apron", "declared_value": 11800, "issued_on": "2026-05-09", "status": "finaled", "site_city": "Golden", "jurisdiction": "Jefferson County" },
+        { "permit_no": "2026-RES-009934", "concrete_class": "flatwork", "description": "Rear patio slab and walkway, 640 sf", "declared_value": 9200, "issued_on": "2026-04-17", "status": "finaled", "site_city": "Denver", "jurisdiction": "City and County of Denver" },
+        { "permit_no": "2026-BLD-014567", "concrete_class": "retaining_wall", "description": "MSE retaining wall, 4 ft exposed", "declared_value": 27500, "issued_on": "2026-03-30", "status": "issued", "site_city": "Lakewood", "jurisdiction": "Jefferson County" },
+        { "permit_no": "2026-COM-002218", "concrete_class": "structural", "description": "Sawcut and core drill, tenant finish", "declared_value": 18400, "issued_on": "2026-02-21", "status": "finaled", "site_city": "Denver", "jurisdiction": "City and County of Denver" }
+      ]
+    }
+  ],
+  "cities": [
+    {
+      "slug": "golden",
+      "name": "Golden",
+      "activity": [
+        { "month": "2026-05-01", "concrete_class": "foundation", "permits": 14, "total_value": 812000, "median_value": 52000 },
+        { "month": "2026-05-01", "concrete_class": "flatwork", "permits": 22, "total_value": 198000, "median_value": 8400 },
+        { "month": "2026-05-01", "concrete_class": "driveway", "permits": 17, "total_value": 173000, "median_value": 10100 },
+        { "month": "2026-04-01", "concrete_class": "foundation", "permits": 11, "total_value": 644000, "median_value": 49500 },
+        { "month": "2026-04-01", "concrete_class": "flatwork", "permits": 18, "total_value": 154000, "median_value": 7900 }
+      ],
+      "contractors": [
+        { "slug": "rocky-mountain-concrete-golden-co", "canonical_name": "Rocky Mountain Concrete LLC", "permits_12mo": 47, "median_job_value": 18400, "has_active_license": true },
+        { "slug": "front-range-flatwork-golden-co", "canonical_name": "Front Range Flatwork Inc", "permits_12mo": 31, "median_job_value": 9600, "has_active_license": true },
+        { "slug": "clear-creek-concrete-golden-co", "canonical_name": "Clear Creek Concrete Co", "permits_12mo": 19, "median_job_value": 14250, "has_active_license": false }
+      ]
+    }
+  ]
+}
