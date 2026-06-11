@@ -5,7 +5,7 @@ export const revalidate = 86400;
 export const metadata = {
   title: "Contractor records — concrete permits & licenses",
   description:
-    "Permit history and license status for concrete contractors on the Colorado Front Range, sourced from municipal and county records.",
+    "Permit history and license status for concrete contractors across the United States, sourced from municipal, county, and state records.",
 };
 
 export default async function ContractorsIndex() {
@@ -14,7 +14,7 @@ export default async function ContractorsIndex() {
   return (
     <article>
       <div className="entity-head">
-        <p className="eyebrow">Contractor records · Colorado</p>
+        <p className="eyebrow">Contractor records · United States</p>
         <h1>Concrete contractors on record</h1>
         <p className="locale">
           Every contractor below resolved from permit and license filings —

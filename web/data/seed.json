@@ -172,12 +172,241 @@
         { "permit_no": "2026-BLD-014203", "concrete_class": "driveway", "description": "Single-car driveway replacement", "declared_value": 8100, "issued_on": "2026-03-19", "status": "finaled", "site_city": "Lakewood", "jurisdiction": "City of Lakewood" },
         { "permit_no": "2026-BLD-012830", "concrete_class": "flatwork", "description": "Shed slab, 200 sf", "declared_value": 3400, "issued_on": "2026-02-27", "status": "finaled", "site_city": "Lakewood", "jurisdiction": "City of Lakewood" }
       ]
+    },
+    {
+      "slug": "bayou-city-concrete-houston-tx",
+      "canonical_name": "Bayou City Concrete LLC",
+      "city": "Houston",
+      "state": "TX",
+      "claimed": false,
+      "has_active_license": true,
+      "concrete_permits": 124,
+      "permits_12mo": 41,
+      "median_job_value": 21500,
+      "first_permit": "2019-02-08",
+      "latest_permit": "2026-06-04",
+      "jurisdictions_active": 3,
+      "enforcement_count": 0,
+      "licenses": [
+        { "license_no": "HOU-REG-44712", "license_type": "Contractor Registration", "status": "active", "expires_on": "2027-01-31", "jurisdiction": "City of Houston" },
+        { "license_no": "HC-RC-20913", "license_type": "Residential Contractor Registration", "status": "active", "expires_on": "2026-12-15", "jurisdiction": "Harris County" }
+      ],
+      "permits": [
+        { "permit_no": "2026-HOU-104482", "concrete_class": "foundation", "description": "Slab-on-grade foundation, new SFR, post-tension", "declared_value": 58900, "issued_on": "2026-06-04", "status": "issued", "site_city": "Houston", "jurisdiction": "City of Houston" },
+        { "permit_no": "2026-HOU-099174", "concrete_class": "driveway", "description": "Driveway and approach replacement, 1,100 sf", "declared_value": 12400, "issued_on": "2026-05-12", "status": "issued", "site_city": "Houston", "jurisdiction": "City of Houston" },
+        { "permit_no": "2026-HOU-091287", "concrete_class": "flatwork", "description": "Commercial sidewalk and dumpster pad", "declared_value": 17200, "issued_on": "2026-04-09", "status": "finaled", "site_city": "Houston", "jurisdiction": "City of Houston" }
+      ]
+    },
+    {
+      "slug": "gulf-coast-foundations-houston-tx",
+      "canonical_name": "Gulf Coast Foundations Inc",
+      "city": "Houston",
+      "state": "TX",
+      "claimed": false,
+      "has_active_license": true,
+      "concrete_permits": 96,
+      "permits_12mo": 33,
+      "median_job_value": 47000,
+      "first_permit": "2017-10-19",
+      "latest_permit": "2026-05-27",
+      "jurisdictions_active": 4,
+      "enforcement_count": 0,
+      "licenses": [
+        { "license_no": "HOU-REG-31255", "license_type": "Contractor Registration", "status": "active", "expires_on": "2026-10-31", "jurisdiction": "City of Houston" }
+      ],
+      "permits": [
+        { "permit_no": "2026-HOU-102019", "concrete_class": "foundation", "description": "Foundation repair, 38 pressed pilings", "declared_value": 41800, "issued_on": "2026-05-27", "status": "issued", "site_city": "Houston", "jurisdiction": "City of Houston" },
+        { "permit_no": "2026-HOU-096533", "concrete_class": "foundation", "description": "Elevated slab, flood-zone new construction", "declared_value": 112000, "issued_on": "2026-04-28", "status": "issued", "site_city": "Houston", "jurisdiction": "City of Houston" },
+        { "permit_no": "2026-PAS-008841", "concrete_class": "structural", "description": "Equipment foundations, petrochemical site", "declared_value": 88600, "issued_on": "2026-03-20", "status": "finaled", "site_city": "Pasadena", "jurisdiction": "City of Pasadena" }
+      ]
+    },
+    {
+      "slug": "sonoran-concrete-phoenix-az",
+      "canonical_name": "Sonoran Concrete LLC",
+      "city": "Phoenix",
+      "state": "AZ",
+      "claimed": false,
+      "has_active_license": true,
+      "concrete_permits": 108,
+      "permits_12mo": 36,
+      "median_job_value": 16800,
+      "first_permit": "2020-03-05",
+      "latest_permit": "2026-06-09",
+      "jurisdictions_active": 3,
+      "enforcement_count": 0,
+      "licenses": [
+        { "license_no": "ROC-338214", "license_type": "CR-9 Concrete (Commercial & Residential)", "status": "active", "expires_on": "2027-08-31", "jurisdiction": "Arizona Registrar of Contractors" }
+      ],
+      "permits": [
+        { "permit_no": "2026-PHX-201177", "concrete_class": "flatwork", "description": "Pool deck and cool-deck overlay, 1,400 sf", "declared_value": 14300, "issued_on": "2026-06-09", "status": "issued", "site_city": "Phoenix", "jurisdiction": "City of Phoenix" },
+        { "permit_no": "2026-PHX-196842", "concrete_class": "foundation", "description": "Casita addition — stem wall and slab", "declared_value": 28700, "issued_on": "2026-05-15", "status": "issued", "site_city": "Phoenix", "jurisdiction": "City of Phoenix" },
+        { "permit_no": "2026-MES-044190", "concrete_class": "driveway", "description": "RV gate pad and driveway extension", "declared_value": 9600, "issued_on": "2026-04-21", "status": "finaled", "site_city": "Mesa", "jurisdiction": "City of Mesa" }
+      ]
+    },
+    {
+      "slug": "desert-ridge-flatwork-phoenix-az",
+      "canonical_name": "Desert Ridge Flatwork Inc",
+      "city": "Phoenix",
+      "state": "AZ",
+      "claimed": false,
+      "has_active_license": true,
+      "concrete_permits": 71,
+      "permits_12mo": 24,
+      "median_job_value": 8900,
+      "first_permit": "2021-11-12",
+      "latest_permit": "2026-05-29",
+      "jurisdictions_active": 2,
+      "enforcement_count": 0,
+      "licenses": [
+        { "license_no": "ROC-352901", "license_type": "CR-9 Concrete (Residential)", "status": "active", "expires_on": "2026-11-30", "jurisdiction": "Arizona Registrar of Contractors" }
+      ],
+      "permits": [
+        { "permit_no": "2026-PHX-199523", "concrete_class": "flatwork", "description": "Backyard patio and walkways, 900 sf", "declared_value": 8200, "issued_on": "2026-05-29", "status": "issued", "site_city": "Phoenix", "jurisdiction": "City of Phoenix" },
+        { "permit_no": "2026-PHX-193310", "concrete_class": "driveway", "description": "Paver tear-out, concrete driveway repour", "declared_value": 11700, "issued_on": "2026-04-17", "status": "finaled", "site_city": "Phoenix", "jurisdiction": "City of Phoenix" },
+        { "permit_no": "2026-SCT-018864", "concrete_class": "decorative", "description": "Stamped concrete courtyard", "declared_value": 13500, "issued_on": "2026-03-06", "status": "finaled", "site_city": "Scottsdale", "jurisdiction": "City of Scottsdale" }
+      ]
+    },
+    {
+      "slug": "music-city-concrete-nashville-tn",
+      "canonical_name": "Music City Concrete LLC",
+      "city": "Nashville",
+      "state": "TN",
+      "claimed": false,
+      "has_active_license": true,
+      "concrete_permits": 83,
+      "permits_12mo": 28,
+      "median_job_value": 13400,
+      "first_permit": "2020-07-23",
+      "latest_permit": "2026-06-03",
+      "jurisdictions_active": 2,
+      "enforcement_count": 0,
+      "licenses": [
+        { "license_no": "TN-77241", "license_type": "Limited Licensed Contractor — Concrete", "status": "active", "expires_on": "2027-06-30", "jurisdiction": "Tennessee Board for Licensing Contractors" }
+      ],
+      "permits": [
+        { "permit_no": "2026-NSH-T058812", "concrete_class": "foundation", "description": "Tall-skinny infill foundation, two units", "declared_value": 52300, "issued_on": "2026-06-03", "status": "issued", "site_city": "Nashville", "jurisdiction": "Metro Nashville" },
+        { "permit_no": "2026-NSH-T054209", "concrete_class": "flatwork", "description": "Restaurant patio and ADA ramp", "declared_value": 16800, "issued_on": "2026-05-08", "status": "issued", "site_city": "Nashville", "jurisdiction": "Metro Nashville" },
+        { "permit_no": "2026-NSH-T049977", "concrete_class": "driveway", "description": "Shared driveway, HPR development", "declared_value": 10900, "issued_on": "2026-04-02", "status": "finaled", "site_city": "Nashville", "jurisdiction": "Metro Nashville" }
+      ]
+    },
+    {
+      "slug": "cumberland-flatwork-nashville-tn",
+      "canonical_name": "Cumberland Flatwork Co",
+      "city": "Nashville",
+      "state": "TN",
+      "claimed": false,
+      "has_active_license": false,
+      "concrete_permits": 39,
+      "permits_12mo": 17,
+      "median_job_value": 7200,
+      "first_permit": "2022-04-14",
+      "latest_permit": "2026-05-20",
+      "jurisdictions_active": 1,
+      "enforcement_count": 0,
+      "licenses": [
+        { "license_no": "TN-81106", "license_type": "Limited Licensed Contractor — Concrete", "status": "expired", "expires_on": "2026-02-28", "jurisdiction": "Tennessee Board for Licensing Contractors" }
+      ],
+      "permits": [
+        { "permit_no": "2026-NSH-T056130", "concrete_class": "flatwork", "description": "Sidewalk infill, residential frontage", "declared_value": 6400, "issued_on": "2026-05-20", "status": "issued", "site_city": "Nashville", "jurisdiction": "Metro Nashville" },
+        { "permit_no": "2026-NSH-T051845", "concrete_class": "flatwork", "description": "Garage slab and approach", "declared_value": 7900, "issued_on": "2026-04-10", "status": "finaled", "site_city": "Nashville", "jurisdiction": "Metro Nashville" }
+      ]
+    },
+    {
+      "slug": "queen-city-concrete-charlotte-nc",
+      "canonical_name": "Queen City Concrete LLC",
+      "city": "Charlotte",
+      "state": "NC",
+      "claimed": false,
+      "has_active_license": true,
+      "concrete_permits": 91,
+      "permits_12mo": 31,
+      "median_job_value": 15900,
+      "first_permit": "2019-09-11",
+      "latest_permit": "2026-06-05",
+      "jurisdictions_active": 2,
+      "enforcement_count": 0,
+      "licenses": [
+        { "license_no": "NC-86573", "license_type": "Limited — Building", "status": "active", "expires_on": "2027-01-01", "jurisdiction": "NC Licensing Board for General Contractors" }
+      ],
+      "permits": [
+        { "permit_no": "2026-MCK-310448", "concrete_class": "foundation", "description": "Townhome foundation package, 6 units", "declared_value": 74200, "issued_on": "2026-06-05", "status": "issued", "site_city": "Charlotte", "jurisdiction": "Mecklenburg County" },
+        { "permit_no": "2026-MCK-305112", "concrete_class": "flatwork", "description": "Brewery patio and loading apron", "declared_value": 19600, "issued_on": "2026-05-01", "status": "issued", "site_city": "Charlotte", "jurisdiction": "Mecklenburg County" },
+        { "permit_no": "2026-MCK-299804", "concrete_class": "retaining_wall", "description": "Segmental retaining wall, 5 ft, engineered", "declared_value": 23800, "issued_on": "2026-03-26", "status": "finaled", "site_city": "Charlotte", "jurisdiction": "Mecklenburg County" }
+      ]
+    },
+    {
+      "slug": "piedmont-foundations-charlotte-nc",
+      "canonical_name": "Piedmont Foundations Inc",
+      "city": "Charlotte",
+      "state": "NC",
+      "claimed": false,
+      "has_active_license": true,
+      "concrete_permits": 67,
+      "permits_12mo": 22,
+      "median_job_value": 38500,
+      "first_permit": "2018-12-06",
+      "latest_permit": "2026-05-22",
+      "jurisdictions_active": 3,
+      "enforcement_count": 0,
+      "licenses": [
+        { "license_no": "NC-74091", "license_type": "Intermediate — Building", "status": "active", "expires_on": "2027-01-01", "jurisdiction": "NC Licensing Board for General Contractors" }
+      ],
+      "permits": [
+        { "permit_no": "2026-MCK-308671", "concrete_class": "foundation", "description": "Crawlspace foundation, custom SFR", "declared_value": 46900, "issued_on": "2026-05-22", "status": "issued", "site_city": "Charlotte", "jurisdiction": "Mecklenburg County" },
+        { "permit_no": "2026-MCK-302254", "concrete_class": "structural", "description": "Basement wall replacement, underpinning", "declared_value": 61300, "issued_on": "2026-04-15", "status": "issued", "site_city": "Charlotte", "jurisdiction": "Mecklenburg County" }
+      ]
+    },
+    {
+      "slug": "bay-area-concrete-tampa-fl",
+      "canonical_name": "Bay Area Concrete LLC",
+      "city": "Tampa",
+      "state": "FL",
+      "claimed": false,
+      "has_active_license": true,
+      "concrete_permits": 74,
+      "permits_12mo": 26,
+      "median_job_value": 12700,
+      "first_permit": "2020-10-02",
+      "latest_permit": "2026-06-01",
+      "jurisdictions_active": 2,
+      "enforcement_count": 0,
+      "licenses": [
+        { "license_no": "CBC-1267410", "license_type": "Certified Building Contractor", "status": "active", "expires_on": "2026-08-31", "jurisdiction": "Florida DBPR" }
+      ],
+      "permits": [
+        { "permit_no": "2026-TPA-088123", "concrete_class": "foundation", "description": "Stem wall foundation, elevated lot", "declared_value": 36400, "issued_on": "2026-06-01", "status": "issued", "site_city": "Tampa", "jurisdiction": "City of Tampa" },
+        { "permit_no": "2026-TPA-084557", "concrete_class": "flatwork", "description": "Pool deck replacement with pavers tie-in", "declared_value": 11800, "issued_on": "2026-05-04", "status": "issued", "site_city": "Tampa", "jurisdiction": "City of Tampa" },
+        { "permit_no": "2026-HIL-039226", "concrete_class": "driveway", "description": "Driveway and culvert apron, county ROW", "declared_value": 9400, "issued_on": "2026-03-30", "status": "finaled", "site_city": "Brandon", "jurisdiction": "Hillsborough County" }
+      ]
+    },
+    {
+      "slug": "suncoast-slabs-tampa-fl",
+      "canonical_name": "Suncoast Slabs Inc",
+      "city": "Tampa",
+      "state": "FL",
+      "claimed": false,
+      "has_active_license": false,
+      "concrete_permits": 28,
+      "permits_12mo": 14,
+      "median_job_value": 6800,
+      "first_permit": "2023-08-09",
+      "latest_permit": "2026-05-18",
+      "jurisdictions_active": 1,
+      "enforcement_count": 1,
+      "licenses": [
+        { "license_no": "HIL-SP-10448", "license_type": "Specialty — Concrete (County)", "status": "expired", "expires_on": "2026-01-31", "jurisdiction": "Hillsborough County" }
+      ],
+      "permits": [
+        { "permit_no": "2026-TPA-086002", "concrete_class": "flatwork", "description": "Lanai slab extension, 380 sf", "declared_value": 5900, "issued_on": "2026-05-18", "status": "issued", "site_city": "Tampa", "jurisdiction": "City of Tampa" },
+        { "permit_no": "2026-TPA-081431", "concrete_class": "flatwork", "description": "Walkway and entry pad replacement", "declared_value": 4700, "issued_on": "2026-04-06", "status": "finaled", "site_city": "Tampa", "jurisdiction": "City of Tampa" }
+      ]
     }
   ],
   "cities": [
     {
       "slug": "golden",
       "name": "Golden",
+      "state": "CO",
       "activity": [
         { "month": "2026-05-01", "concrete_class": "foundation", "permits": 14, "total_value": 812000, "median_value": 52000 },
         { "month": "2026-05-01", "concrete_class": "flatwork", "permits": 22, "total_value": 198000, "median_value": 8400 },
@@ -194,6 +423,7 @@
     {
       "slug": "denver",
       "name": "Denver",
+      "state": "CO",
       "activity": [
         { "month": "2026-05-01", "concrete_class": "foundation", "permits": 38, "total_value": 2610000, "median_value": 58000 },
         { "month": "2026-05-01", "concrete_class": "flatwork", "permits": 61, "total_value": 540000, "median_value": 8100 },
@@ -211,6 +441,7 @@
     {
       "slug": "lakewood",
       "name": "Lakewood",
+      "state": "CO",
       "activity": [
         { "month": "2026-05-01", "concrete_class": "flatwork", "permits": 26, "total_value": 214000, "median_value": 7300 },
         { "month": "2026-05-01", "concrete_class": "driveway", "permits": 21, "total_value": 226000, "median_value": 10300 },
@@ -221,6 +452,83 @@
       "contractors": [
         { "slug": "lakewood-concrete-works-lakewood-co", "canonical_name": "Lakewood Concrete Works LLC", "permits_12mo": 23, "median_job_value": 7800, "has_active_license": true },
         { "slug": "bear-creek-flatwork-lakewood-co", "canonical_name": "Bear Creek Flatwork LLC", "permits_12mo": 11, "median_job_value": 6200, "has_active_license": false }
+      ]
+    },
+    {
+      "slug": "houston",
+      "name": "Houston",
+      "state": "TX",
+      "activity": [
+        { "month": "2026-05-01", "concrete_class": "foundation", "permits": 52, "total_value": 4940000, "median_value": 61000 },
+        { "month": "2026-05-01", "concrete_class": "flatwork", "permits": 88, "total_value": 812000, "median_value": 7900 },
+        { "month": "2026-05-01", "concrete_class": "driveway", "permits": 63, "total_value": 690000, "median_value": 9200 },
+        { "month": "2026-04-01", "concrete_class": "foundation", "permits": 47, "total_value": 4310000, "median_value": 58000 },
+        { "month": "2026-04-01", "concrete_class": "flatwork", "permits": 79, "total_value": 701000, "median_value": 7600 }
+      ],
+      "contractors": [
+        { "slug": "bayou-city-concrete-houston-tx", "canonical_name": "Bayou City Concrete LLC", "permits_12mo": 41, "median_job_value": 21500, "has_active_license": true },
+        { "slug": "gulf-coast-foundations-houston-tx", "canonical_name": "Gulf Coast Foundations Inc", "permits_12mo": 33, "median_job_value": 47000, "has_active_license": true }
+      ]
+    },
+    {
+      "slug": "phoenix",
+      "name": "Phoenix",
+      "state": "AZ",
+      "activity": [
+        { "month": "2026-05-01", "concrete_class": "foundation", "permits": 44, "total_value": 3210000, "median_value": 54000 },
+        { "month": "2026-05-01", "concrete_class": "flatwork", "permits": 71, "total_value": 598000, "median_value": 7400 },
+        { "month": "2026-05-01", "concrete_class": "driveway", "permits": 39, "total_value": 402000, "median_value": 9100 },
+        { "month": "2026-04-01", "concrete_class": "foundation", "permits": 41, "total_value": 2980000, "median_value": 52500 },
+        { "month": "2026-04-01", "concrete_class": "flatwork", "permits": 66, "total_value": 544000, "median_value": 7200 }
+      ],
+      "contractors": [
+        { "slug": "sonoran-concrete-phoenix-az", "canonical_name": "Sonoran Concrete LLC", "permits_12mo": 36, "median_job_value": 16800, "has_active_license": true },
+        { "slug": "desert-ridge-flatwork-phoenix-az", "canonical_name": "Desert Ridge Flatwork Inc", "permits_12mo": 24, "median_job_value": 8900, "has_active_license": true }
+      ]
+    },
+    {
+      "slug": "nashville",
+      "name": "Nashville",
+      "state": "TN",
+      "activity": [
+        { "month": "2026-05-01", "concrete_class": "foundation", "permits": 21, "total_value": 1470000, "median_value": 56000 },
+        { "month": "2026-05-01", "concrete_class": "flatwork", "permits": 34, "total_value": 289000, "median_value": 7800 },
+        { "month": "2026-04-01", "concrete_class": "foundation", "permits": 19, "total_value": 1330000, "median_value": 54500 },
+        { "month": "2026-04-01", "concrete_class": "flatwork", "permits": 30, "total_value": 246000, "median_value": 7500 }
+      ],
+      "contractors": [
+        { "slug": "music-city-concrete-nashville-tn", "canonical_name": "Music City Concrete LLC", "permits_12mo": 28, "median_job_value": 13400, "has_active_license": true },
+        { "slug": "cumberland-flatwork-nashville-tn", "canonical_name": "Cumberland Flatwork Co", "permits_12mo": 17, "median_job_value": 7200, "has_active_license": false }
+      ]
+    },
+    {
+      "slug": "charlotte",
+      "name": "Charlotte",
+      "state": "NC",
+      "activity": [
+        { "month": "2026-05-01", "concrete_class": "foundation", "permits": 25, "total_value": 1690000, "median_value": 53000 },
+        { "month": "2026-05-01", "concrete_class": "flatwork", "permits": 41, "total_value": 352000, "median_value": 7500 },
+        { "month": "2026-04-01", "concrete_class": "foundation", "permits": 23, "total_value": 1540000, "median_value": 51500 },
+        { "month": "2026-04-01", "concrete_class": "flatwork", "permits": 37, "total_value": 305000, "median_value": 7200 }
+      ],
+      "contractors": [
+        { "slug": "queen-city-concrete-charlotte-nc", "canonical_name": "Queen City Concrete LLC", "permits_12mo": 31, "median_job_value": 15900, "has_active_license": true },
+        { "slug": "piedmont-foundations-charlotte-nc", "canonical_name": "Piedmont Foundations Inc", "permits_12mo": 22, "median_job_value": 38500, "has_active_license": true }
+      ]
+    },
+    {
+      "slug": "tampa",
+      "name": "Tampa",
+      "state": "FL",
+      "activity": [
+        { "month": "2026-05-01", "concrete_class": "foundation", "permits": 29, "total_value": 1980000, "median_value": 52000 },
+        { "month": "2026-05-01", "concrete_class": "flatwork", "permits": 47, "total_value": 401000, "median_value": 7300 },
+        { "month": "2026-04-01", "concrete_class": "foundation", "permits": 27, "total_value": 1810000, "median_value": 50500 },
+        { "month": "2026-04-01", "concrete_class": "flatwork", "permits": 43, "total_value": 359000, "median_value": 7100 }
+      ],
+      "contractors": [
+        { "slug": "bay-area-concrete-tampa-fl", "canonical_name": "Bay Area Concrete LLC", "permits_12mo": 26, "median_job_value": 12700, "has_active_license": true },
+        { "slug": "suncoast-slabs-tampa-fl", "canonical_name": "Suncoast Slabs Inc", "permits_12mo": 14, "median_job_value": 6800, "has_active_license": false }
       ]
     }
   ],
@@ -404,6 +712,168 @@
       "status": "open",
       "source_url": null,
       "contact": "bids@usaconcretejobs.com"
+    },
+    {
+      "slug": "usace-floodwall-repair-houston",
+      "title": "Floodwall panel repair & joint replacement, Buffalo Bayou",
+      "source_level": "federal",
+      "buyer": "U.S. Army Corps of Engineers — Galveston District",
+      "solicitation_no": "W9126G-26-B-0027",
+      "concrete_class": "structural",
+      "description": "Repair spalled floodwall panels, replace waterstop joints, and re-anchor panel sections along Buffalo Bayou. Work below grade in a dewatered excavation; cofferdam and dewatering plan required with bid. Davis-Bacon wage rates apply.",
+      "est_value": 1850000,
+      "set_aside": "Total Small Business",
+      "city": "Houston",
+      "state": "TX",
+      "posted_on": "2026-05-26",
+      "due_on": "2026-07-07",
+      "status": "open",
+      "source_url": "https://sam.gov/opp/W9126G-26-B-0027/view",
+      "contact": null
+    },
+    {
+      "slug": "txdot-bridge-rail-i45-houston",
+      "title": "Bridge rail & deck repairs, I-45 North corridor",
+      "source_level": "state",
+      "buyer": "Texas Department of Transportation — Houston District",
+      "solicitation_no": "CCSJ 0500-03-642",
+      "concrete_class": "structural",
+      "description": "Replace substandard bridge rail, partial-depth deck repairs, and approach slab work at five structures on the I-45 North corridor. Night closures only; TxDOT prequalification required. Engineer's estimate $3.1M.",
+      "est_value": 3100000,
+      "set_aside": null,
+      "city": "Houston",
+      "state": "TX",
+      "posted_on": "2026-06-02",
+      "due_on": "2026-07-16",
+      "status": "open",
+      "source_url": "https://www.txdot.gov/business/letting-bids.html",
+      "contact": null
+    },
+    {
+      "slug": "adot-ada-ramps-phoenix-district",
+      "title": "ADA ramp & sidewalk package, Phoenix maintenance district",
+      "source_level": "state",
+      "buyer": "Arizona Department of Transportation",
+      "solicitation_no": "ADOT 26-114",
+      "concrete_class": "flatwork",
+      "description": "Construct and retrofit ADA-compliant curb ramps and connecting sidewalk at approximately 90 locations across the Phoenix maintenance district. Unit-price contract; AZ ROC license required at bid.",
+      "est_value": 920000,
+      "set_aside": null,
+      "city": "Phoenix",
+      "state": "AZ",
+      "posted_on": "2026-05-29",
+      "due_on": "2026-06-25",
+      "status": "open",
+      "source_url": "https://azdot.gov/business/contracts-and-specifications",
+      "contact": null
+    },
+    {
+      "slug": "phoenix-bus-pads-package-2",
+      "title": "Concrete bus pads & shelters package 2",
+      "source_level": "local",
+      "buyer": "City of Phoenix — Street Transportation",
+      "solicitation_no": "RFB 26-089-STR",
+      "concrete_class": "flatwork",
+      "description": "Construct 9 in. reinforced concrete bus pads, shelter foundations, and connecting sidewalk at 22 transit stops. Summer heat plan required — night pours permitted; city traffic control standards apply.",
+      "est_value": 740000,
+      "set_aside": null,
+      "city": "Phoenix",
+      "state": "AZ",
+      "posted_on": "2026-06-04",
+      "due_on": "2026-07-10",
+      "status": "open",
+      "source_url": "https://www.phoenix.gov/streets/procurement-opportunities",
+      "contact": null
+    },
+    {
+      "slug": "metro-nashville-sidewalk-program",
+      "title": "FY27 sidewalk & curb program, multiple corridors",
+      "source_level": "local",
+      "buyer": "Metro Nashville — Public Works",
+      "solicitation_no": "RFQ 1077898",
+      "concrete_class": "flatwork",
+      "description": "Annual program contract for new sidewalk, curb and gutter, and ADA ramps across council-district corridors. Task-order releases through June 2027; DBE participation goal applies. TN contractor license required at bid.",
+      "est_value": 1300000,
+      "set_aside": null,
+      "city": "Nashville",
+      "state": "TN",
+      "posted_on": "2026-06-05",
+      "due_on": "2026-07-20",
+      "status": "open",
+      "source_url": "https://www.nashville.gov/departments/procurement",
+      "contact": null
+    },
+    {
+      "slug": "charlotte-bus-pads-curb-package",
+      "title": "Bus pad & curb replacement package, CATS routes",
+      "source_level": "local",
+      "buyer": "City of Charlotte — General Services",
+      "solicitation_no": "269-2026-051",
+      "concrete_class": "flatwork",
+      "description": "Replace deteriorated bus pads and curb-and-gutter along CATS routes; 14 locations. Includes pedestrian access maintenance during work and coordination with transit operations for stop closures.",
+      "est_value": 610000,
+      "set_aside": null,
+      "city": "Charlotte",
+      "state": "NC",
+      "posted_on": "2026-05-27",
+      "due_on": "2026-06-30",
+      "status": "open",
+      "source_url": "https://www.charlottenc.gov/Growth-and-Development/Doing-Business",
+      "contact": null
+    },
+    {
+      "slug": "tampa-riverwalk-section-repairs",
+      "title": "Riverwalk section repairs — slabs, rail bases & joint seals",
+      "source_level": "local",
+      "buyer": "City of Tampa — Contract Administration",
+      "solicitation_no": "26-C-00041",
+      "concrete_class": "structural",
+      "description": "Repair settled and spalled Riverwalk slab sections, rebuild rail post bases, and reseal expansion joints over water. Marine access required for two segments; work windows coordinated around events calendar.",
+      "est_value": 480000,
+      "set_aside": null,
+      "city": "Tampa",
+      "state": "FL",
+      "posted_on": "2026-06-01",
+      "due_on": "2026-07-14",
+      "status": "open",
+      "source_url": "https://www.tampa.gov/contract-administration/programs/bids",
+      "contact": null
+    },
+    {
+      "slug": "tilt-wall-distribution-center-houston",
+      "title": "Tilt-wall & slab package, distribution center — sub bids",
+      "source_level": "private",
+      "buyer": "Port 10 Builders LLC (general contractor)",
+      "solicitation_no": null,
+      "concrete_class": "foundation",
+      "description": "GC seeking concrete sub bids for a 240,000 sf distribution center: tilt-wall panels, foundations, and 7 in. interior slab with laser-screed tolerance. Panel engineering by sub; crane coordination with GC. Strong preference for crews with verifiable big-box permit history.",
+      "est_value": 2400000,
+      "set_aside": null,
+      "city": "Houston",
+      "state": "TX",
+      "posted_on": "2026-06-03",
+      "due_on": "2026-07-03",
+      "status": "open",
+      "source_url": null,
+      "contact": "estimating@port10builders.example"
+    },
+    {
+      "slug": "hoa-streets-gutters-phoenix",
+      "title": "Private streets & valley gutters replacement, 84-lot HOA",
+      "source_level": "private",
+      "buyer": "Sunridge Estates HOA — owner direct",
+      "solicitation_no": null,
+      "concrete_class": "driveway",
+      "description": "Owner-direct bid: replace failed valley gutters, curb sections, and driveway aprons throughout a private 84-lot community. Phased to keep resident access; evening walk-through available. AZ ROC license required.",
+      "est_value": 290000,
+      "set_aside": null,
+      "city": "Phoenix",
+      "state": "AZ",
+      "posted_on": "2026-06-06",
+      "due_on": "2026-06-27",
+      "status": "open",
+      "source_url": null,
+      "contact": "board@sunridgeestates.example"
     }
   ]
 }

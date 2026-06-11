@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
           <a className="wordmark" href="/">USA<span>CONCRETE</span>JOBS</a>
           <nav>
             <a href="/jobs">Open jobs</a>
-            <a href="/co">Cities</a>
+            <a href="/cities">Cities</a>
             <a href="/contractors">Contractors</a>
             <a href="/about-data">About the data</a>
           </nav>
@@ -35,7 +35,7 @@ export default function RootLayout({ children }) {
             systems. Data is public record; corrections via the issuing jurisdiction.
           </p>
           <p className="foot-nav">
-            <a href="/jobs">Open jobs</a> · <a href="/co">Cities</a> ·{" "}
+            <a href="/jobs">Open jobs</a> · <a href="/cities">Cities</a> ·{" "}
             <a href="/contractors">Contractors</a> ·{" "}
             <a href="/about-data">About the data</a>
           </p>

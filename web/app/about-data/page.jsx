@@ -19,13 +19,18 @@ export default function AboutData() {
       <h2>Where records come from</h2>
       <div className="prose">
         <p>
-          Colorado has no statewide general-contractor license. Concrete
-          contractors are licensed city-by-city and county-by-county, and most
-          concrete work — foundations, flatwork over local thresholds,
+          Contractor licensing in the United States is a patchwork. Some
+          states license contractors statewide — Arizona&apos;s Registrar of
+          Contractors, Florida&apos;s DBPR, Tennessee and North Carolina&apos;s
+          licensing boards. Others, Colorado and Texas among them, leave it to
+          cities and counties entirely. What every jurisdiction has in common:
+          most concrete work — foundations, flatwork over local thresholds,
           retaining walls, structural cutting — requires a building permit. We
           pull those records directly from each jurisdiction&apos;s own permit
           and licensing systems: open-data portals where they exist, public
-          lookup portals where they don&apos;t.
+          lookup portals where they don&apos;t. Open work for bid comes from
+          the same kinds of official sources — SAM.gov federally, state DOT
+          lettings, and city/county procurement systems.
         </p>
         <p>
           We do not collect reviews, accept paid placements, or editorialize.

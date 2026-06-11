@@ -41,16 +41,19 @@ class SamGovOpportunities(BaseScraper):
         for naics in self.cfg.get("naics", NAICS):
             offset, limit = 0, 1000
             while True:
-                data = self.get(API, params={
+                params = {
                     "api_key": api_key,
                     "ncode": naics,
-                    "state": self.cfg.get("place_of_performance_state", "CO"),
                     "postedFrom": posted_from.strftime("%m/%d/%Y"),
                     "postedTo": date.today().strftime("%m/%d/%Y"),
                     "ptype": "o,k",          # solicitations + combined synopsis
                     "limit": limit,
                     "offset": offset,
-                }).json()
+                }
+                # Omit for a nationwide pull; set to throttle to one state.
+                if self.cfg.get("place_of_performance_state"):
+                    params["state"] = self.cfg["place_of_performance_state"]
+                data = self.get(API, params=params).json()
                 opps = data.get("opportunitiesData", [])
                 if not opps:
                     break
