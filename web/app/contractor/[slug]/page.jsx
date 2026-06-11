@@ -9,7 +9,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const c = await getContractor(params.slug);
+  const { slug } = await params;
+  const c = await getContractor(slug);
   if (!c) return {};
   return {
     title: `${c.canonical_name} — license & permit record, ${c.city}, ${c.state}`,
@@ -18,7 +19,8 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function ContractorPage({ params }) {
-  const c = await getContractor(params.slug);
+  const { slug } = await params;
+  const c = await getContractor(slug);
   if (!c) notFound();
 
   const jsonLd = {

@@ -38,6 +38,26 @@ psql -c "REFRESH MATERIALIZED VIEW CONCURRENTLY contractor_profile"
 cd web && npm i && npm run dev              # renders from seed.json without DB
 ```
 
+## Deployment (Cloudflare Workers)
+The web app deploys to Cloudflare Workers via the OpenNext adapter
+(`@opennextjs/cloudflare`); config lives in `web/wrangler.jsonc` and
+`web/open-next.config.ts`.
+
+```bash
+cd web && npm run preview    # build + serve in the local Workers runtime
+cd web && npm run deploy     # build + deploy with wrangler
+```
+
+For git-driven deploys, connect the repo in the Cloudflare dashboard
+(Workers Builds) with root directory `web/`, build command
+`npx opennextjs-cloudflare build`, and deploy command
+`npx opennextjs-cloudflare deploy`.
+
+Postgres access from the Worker: set `DATABASE_URL` as a Worker secret
+(`wrangler secret put DATABASE_URL`); put a Cloudflare Hyperdrive in front of
+the database for connection pooling once off seed data. Without it the app
+serves the prerendered seed pages.
+
 ## Launch sequence and validation gates
 1. **Recon (week 1).** Verify Denver open-data dataset IDs; recon each county
    portal per the checklist in `accela_permits.py`. Pull the CO Secretary of

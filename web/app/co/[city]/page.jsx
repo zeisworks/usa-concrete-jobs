@@ -9,7 +9,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const c = await getCity(params.city);
+  const { city } = await params;
+  const c = await getCity(city);
   if (!c) return {};
   return {
     title: `Concrete permits in ${c.name}, CO — activity & contractors`,
@@ -18,7 +19,8 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function CityPage({ params }) {
-  const c = await getCity(params.city);
+  const { city } = await params;
+  const c = await getCity(city);
   if (!c) notFound();
   const latestMonth = c.activity[0]?.month;
   const latest = c.activity.filter((a) => a.month === latestMonth);
