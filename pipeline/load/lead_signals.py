@@ -60,3 +60,57 @@ JOIN contractor_profile cp ON cp.id = c.id
 WHERE ls.exported_at IS NULL AND c.email IS NOT NULL
 ORDER BY ls.score DESC;
 """
+
+
+def main():
+    """python -m pipeline.load.lead_signals [--export out.csv] [--mark]
+
+    Generates velocity + expiry signals, then optionally exports un-exported
+    rows to CSV for Instantly. --mark stamps exported_at on what it exported
+    (only use once the CSV is actually uploaded).
+    """
+    import argparse
+    import csv
+    import json
+    import sys
+
+    import psycopg2
+
+    from .. import dsn
+
+    ap = argparse.ArgumentParser(prog="pipeline.load.lead_signals", description=main.__doc__)
+    ap.add_argument("--export", metavar="CSV", help="write un-exported signals to this file ('-' = stdout)")
+    ap.add_argument("--mark", action="store_true", help="stamp exported_at on exported rows")
+    args = ap.parse_args()
+
+    conn = psycopg2.connect(dsn())
+    with conn.cursor() as cur:
+        cur.execute(VELOCITY_SQL)
+        velocity = cur.rowcount
+        cur.execute(EXPIRING_SQL)
+        expiring = cur.rowcount
+    conn.commit()
+    print(f"signals: {velocity} velocity, {expiring} license-expiring", file=sys.stderr)
+
+    if args.export:
+        with conn.cursor() as cur:
+            cur.execute(EXPORT_SQL)
+            rows = cur.fetchall()
+            cols = [d[0] for d in cur.description]
+        out = sys.stdout if args.export == "-" else open(args.export, "w", newline="")
+        w = csv.writer(out)
+        w.writerow(cols)
+        for row in rows:
+            w.writerow([json.dumps(v) if isinstance(v, dict) else v for v in row])
+        if out is not sys.stdout:
+            out.close()
+        print(f"exported {len(rows)} rows", file=sys.stderr)
+        if args.mark and rows:
+            with conn.cursor() as cur:
+                cur.execute("UPDATE lead_signal SET exported_at = now() WHERE id = ANY(%s)",
+                            ([r[0] for r in rows],))
+            conn.commit()
+
+
+if __name__ == "__main__":
+    main()

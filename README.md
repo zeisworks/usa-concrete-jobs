@@ -39,12 +39,18 @@ web/                             Next.js entity pages (ISR, JSON-LD, sitemap)
 ## Run order
 ```bash
 createdb usaconcretejobs && psql usaconcretejobs < db/schema.sql
-# seed jurisdictions from yaml (write a 10-line loader or insert by hand)
-python -m pipeline.run denver-co            # raw ingest
-python -m pipeline.resolve                  # entities + classification
-psql -c "REFRESH MATERIALIZED VIEW CONCURRENTLY contractor_profile"
+python -m pipeline.run --seed               # jurisdictions from yaml
+python -m pipeline.run denver-co            # raw ingest (or: all)
+SAM_API_KEY=... python -m pipeline.run federal-us   # bid board ingest
+python -m pipeline.resolve                  # entities, classification, bids, matviews
+python -m pipeline.load.lead_signals --export leads.csv   # Instantly export
+python -m pipeline.export_seed              # DB -> web/data/seed.json snapshot
 cd web && npm i && npm run dev              # renders from seed.json without DB
 ```
+
+The `export_seed` step is the bridge to production before wiring the Worker
+to Postgres: pipeline runs on a box with DB access, exports the snapshot,
+commit + deploy serves real records fully static.
 
 ## Deployment (Cloudflare Workers)
 The web app deploys to Cloudflare Workers via the OpenNext adapter

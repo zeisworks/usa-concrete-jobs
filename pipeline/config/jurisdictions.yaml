@@ -161,12 +161,14 @@ jurisdictions:
 #   CO Secretary of State business entity database — bulk download available.
 #   Load into a sos_entity staging table; match on normalized name + reg agent.
 
-# Concrete classification keywords (used by resolve/classify.py)
+# Concrete classification keywords (used by resolve/classify.py).
+# Order matters: first match wins, so specific classes come before broad ones
+# (driveway before flatwork — 'driveway and apron' is a driveway job).
 concrete_keywords:
   foundation:   [foundation, footing, footer, caisson, pier, stem wall, slab on grade]
-  flatwork:     [flatwork, sidewalk, slab, patio, concrete pad, apron]
   driveway:     [driveway]
   retaining_wall: [retaining wall, mse wall]
   structural:   [structural concrete, shotcrete, core drill, concrete cutting, sawcut, post-tension]
   decorative:   [stamped, stained concrete, decorative concrete, exposed aggregate]
   demolition:   [demo concrete, remove concrete, concrete removal]
+  flatwork:     [flatwork, sidewalk, slab, patio, concrete pad, apron]

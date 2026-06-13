@@ -1,0 +1,81 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  web:
+    runs-on: ubuntu-latest
+    defaults:
+      run: { working-directory: web }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - run: npm ci
+      - name: Validate seed data
+        run: |
+          node -e "
+            const s = require('./data/seed.json');
+            const slugs = new Set(s.contractors.map(c => c.slug));
+            if (slugs.size !== s.contractors.length) throw new Error('duplicate contractor slugs');
+            for (const c of s.cities) {
+              if (!c.state) throw new Error(c.slug + ': city missing state');
+              for (const t of c.contractors)
+                if (!slugs.has(t.slug)) throw new Error(c.slug + ' links missing contractor ' + t.slug);
+            }
+            const jobSlugs = new Set(s.jobs.map(j => j.slug));
+            if (jobSlugs.size !== s.jobs.length) throw new Error('duplicate job slugs');
+            for (const j of s.jobs) {
+              if (!['federal','state','local','private'].includes(j.source_level))
+                throw new Error(j.slug + ': bad source_level');
+              if (!j.source_url && !j.contact) throw new Error(j.slug + ': no way to bid');
+            }
+            console.log('seed OK:', s.contractors.length, 'contractors,', s.cities.length, 'cities,', s.jobs.length, 'jobs');
+          "
+      - run: npm run build
+
+  pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -r pipeline/requirements.txt
+      - run: python -m compileall -q pipeline
+      - name: Config + mapper sanity
+        run: |
+          python - <<'EOF'
+          from pipeline.run import load_config, ADAPTERS
+          from pipeline.resolve.entity_resolution import load_keywords, normalize_name, parse_date
+          from pipeline.resolve.bid_opportunities import map_sam_notice
+
+          config = load_config()
+          assert config, "jurisdictions.yaml empty"
+          runnable = [j["slug"] for j in config if j.get("source_config", {}).get("adapter") in ADAPTERS]
+          assert "denver-co" in runnable and "federal-us" in runnable
+
+          kw = load_keywords()
+          assert "foundation" in kw
+          assert normalize_name("Rocky Mountain Concrete LLC") == "rocky mountain concrete"
+          assert parse_date("06/13/2026") == "2026-06-13"
+          assert parse_date("2026-07-07T17:00:00-05:00") == "2026-07-07"
+
+          row = map_sam_notice({
+              "noticeId": "abc123def456", "title": "Sidewalk and ADA ramp replacement",
+              "solicitationNumber": "TEST-26-B-0001", "naicsCode": "238110",
+              "fullParentPathName": "GENERAL SERVICES ADMINISTRATION.PBS.R8",
+              "postedDate": "2026-05-22", "responseDeadLine": "2026-06-26T14:00:00-06:00",
+              "typeOfSetAsideDescription": "Total Small Business",
+              "placeOfPerformance": {"city": {"name": "LAKEWOOD"}, "state": {"code": "CO"}},
+              "uiLink": "https://sam.gov/opp/abc123def456/view",
+          }, kw)
+          assert row["concrete_class"] == "flatwork" and row["state"] == "CO"
+          assert row["due_on"] == "2026-06-26" and row["buyer"] == "R8"
+          print("pipeline sanity OK:", len(runnable), "runnable jurisdictions")
+          EOF
